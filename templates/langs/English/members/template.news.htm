@@ -1,0 +1,7 @@
+<html><head><link rel=stylesheet type=text/css href="<?=$data['Host']?>/css/style.css"><script type=text/javascript language=JavaScript src="<?=$data['Host']?>/js/script.js"></script><script type=text/javascript>function s(){window.status="<?=prntext($data['SiteTitle'])?>";return true};if(document.layers)document.captureEvents(Event.MOUSEOVER|Event.MOUSEOUT|Event.CLICK|Event.DBLCLICK);document.onmouseover=s;document.onmouseout=s;</script><title></title></head><body topmargin=0 leftmargin=1 marginwidth=0 marginheight=0 bgcolor=#FFFFFF>
+<table class=frame width=100% border=0 cellspacing=1 cellpadding=2>
+<?if($post['News']){?>
+<?foreach($post['News'] as $key=>$value){$bgcolor=$key%2?'#EEEEEE':'#E7E7E7'?>
+<tr bgcolor=<?=$bgcolor?> onmouseover="setPointer(this,<?=$key?>,'over','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmouseout="setPointer(this,<?=$key?>,'out','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmousedown="setPointer(this,<?=$key?>,'click','<?=$bgcolor?>','#CCFFCC','#FFCC99')"><td><b><font color=#FF0000><?=prndate($value['date'])?></font> - <?=strtoupper($value['name'])?></b><blockquote style="margin:10px 10px 10px 10px"><font color=gray><?=prntext($value['text'])?></font></blockquote></td></tr>
+<?}}else{?><tr><td class=error>NO NEWS FOUND</td></tr><?}?>
+</body></html>

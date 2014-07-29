@@ -1,0 +1,64 @@
+AlstraSoft END-USER SOFTWARE LICENSE AGREEMENT and Disclaimer
+
+EPay Enterprise 4.13
+Contact: sales@AlstraSoft.com 
+
+AlstraSoft, Copyright 2010
+All rights reserved. 
+
+
+1.THIS IS NOT FREE SOFTWARE
+If you have downloaded this software from a website other than 'www.AlstraSoft.com' or if you have otherwise received this 
+software from someone who is not a representative of this organization you are involved in an illegal activity. The copying, 
+distribution, installation and usage of this software without our consent is illegal. In order to help us continue the 
+development and production of good software, we kindly ask for your collaboration. Please contact us at 
+'piracy@AlstraSoft.com' and tell us where you got the software from.
+
+2.LICENSE AGREEMENT
+Do not run the AlstraSoft Pro software on a site other than which they have been licensed for. Violation of this license 
+agreement may void your right to receive support and subject you to legal action. You should carefully read the following 
+terms and conditions before using this software. Unless you have a different license agreement signed by AlstraSoft, your 
+use of this software indicates your acceptance of this license agreement and disclaimer of warranty. 
+
+As a registered user, you may alter or modify the AlstraSoft Pro as far as the HTML output is concerned. Further 
+modification of the script code requires written permission of the author (Just drop us a short note ). You cannot give 
+anyone else permission to modify the AlstraSoft Pro Software. You are strictly prohibited from distributing copies of this
+software without prior permission. You are specifically prohibited from charging, or requesting donations, for any copies, 
+however made, and from distributing the software and/or documentation with other products (commercial or otherwise) without 
+prior written permission! 
+
+3.DISCLAIMER OF WARRANTY
+This software, the information, code and/or executables as well as the accompanying files provided are provided "as is" 
+without warranty of any kind, either expressed or implied, including but not limited to the implied warranties of 
+merchantability and fitness for a particular purpose. In no event shall the AlstraSoft be liable for any damages 
+whatsoever including direct, indirect, incidental, consequential, loss of data, loss of business profits or special damages, 
+even if the author or seller has been advised of the possibility of such damages. Good data processing procedure dictates 
+that any program be thoroughly tested with non-critical data before relying on it. The user must assume the entire risk of 
+using the program. 
+                                                      
+4.LIMITED LIABILITY                                                      
+Unless otherwise expressly stated herein, AlstraSoft shall not be liable to Licensee for any consequential damages arising 
+out of AlstraSoft breach of this Agreement.
+
+5.REPRESENTATIONS AND WARRANTIES                                                                      
+AlstraSoft hereby represents and warrants to Licensee that                                        
+	A.Licensor is the owner of all right, title and interest, including copyright, in all the Licensed
+        Materials, or has the authority to enter into this Agreement on behalf of the owner.    
+                                                                                               
+	B.AlstraSoft is fully aware of Licensee's business requirements and intended uses for the Software 
+	and the Software shall satisfy such requirements and is fit for such intended uses.                                                         
+                                                         
+	C.AlstraSoft use of the Licensed Materials as authorized by this Agreement will not infringe any 
+        existing copyright, trade secret, patent or trademark rights of any third party.
+
+6.LIMITED WARRANTY                                                         
+AlstraSoft warrants that for a period of 30 of days after delivery of the Software.
+
+7.ATTORNEY FEES                                                                                      
+If any legal action is necessary to enforce this License, the prevailing party shall be entitled to reasonable attorney fees,
+costs and expenses in addition to any other relief to which it may be entitled.  
+                                                                                                      
+8.NOTICE                                                       
+All notices required or permitted to be given by one party to the other under this Agreement shall be sufficient if sent by 
+certified mail, return receipt requested, to the parties at the respective addresses set forth above or to such other 
+address as the party to receive the notice has designated by notice to the other party.

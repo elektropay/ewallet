@@ -1,0 +1,465 @@
+                                                                                                                                                                                            <div class="container">                                                                                                                                                                                                                                                      <?if(isset($data['ScriptLoaded'])){?><?if(!$data['PostSent']){?>
+<div class="gaf-container main-container " style="padding: 0;min-width:inherit">
+  
+<div id="content" style="margin:0px;padding:0;min-height:inherit" class="container deposit-funds">
+    <div class="row">
+       
+           
+            <div id="content-main" class="span9">
+            <form class="form deposit_form" method="post">
+            <?if($data['Error']){?><span class='label label-error'><?=prntext($data['Error'])?></span><br /><br /><?}?>
+            <h2>Send Money To:</h2>
+            <ul class="option unstyled">
+               
+                
+                 <li id="deposit.paypal.referenceList" class="selected round-top first">
+                      <h4 class='verified-banner'><span class='label label-success'>Verified Member</span></h4>
+                      
+                        
+                            
+                            <div class="desc">
+                                <h3 class="span4"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zoanga Member
+                                    <span class="hoverable pull-right icon-question-sign" ></span>
+                                </h3>
+                                
+                          </div>
+                          <div class="pull-left">
+                          <input type=text  class="span3" style="height: 27px;" name=receiver size=41 maxlength=32 value="<?=prntext($post['receiver'])?>"><br><font class=remark>Please use username or e-mail.</font>
+                            
+                        </div>
+                       
+                          <div class="clearfix"></div>
+                          
+                      </li>
+               
+                <li id="deposit.paypal.referenceList" class=" round-top first">
+                      
+                      
+                        
+                            
+                            <div class="desc">
+                                <h3 class="span4" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description (optional):
+                                    <span class="hoverable pull-right icon-question-sign" ></span>
+                                </h3>
+                                
+                          </div>
+                          <div class="pull-left">
+                          <textarea name=comments class="span4" style="width: 270px;" cols=10 rows=2><?=prntext($post['comments'])?></textarea>
+                        </div>
+                       
+                          <div class="clearfix"></div>
+                          
+                      </li>
+                
+                      
+                     
+                      
+                </ul>
+
+            <fieldset id="paymentInfo" class="row-fluid">
+                    <div class="well">
+                        <div class="row">
+                            <div class="span4">
+                                <label for="depositAmount">I'd like to send: <em class="muted normal"><span>(min <span id="sign_id_deposit"><?=prntext($data['Currency'])?></span><span id='min_deposit_id'> <?=prnsumm($data['PaymentMinSum'])?></span>)</span></em></label>
+                                <div class="pull-left">
+                                   <!-- <span id="sign_id_fixed" class="form-prefix"><?=prntext($data['Currency'])?></span>-->
+                                    <input  type="text" class="span2" id="amount" style="height: 27px;"  value="<?=$post['amount']  ?>" maxlength="15"> &nbsp;
+                                    <input type=hidden name=amount id="s_amount"   size=10 maxlength=16 value="<?=prnsumm($post['amount'])?>">
+                                </div>
+                                <div class="pull-left">
+ 
+  <select class="span2"  id="currency_type">
+
+	<option value="AED">United Arab Emirates (AED)</option>
+
+	<option value="ANG">Netherlands Antilles (ANG)</option>
+
+	<option value="ARS">Argentina (ARS)</option>
+
+	<option value="AUD">Australia (AUD)</option>
+
+	<option value="BGN">Bulgaria (BGN)</option>
+
+	<option value="BHD">Bahrain (BHD)</option>
+
+	<option value="BND">Brunei Darussalam (BND)</option>
+
+	<option value="BOB">Bolivia (BOB)</option>
+
+	<option value="BRL">Brazil (BRL)</option>
+
+	<option value="BWP">Botswana (BWP)</option>
+
+	<option value="CAD">Canada (CAD)</option>
+
+	<option value="CHF">Switzerland (CHF)</option>
+
+	<option value="CLP">Chile (CLP)</option>
+
+	<option value="CNY">China (CNY)</option>
+
+	<option value="COP">Colombia (COP)</option>
+
+	<option value="CRC">Costa Rica (CRC)</option>
+
+	<option value="CZK">Czech Republic (CZK)</option>
+
+	<option value="DKK">Denmark (DKK)</option>
+
+	<option value="DOP">Dominican Republic (DOP)</option>
+
+	<option value="DZD">Algeria (DZD)</option>
+
+	<option value="EGP">Egypt (EGP)</option>
+
+	<option value="EUR">Euro Member Countries (EUR)</option>
+
+	<option value="FJD">Fiji (FJD)</option>
+
+	<option value="GBP">United Kingdom (GBP)</option>
+
+	<option value="HKD">Hong Kong (HKD)</option>
+
+	<option value="HNL">Honduras (HNL)</option>
+
+	<option value="HRK">Croatia (HRK)</option>
+
+	<option value="HUF">Hungary (HUF)</option>
+
+	<option value="IDR">Indonesia (IDR)</option>
+
+	<option value="ILS">Israel (ILS)</option>
+
+	<option value="INR">India (INR)</option>
+
+	<option value="JMD">Jamaica (JMD)</option>
+
+	<option value="JOD">Jordan (JOD)</option>
+
+	<option value="JPY">Japan (JPY)</option>
+
+	<option value="KES">Kenya (KES)</option>
+
+	<option value="KRW">Korea (South) (KRW)</option>
+
+	<option value="KWD">Kuwait (KWD)</option>
+
+	<option value="KYD">Cayman Islands (KYD)</option>
+
+	<option value="KZT">Kazakhstan (KZT)</option>
+
+	<option value="LBP">Lebanon (LBP)</option>
+
+	<option value="LKR">Sri Lanka (LKR)</option>
+
+	<option value="LTL">Lithuania (LTL)</option>
+
+	<option value="LVL">Latvia (LVL)</option>
+
+	<option value="MAD">Morocco (MAD)</option>
+
+	<option value="MDL">Moldova (MDL)</option>
+
+	<option value="MKD">Macedonia (MKD)</option>
+
+	<option value="MUR">Mauritius (MUR)</option>
+
+	<option value="MXN">Mexico (MXN)</option>
+
+	<option value="MYR">Malaysia (MYR)</option>
+
+	<option value="NAD">Namibia (NAD)</option>
+
+	<option value="NGN">Nigeria (NGN)</option>
+
+	<option value="NIO">Nicaragua (NIO)</option>
+
+	<option value="NOK">Norway (NOK)</option>
+
+	<option value="NPR">Nepal (NPR)</option>
+
+	<option value="NZD">New Zealand (NZD)</option>
+
+	<option value="OMR">Oman (OMR)</option>
+
+	<option value="PEN">Peru (PEN)</option>
+
+	<option value="PGK">Papua New Guinea (PGK)</option>
+
+	<option value="PHP">Philippines (PHP)</option>
+
+	<option value="PKR">Pakistan (PKR)</option>
+
+	<option value="PLN">Poland (PLN)</option>
+
+	<option value="PYG">Paraguay (PYG)</option>
+
+	<option value="QAR">Qatar (QAR)</option>
+
+	<option value="RON">Romania (RON)</option>
+
+	<option value="RSD">Serbia (RSD)</option>
+
+	<option value="RUB">Russia (RUB)</option>
+
+	<option value="SAR">Saudi Arabia (SAR)</option>
+
+	<option value="SCR">Seychelles (SCR)</option>
+
+	<option value="SEK">Sweden (SEK)</option>
+
+	<option value="SGD">Singapore (SGD)</option>
+
+	<option value="SLL">Sierra Leone (SLL)</option>
+
+	<option value="SVC">El Salvador (SVC)</option>
+
+	<option value="THB">Thailand (THB)</option>
+
+	<option value="TND">Tunisia (TND)</option>
+
+	<option value="TRY">Turkey (TRY)</option>
+
+	<option value="TTD">Trinidad and Tobago (TTD)</option>
+
+	<option value="TWD">Taiwan (TWD)</option>
+
+	<option value="TZS">Tanzania (TZS)</option>
+
+	<option value="UAH">Ukraine (UAH)</option>
+
+	<option value="UGX">Uganda (UGX)</option>
+
+	<option value="USD" selected="selected">United States of America (USD)</option>
+
+	<option value="UYU">Uruguay (UYU)</option>
+
+	<option value="UZS">Uzbekistan (UZS)</option>
+
+	<option value="VEB">Venezuela (VEB)</option>
+
+	<option value="VND">Viet Nam (VND)</option>
+
+	<option value="YER">Yemen (YER)</option>
+
+	<option value="ZAR">South Africa (ZAR)</option>
+
+	<option value="ZMK">Zambia (ZMK)</option>
+
+</select><br />
+<script>
+var current = <?=$data['current_balance'] ?>;
+$("#currency_type").on("change",function(event){
+
+ 
+
+  var amount = $("#amount").val();
+
+ 
+
+  if(amount<=0){alert("please enter valid amount");return false;}
+
+  $("#convert_result").html("Processing Conversion...");
+
+  var to = $(event.target).val();
+
+  $.ajax({url:"<? echo $data['Host']  ?>/currency-converter/cc.php",data:{amt:amount,currency:to},method:"POST",success:function(result){
+
+    
+
+    $("#convert_result").html("(equals $"+parseFloat(result)+" USD)");
+
+   $("#s_amount").val(parseFloat(result));
+   $(".totalamount").html(parseFloat(result).toFixed(2));
+   $("#balance_id").html(parseFloat(current-parseFloat(result)).toFixed(2));
+  }});  
+
+});
+
+
+
+$("#amount").on("blur",function(event){
+
+   var to = $("#currency_type").val();
+
+   var amount = $("#amount").val();
+
+   if(to=="USD"){
+
+    $("#convert_result").html("");
+
+    $("#s_amount").val(amount);
+     $(".totalamount").html(amount);
+   $("#balance_id").html(parseFloat(current)-parseFloat(amount));
+    return false; 
+
+   }
+
+  $("#convert_result").html("Processing Conversion...");
+
+  
+
+ 
+
+  if(amount<=0){alert("please enter valid amount");return false;}
+
+  
+
+  
+
+  $.ajax({url:"<? echo $data['Host']  ?>/currency-converter/cc.php",data:{amt:amount,currency:to},method:"POST",success:function(result){
+
+    
+
+    $("#convert_result").html("(equals $"+parseFloat(result)+" USD)");
+
+   $("#s_amount").val(parseFloat(result));
+   $(".totalamount").html(parseFloat(result).toFixed(2));
+   $("#balance_id").html(parseFloat(current-parseFloat(result)).toFixed(2));
+  }});  
+
+});
+
+</script>
+
+&nbsp;<font class=remark id="convert_result"></font>
+                                </div>
+                                
+                            </div>
+                            <div class="span3 pull-right">
+                                <div class="align-r">
+                                    <strong>Amount to Send:<br>
+                                        <span id="amountToSendText" class="larger">
+                                            <span id="sign_id_send">$</span>
+                                            <span class="totalamount">0.00</span>
+                                            <span class="totalamount_loading" style="display:none"><img src="https://cdn3.f-cdn.com/img/ajax-loader.gif?v=62d3d0c60d4c33ef23dcefb9bc63e3a2&amp;m=2" style='padding-bottom: 4px; height: 20px;'></span>
+                                            <span id="code_id_send">USD</span>
+                                        </span>
+                                    </strong><br>
+                                    (Balance after Transfer:<br>
+                                    <strong id="balance"><span id="sign_id_balance">$</span><span id="balance_id">0</span></strong>)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+ 
+  <input type="submit" id="btn_next_id" name="send" class="btn btn-primary btn-large" value="Send Now" /> 
+ 
+ <div class="clearfix"></div><br /><br />
+ 
+ <div class="alert alert-info">
+
+     IF YOU WANT TO MAKE A MASS PAYMENTS PLEASE USE THE <strong> <a href="<?=$data['Members']?>/mass.htm">MASS PAYMENTS OPTION</strong> </a>.
+
+    </div>
+
+
+</form>
+  
+    </div>
+ 
+
+
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                </fieldset> 
+                </div>
+
+   
+
+    
+
+    </div>
+</div>
+
+
+
+</p>
+
+
+
+
+
+
+
+          
+        
+      </div>
+    </div>
+
+
+
+
+<?}else{?>
+<div class="gaf-container main-container " style="padding: 0;min-width:inherit">
+     
+        
+        
+       
+        
+        
+        
+        
+        
+ 
+<div id="content" style="margin:0px;padding:0;min-height:inherit" class="container deposit-funds">
+    <div class="row">
+       
+           
+            <div id="content-main" class="span8">
+            <fieldset id="paymentInfo" class="row-fluid">
+                    <div class="well">
+                        <div class="row">
+                            <div class="span4">
+                                
+                                <div class="pull-left">
+   <table  alert alert-success width=100% border=0 cellspacing=1 cellpadding=2>
+
+<tr>
+
+<td class=input><?=prntext($data['Currency'])?><?=prnsumm($post['amount'])?> was sent to member "<?=prntext($post['receiver'])?>".<br><br>You should get notification e-mail about this transaction.</td></tr></table><br><table  width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capc><a href="<?=$data['Members']?>/send.htm">SEND MONEY TO OTHER MEMBER</a>&nbsp;|&nbsp;<a href="index.htm">ACCOUNT OVERVIEW</a></td></tr></table>
+
+
+    </div>
+ 
+
+
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                </fieldset> 
+                </div>
+
+   
+
+    
+
+    </div>
+</div>
+
+
+
+</p>
+
+
+
+
+
+
+
+          
+        
+      </div>
+    </div>
+
+
+
+<?}?><?}else{?>SECURITY ALERT: Access Denied<?}?>                                                                                                                                                                                                                                                                                                                                                                                    

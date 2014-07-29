@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+  <html lang="en">
+	<head>
+	<meta charset="utf-8">
+	<title>Bootstrap, from Twitter</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Le styles -->
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="css/styler.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+	<!-- Redactor css -->
+	<link rel="stylesheet" href="js/lib/redactor/redactor.css" />
+
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Fav and touch icons -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
+  <body cz-shortcut-listen="true">
+
+	<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</a>
+	  
+		<div id="branding" class="span2">
+			<a href="#">
+				<!-- <i class="icon-tasks"></i>
+				<h1>BoardSkin</h1> -->
+				<img src="img/logo.png">
+			</a>
+		</div>
+		<div class="pull-right user">
+			<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+				<img src="img/styler/user-thumb.jpg"> 
+				<p><span>Izuddin Helmi</span></p> 
+				<b class="caret"></b>
+
+				<ul class="dropdown-menu" role="menu">
+	                <li><a tabindex="-1" href="#">View Profile</a></li>
+	                <li><a tabindex="-1" href="#">Manage Account</a></li>
+	                <li><a tabindex="-1" href="#">Inbox</a></li>
+	                <li><a tabindex="-1" href="#">Logout</a></li>
+	                <li class="divider"></li>
+	                <li><a tabindex="-1" href="#">Invite a Friend</a></li>
+	                <li><a tabindex="-1" href="#">Create a Team</a></li>
+	            </ul>
+			</a>
+		</div>
+		<form class="searchform pull-right">
+            <div class="input-icon-append">
+            	<input class="input-large" maxlength="23" placeholder="Search" type="text">
+                <button type="submit" rel="tooltip-bottom" class="icon" data-original-title="search">
+                	<i class="icon-search"></i>
+                </button>
+            </div>
+        </form>
+		
+  </div>
+</div>
+	<div class="content clearfix">
+		<div class="section menu">
+	<ul class="navigation nav-collapse">
+		<li >
+		  <a href="index.html">
+			<i class="icon-dashboard"></i>
+			<span>Dashboard</span>
+		  </a>
+		</li>
+		<li >
+		  <a href="forms.html">
+			<i class="icon-edit"></i>
+			<span>Forms</span>
+		  </a>
+		</li>
+		<li >
+		  <a href="calendar.html">
+			<i class="icon-calendar"></i>
+			<span>Calendar</span>
+		  </a>
+		</li>
+		<li >
+		  <a href="icons.html">
+			<i class="icon-heart"></i>
+			<span>Icons</span>
+		  </a>
+		</li>
+		<li  class="current" >
+		  <a href="tables.html">
+			<i class="icon-table"></i>
+			<span>Tables</span>
+		  </a>
+		</li>
+		<li >
+			<a href="charts.html">
+				<i class="icon-bar-chart"></i>
+				<span>Charts</span>
+			</a>
+		</li>
+		<li >
+			<a href="typography.html">
+				<i class="icon-font"></i>
+				<span>Typography</span>
+			</a>
+		</li>
+	</ul>
+</div>		<div class="section main">
+			<div class="section-header">
+				<h1>Tables</h1>
+			</div>
+			<div class="section-content">
+				<div class="header aligncenter">
+					<h2>Normal Table</h2>
+					<p>Tonx mlkshk placeat, forage actually twee cillum banjo duis consequat elit wes anderson ex. Swag nisi pop-up before they sold out selfies, 8-bit letterpress cillum bespoke authentic butcher retro.</p>
+				</div>
+				<div class="container-fluid">
+					<div class="row-fluid">
+						<div class="span12">
+							<div class="widget">
+								<table class="table table-striped table-bordered">
+									<thead>
+										<tr role="row">
+											<th>Rendering engine</th>
+											<th>Browser</th>
+											<th>Platform(s)</th>
+											<th>Engine version</th>
+											<th>CSS grade</th>
+										</tr>
+									</thead>
+									<tbody role="alert" aria-live="polite" aria-relevant="all">
+										<tr class="gradeA odd">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Seamonkey 1.1</td>
+											<td class=" ">Win 98+ / OSX.2+</td>
+											<td class="center ">1.8</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Webkit</td>
+											<td class="  sorting_1">Safari 3.0</td>
+											<td class=" ">OSX.4+</td>
+											<td class="center ">522.1</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Webkit</td>
+											<td class="  sorting_1">Safari 2.0</td>
+											<td class=" ">OSX.4+</td>
+											<td class="center ">419.3</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Webkit</td>
+											<td class="  sorting_1">Safari 1.3</td>
+											<td class=" ">OSX.3</td>
+											<td class="center ">312.8</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Webkit</td>
+											<td class="  sorting_1">Safari 1.2</td>
+											<td class=" ">OSX.3</td>
+											<td class="center ">125.5</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Webkit</td>
+											<td class="  sorting_1">S60</td>
+											<td class=" ">S60</td>
+											<td class="center ">413</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeC odd">
+											<td class="">Misc</td>
+											<td class="  sorting_1">PSP browser</td>
+											<td class=" ">PSP</td>
+											<td class="center ">-</td>
+											<td class="center ">C</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Presto</td>
+											<td class="  sorting_1">Opera for Wii</td>
+											<td class=" ">Wii</td>
+											<td class="center ">-</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Presto</td>
+											<td class="  sorting_1">Opera 9.5</td>
+											<td class=" ">Win 88+ / OSX.3+</td>
+											<td class="center ">-</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Presto</td>
+											<td class="  sorting_1">Opera 9.2</td>
+											<td class=" ">Win 88+ / OSX.3+</td>
+											<td class="center ">-</td>
+											<td class="center ">A</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="section-content">
+				<div class="header aligncenter">
+					<h2>Sortable &amp; Filterable Table</h2>
+					<p>Tonx mlkshk placeat, forage actually twee cillum banjo duis consequat elit wes anderson ex. Swag nisi pop-up before they sold out selfies, 8-bit letterpress cillum bespoke authentic butcher retro.</p>
+				</div>
+				<div class="container-fluid">
+					<div class="row-fluid">
+						<div class="span12">
+							<div class="widget">
+								<table class="table table-striped table-bordered table-data">
+									<thead>
+										<tr role="row">
+											<th>Rendering engine</th>
+											<th>Browser</th>
+											<th>Platform(s)</th>
+											<th>Engine version</th>
+											<th>CSS grade</th>
+										</tr>
+									</thead>
+									<tbody role="alert" aria-live="polite" aria-relevant="all">
+										<tr class="gradeA odd">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Seamonkey 1.1</td>
+											<td class=" ">Win 98+ / OSX.2+</td>
+											<td class="center ">1.8</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Webkit</td>
+											<td class="  sorting_1">Safari 3.0</td>
+											<td class=" ">OSX.4+</td>
+											<td class="center ">522.1</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Webkit</td>
+											<td class="  sorting_1">Safari 2.0</td>
+											<td class=" ">OSX.4+</td>
+											<td class="center ">419.3</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Webkit</td>
+											<td class="  sorting_1">Safari 1.3</td>
+											<td class=" ">OSX.3</td>
+											<td class="center ">312.8</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Webkit</td>
+											<td class="  sorting_1">Safari 1.2</td>
+											<td class=" ">OSX.3</td>
+											<td class="center ">125.5</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Webkit</td>
+											<td class="  sorting_1">S60</td>
+											<td class=" ">S60</td>
+											<td class="center ">413</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeC odd">
+											<td class="">Misc</td>
+											<td class="  sorting_1">PSP browser</td>
+											<td class=" ">PSP</td>
+											<td class="center ">-</td>
+											<td class="center ">C</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Presto</td>
+											<td class="  sorting_1">Opera for Wii</td>
+											<td class=" ">Wii</td>
+											<td class="center ">-</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Presto</td>
+											<td class="  sorting_1">Opera 9.5</td>
+											<td class=" ">Win 88+ / OSX.3+</td>
+											<td class="center ">-</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Presto</td>
+											<td class="  sorting_1">Opera 9.2</td>
+											<td class=" ">Win 88+ / OSX.3+</td>
+											<td class="center ">-</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Presto</td>
+											<td class="  sorting_1">Opera 9.0</td>
+											<td class=" ">Win 95+ / OSX.3+</td>
+											<td class="center ">-</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Presto</td>
+											<td class="  sorting_1">Opera 8.5</td>
+											<td class=" ">Win 95+ / OSX.2+</td>
+											<td class="center ">-</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Presto</td>
+											<td class="  sorting_1">Opera 8.0</td>
+											<td class=" ">Win 95+ / OSX.2+</td>
+											<td class="center ">-</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Presto</td>
+											<td class="  sorting_1">Opera 7.5</td>
+											<td class=" ">Win 95+ / OSX.2+</td>
+											<td class="center ">-</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Presto</td>
+											<td class="  sorting_1">Opera 7.0</td>
+											<td class=" ">Win 95+ / OSX.1+</td>
+											<td class="center ">-</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Webkit</td>
+											<td class="  sorting_1">OmniWeb 5.5</td>
+											<td class=" ">OSX.4+</td>
+											<td class="center ">420</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Presto</td>
+											<td class="  sorting_1">Nokia N800</td>
+											<td class=" ">N800</td>
+											<td class="center ">-</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Presto</td>
+											<td class="  sorting_1">Nintendo DS browser</td>
+											<td class=" ">Nintendo DS</td>
+											<td class="center ">8.5</td>
+											<td class="center ">C/A<sup>1</sup></td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Netscape Navigator 9</td>
+											<td class=" ">Win 98+ / OSX.2+</td>
+											<td class="center ">1.8</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Netscape Browser 8</td>
+											<td class=" ">Win 98SE+</td>
+											<td class="center ">1.7</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Netscape 7.2</td>
+											<td class=" ">Win 95+ / Mac OS 8.6-9.2</td>
+											<td class="center ">1.7</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Misc</td>
+											<td class="  sorting_1">NetFront 3.4</td>
+											<td class=" ">Embedded devices</td>
+											<td class="center ">-</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Misc</td>
+											<td class="  sorting_1">NetFront 3.1</td>
+											<td class=" ">Embedded devices</td>
+											<td class="center ">-</td>
+											<td class="center ">C</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Mozilla 1.8</td>
+											<td class=" ">Win 98+ / OSX.1+</td>
+											<td class="center ">1.8</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Mozilla 1.7</td>
+											<td class=" ">Win 98+ / OSX.1+</td>
+											<td class="center ">1.7</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Mozilla 1.6</td>
+											<td class=" ">Win 95+ / OSX.1+</td>
+											<td class="center ">1.6</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Mozilla 1.5</td>
+											<td class=" ">Win 95+ / OSX.1+</td>
+											<td class="center ">1.5</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Mozilla 1.4</td>
+											<td class=" ">Win 95+ / OSX.1+</td>
+											<td class="center ">1.4</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Mozilla 1.3</td>
+											<td class=" ">Win 95+ / OSX.1+</td>
+											<td class="center ">1.3</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Mozilla 1.2</td>
+											<td class=" ">Win 95+ / OSX.1+</td>
+											<td class="center ">1.2</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Mozilla 1.1</td>
+											<td class=" ">Win 95+ / OSX.1+</td>
+											<td class="center ">1.1</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Mozilla 1.0</td>
+											<td class=" ">Win 95+ / OSX.1+</td>
+											<td class="center ">1</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeX odd">
+											<td class="">Misc</td>
+											<td class="  sorting_1">Lynx</td>
+											<td class=" ">Text only</td>
+											<td class="center ">-</td>
+											<td class="center ">X</td>
+										</tr>
+										<tr class="gradeX even">
+											<td class="">Misc</td>
+											<td class="  sorting_1">Links</td>
+											<td class=" ">Text only</td>
+											<td class="center ">-</td>
+											<td class="center ">X</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">KHTML</td>
+											<td class="  sorting_1">Konqureror 3.5</td>
+											<td class=" ">KDE 3.5</td>
+											<td class="center ">3.5</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">KHTML</td>
+											<td class="  sorting_1">Konqureror 3.3</td>
+											<td class=" ">KDE 3.3</td>
+											<td class="center ">3.3</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeC odd">
+											<td class="">KHTML</td>
+											<td class="  sorting_1">Konqureror 3.1</td>
+											<td class=" ">KDE 3.1</td>
+											<td class="center ">3.1</td>
+											<td class="center ">C</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Webkit</td>
+											<td class="  sorting_1">iPod Touch / iPhone</td>
+											<td class=" ">iPod</td>
+											<td class="center ">420.1</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="odd gradeA">
+											<td class="">Trident</td>
+											<td class="  sorting_1">Internet Explorer 7</td>
+											<td class=" ">Win XP SP2+</td>
+											<td class="center ">7</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeC even">
+											<td class="">Tasman</td>
+											<td class="  sorting_1">Internet Explorer 5.2</td>
+											<td class=" ">Mac OS 8-X</td>
+											<td class="center ">1</td>
+											<td class="center ">C</td>
+										</tr>
+										<tr class="gradeC odd">
+											<td class="">Tasman</td>
+											<td class="  sorting_1">Internet Explorer 5.1</td>
+											<td class=" ">Mac OS 7.6-9</td>
+											<td class="center ">1</td>
+											<td class="center ">C</td>
+										</tr>
+										<tr class="gradeX even">
+											<td class="">Tasman</td>
+											<td class="  sorting_1">Internet Explorer 4.5</td>
+											<td class=" ">Mac OS 8-9</td>
+											<td class="center ">-</td>
+											<td class="center ">X</td>
+										</tr>
+										<tr class="even gradeA odd">
+											<td class="">Trident</td>
+											<td class="  sorting_1">Internet
+												 Explorer 6</td>
+											<td class=" ">Win 98+</td>
+											<td class="center ">6</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="odd gradeA even">
+											<td class="">Trident</td>
+											<td class="  sorting_1">Internet
+												 Explorer 5.5</td>
+											<td class=" ">Win 95+</td>
+											<td class="center ">5.5</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeC odd">
+											<td class="">Trident</td>
+											<td class="  sorting_1">Internet
+												 Explorer 5.0</td>
+											<td class=" ">Win 95+</td>
+											<td class="center ">5</td>
+											<td class="center ">C</td>
+										</tr>
+										<tr class="gradeX even">
+											<td class="">Trident</td>
+											<td class="  sorting_1">Internet
+												 Explorer 4.0</td>
+											<td class=" ">Win 95+</td>
+											<td class="center "> 4</td>
+											<td class="center ">X</td>
+										</tr>
+										<tr class="gradeC odd">
+											<td class="">Misc</td>
+											<td class="  sorting_1">IE Mobile</td>
+											<td class=" ">Windows Mobile 6</td>
+											<td class="center ">-</td>
+											<td class="center ">C</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Firefox 3.0</td>
+											<td class=" ">Win 2k+ / OSX.3+</td>
+											<td class="center ">1.9</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Firefox 2.0</td>
+											<td class=" ">Win 98+ / OSX.2+</td>
+											<td class="center ">1.8</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Firefox 1.5</td>
+											<td class=" ">Win 98+ / OSX.2+</td>
+											<td class="center ">1.8</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Firefox 1.0</td>
+											<td class=" ">Win 98+ / OSX.2+</td>
+											<td class="center ">1.7</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Epiphany 2.20</td>
+											<td class=" ">Gnome</td>
+											<td class="center ">1.8</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeX odd">
+											<td class="">Misc</td>
+											<td class="  sorting_1">Dillo 0.8</td>
+											<td class=" ">Embedded devices</td>
+											<td class="center ">-</td>
+											<td class="center ">X</td>
+										</tr>
+										<tr class="gradeA even">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Camino 1.5</td>
+											<td class=" ">OSX.3+</td>
+											<td class="center ">1.8</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeA odd">
+											<td class="">Gecko</td>
+											<td class="  sorting_1">Camino 1.0</td>
+											<td class=" ">OSX.2+</td>
+											<td class="center ">1.8</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="even gradeA">
+											<td class="">Trident</td>
+											<td class="  sorting_1">AOL browser (AOL desktop)</td>
+											<td class=" ">Win XP</td>
+											<td class="center ">6</td>
+											<td class="center ">A</td>
+										</tr>
+										<tr class="gradeU odd">
+											<td class="">Other browsers</td>
+											<td class="  sorting_1">All others</td>
+											<td class=" ">-</td>
+											<td class="center ">-</td>
+											<td class="center ">U</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section sidebar">
+	<div class="widget">
+		<header class="widget-header">
+			<h3 class="light">online users</h3>
+		</header>
+		<article class="widget-content">
+			<ul class="unstyled user-list clearfix">
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+			</ul>
+		</article>
+	</div>
+	<div class="widget bg-color blue">
+		<header class="widget-header">
+			<h3>events</h3>
+		</header>
+		<article class="widget-content">
+			Ad artisan accusamus mixtape aliquip, bushwick try-hard deep v scenester biodiesel jean shorts keffiyeh. Bespoke qui master cleanse anim tousled minim. Art party occupy post-ironic messenger bag ut, quinoa mlkshk twee anim banksy lo-fi tonx voluptate.
+		</article>
+	</div>
+	<div class="widget bg-color dark-grey">
+		<header class="widget-header">
+			<h3>projects</h3>
+		</header>
+		<article class="widget-content">
+			<ul class="unstyled list">
+				<li>
+					<i class="icon-folder-close"></i> 
+					<span class="font-bold">Metroboard</span>
+					<span class="pull-right label label-success">completed</span>
+				</li>
+				<li>
+					<i class="icon-folder-close"></i> 
+					<span class="font-bold">Boardskin</span>
+					<span class="pull-right label label-important">7 tasks</span>
+				</li>
+				<li>
+					<i class="icon-folder-close"></i> 
+					<span class="font-bold">Landingskin</span>
+					<span class="pull-right label label-important">1 task</span>
+				</li>
+				<li>
+					<i class="icon-folder-close"></i> 
+					<span class="font-bold">Plain</span>
+					<span class="pull-right label label-important">3 tasks</span>
+				</li>
+				<li>
+					<i class="icon-folder-close"></i> 
+					<span class="font-bold">Website</span>
+					<span class="pull-right label label-warning">Pending</span>
+				</li>
+				<li>
+					<i class="icon-folder-close"></i> 
+					<span class="font-bold">Snippets</span>
+					<span class="pull-right label label-warning">4 tasks</span>
+				</li>
+				<li>
+					<i class="icon-folder-close"></i> 
+					<span class="font-bold">Styler</span>
+					<span class="pull-right label label-default">unknown</span>
+				</li>
+			</ul>
+		</article>
+	</div>
+</div>
+	</div>
+
+	<!-- Le javascript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src='js/calendar/_loader.js'></script>
+
+	<!-- Redactor Editor -->
+	<script src="js/lib/redactor/redactor.min.js"></script>
+
+	<!-- JS:charts-->
+	<script src="js/charts/jquery.flot.js"></script>
+	<script src="js/charts/jquery.flot.resize.js"></script>
+	<script src="js/charts/jquery.flot.stack.js"></script>
+	<script src="js/charts/jquery.flot.pie.min.js"></script>
+	<script src="js/charts/jquery.sparkline.min.js"></script>
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="excanvas.min.js"></script><![endif]-->
+
+	<script src="js/jquery.dataTables.min.js"></script>
+	
+	<script type='text/javascript'>
+		$(document).ready(function() {
+		
+			var date = new Date();
+			var d = date.getDate();
+			var m = date.getMonth();
+			var y = date.getFullYear();
+			$('.calendar-default').fullCalendar({
+				editable: true,
+				events: [
+					{
+						title: 'All Day Event',
+						start: new Date(y, m, 1)
+					},
+					{
+						title: 'Long Event',
+						start: new Date(y, m, d-5),
+						end: new Date(y, m, d-2)
+					},
+					{
+						id: 999,
+						title: 'Repeating Event',
+						start: new Date(y, m, d-3, 16, 0),
+						allDay: false
+					},
+					{
+						id: 999,
+						title: 'Repeating Event',
+						start: new Date(y, m, d+4, 16, 0),
+						allDay: false
+					},
+					{
+						title: 'Meeting',
+						start: new Date(y, m, d, 10, 30),
+						allDay: false
+					},
+					{
+						title: 'Lunch',
+						start: new Date(y, m, d, 12, 0),
+						end: new Date(y, m, d, 14, 0),
+						allDay: false
+					},
+					{
+						title: 'Birthday Party',
+						start: new Date(y, m, d+1, 19, 0),
+						end: new Date(y, m, d+1, 22, 30),
+						allDay: false
+					},
+					{
+						title: 'Click for Google',
+						start: new Date(y, m, 28),
+						end: new Date(y, m, 29),
+						url: 'http://google.com/'
+					}
+				]
+			});
+			$('.calendar-agenda').fullCalendar({
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+				editable: true,
+				events: [
+					{
+						title: 'All Day Event',
+						start: new Date(y, m, 1)
+					},
+					{
+						title: 'Long Event',
+						start: new Date(y, m, d-5),
+						end: new Date(y, m, d-2)
+					},
+					{
+						id: 999,
+						title: 'Repeating Event',
+						start: new Date(y, m, d-3, 16, 0),
+						allDay: false
+					},
+					{
+						id: 999,
+						title: 'Repeating Event',
+						start: new Date(y, m, d+4, 16, 0),
+						allDay: false
+					},
+					{
+						title: 'Meeting',
+						start: new Date(y, m, d, 10, 30),
+						allDay: false
+					},
+					{
+						title: 'Lunch',
+						start: new Date(y, m, d, 12, 0),
+						end: new Date(y, m, d, 14, 0),
+						allDay: false
+					},
+					{
+						title: 'Birthday Party',
+						start: new Date(y, m, d+1, 19, 0),
+						end: new Date(y, m, d+1, 22, 30),
+						allDay: false
+					},
+					{
+						title: 'Click for Google',
+						start: new Date(y, m, 28),
+						end: new Date(y, m, 29),
+						url: 'http://google.com/'
+					}
+				]
+			});
+
+
+			// Activate redactor editor
+			$('#redactor').redactor({
+				focus: true
+			});
+			
+		});
+	</script>
+	<script src="js/bootstrap.js"></script>
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="excanvas.min.js"></script><![endif]-->
+	<script src="js/custom.js"></script>
+	
+
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!--
+
+This is the HTML code for a dropdown of all 88 countries.
+
+-->
+
+<select>
+	<option value="AED">United Arab Emirates (AED)</option>
+	<option value="ANG">Netherlands Antilles (ANG)</option>
+	<option value="ARS">Argentina (ARS)</option>
+	<option value="AUD">Australia (AUD)</option>
+	<option value="BGN">Bulgaria (BGN)</option>
+	<option value="BHD">Bahrain (BHD)</option>
+	<option value="BND">Brunei Darussalam (BND)</option>
+	<option value="BOB">Bolivia (BOB)</option>
+	<option value="BRL">Brazil (BRL)</option>
+	<option value="BWP">Botswana (BWP)</option>
+	<option value="CAD">Canada (CAD)</option>
+	<option value="CHF">Switzerland (CHF)</option>
+	<option value="CLP">Chile (CLP)</option>
+	<option value="CNY">China (CNY)</option>
+	<option value="COP">Colombia (COP)</option>
+	<option value="CRC">Costa Rica (CRC)</option>
+	<option value="CZK">Czech Republic (CZK)</option>
+	<option value="DKK">Denmark (DKK)</option>
+	<option value="DOP">Dominican Republic (DOP)</option>
+	<option value="DZD">Algeria (DZD)</option>
+	<option value="EGP">Egypt (EGP)</option>
+	<option value="EUR">Euro Member Countries (EUR)</option>
+	<option value="FJD">Fiji (FJD)</option>
+	<option value="GBP">United Kingdom (GBP)</option>
+	<option value="HKD">Hong Kong (HKD)</option>
+	<option value="HNL">Honduras (HNL)</option>
+	<option value="HRK">Croatia (HRK)</option>
+	<option value="HUF">Hungary (HUF)</option>
+	<option value="IDR">Indonesia (IDR)</option>
+	<option value="ILS">Israel (ILS)</option>
+	<option value="INR">India (INR)</option>
+	<option value="JMD">Jamaica (JMD)</option>
+	<option value="JOD">Jordan (JOD)</option>
+	<option value="JPY">Japan (JPY)</option>
+	<option value="KES">Kenya (KES)</option>
+	<option value="KRW">Korea (South) (KRW)</option>
+	<option value="KWD">Kuwait (KWD)</option>
+	<option value="KYD">Cayman Islands (KYD)</option>
+	<option value="KZT">Kazakhstan (KZT)</option>
+	<option value="LBP">Lebanon (LBP)</option>
+	<option value="LKR">Sri Lanka (LKR)</option>
+	<option value="LTL">Lithuania (LTL)</option>
+	<option value="LVL">Latvia (LVL)</option>
+	<option value="MAD">Morocco (MAD)</option>
+	<option value="MDL">Moldova (MDL)</option>
+	<option value="MKD">Macedonia (MKD)</option>
+	<option value="MUR">Mauritius (MUR)</option>
+	<option value="MXN">Mexico (MXN)</option>
+	<option value="MYR">Malaysia (MYR)</option>
+	<option value="NAD">Namibia (NAD)</option>
+	<option value="NGN">Nigeria (NGN)</option>
+	<option value="NIO">Nicaragua (NIO)</option>
+	<option value="NOK">Norway (NOK)</option>
+	<option value="NPR">Nepal (NPR)</option>
+	<option value="NZD">New Zealand (NZD)</option>
+	<option value="OMR">Oman (OMR)</option>
+	<option value="PEN">Peru (PEN)</option>
+	<option value="PGK">Papua New Guinea (PGK)</option>
+	<option value="PHP">Philippines (PHP)</option>
+	<option value="PKR">Pakistan (PKR)</option>
+	<option value="PLN">Poland (PLN)</option>
+	<option value="PYG">Paraguay (PYG)</option>
+	<option value="QAR">Qatar (QAR)</option>
+	<option value="RON">Romania (RON)</option>
+	<option value="RSD">Serbia (RSD)</option>
+	<option value="RUB">Russia (RUB)</option>
+	<option value="SAR">Saudi Arabia (SAR)</option>
+	<option value="SCR">Seychelles (SCR)</option>
+	<option value="SEK">Sweden (SEK)</option>
+	<option value="SGD">Singapore (SGD)</option>
+	<option value="SLL">Sierra Leone (SLL)</option>
+	<option value="SVC">El Salvador (SVC)</option>
+	<option value="THB">Thailand (THB)</option>
+	<option value="TND">Tunisia (TND)</option>
+	<option value="TRY">Turkey (TRY)</option>
+	<option value="TTD">Trinidad and Tobago (TTD)</option>
+	<option value="TWD">Taiwan (TWD)</option>
+	<option value="TZS">Tanzania (TZS)</option>
+	<option value="UAH">Ukraine (UAH)</option>
+	<option value="UGX">Uganda (UGX)</option>
+	<option value="USD">United States of America (USD)</option>
+	<option value="UYU">Uruguay (UYU)</option>
+	<option value="UZS">Uzbekistan (UZS)</option>
+	<option value="VEB">Venezuela (VEB)</option>
+	<option value="VND">Viet Nam (VND)</option>
+	<option value="YER">Yemen (YER)</option>
+	<option value="ZAR">South Africa (ZAR)</option>
+	<option value="ZMK">Zambia (ZMK)</option>
+</select>

@@ -1,0 +1,342 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>Exchange Rate Converter</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }
+		
+		h3 {
+			font-weight:	bold;
+		}
+		
+		div.code {
+			border:			2px solid #FFD324;
+			background:		#FFF6BF;			
+			color:			#000;
+			padding:		20px;
+			margin:			0 0 20px 0;
+		}
+		
+		div.cakeTop {
+			border-top:		2px solid #D3CFCF;
+			border-left:	2px solid #D3CFCF;
+			border-right:	2px solid #D3CFCF;
+			background:		#F6F6F6;			
+			color:			#000;
+			padding:		20px;
+			margin:			0;
+		}
+		
+		div.cakeMiddle {
+			border-left:	2px solid #FFD324;
+			border-right:	2px solid #FFD324;			
+			background:		#FFF6BF;			
+			color:			#000;
+			padding:		20px;	
+			maring:			0;
+		}
+		
+		div.cakeBottom {
+			border-left:	2px solid #718DC7;
+			border-right:	2px solid #718DC7;	
+			border-bottom:	2px solid #718DC7;
+			background:		#D2D8E8;			
+			color:			#000;
+			padding:		20px;		
+			margin:			0 0 40px 0;
+		}
+				
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+	
+		<h3 class="center alt">&ldquo;Exchange Rate Converter&rdquo; Documentation by &ldquo;Jarrod Oberto&rdquo; v1.0</h3>
+		
+		<hr>
+		
+		<h1 class="center">&ldquo;Exchange Rate Converter&rdquo;</h1>
+		
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					Created:21/06/2011<br>
+					By: Jarrod Oberto<br>
+					Email: <a href="mailto:codecanyon@oberto.co.nz">codecanyon@oberto.co.nz</a>
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->		
+	
+			<div class="span-12 last">
+				<p class="prepend-top append-0">Thank you for purchasing my class. If you have any questions that are beyond the scope of this help file, please feel free to email via my user page contact form <a href="http://themeforest.net/user/obert">here</a>.</p>
+			</div>
+		</div><!-- end div .borderTop -->
+		
+		<hr>
+		
+		<h2 id="toc" class="alt">Table of Contents</h2>
+		<ol class="alpha">
+			<li><a href="#howToInstall">How to Install</a></li>
+			<li><a href="#using">Using <em>Exchange Rate Converter</em></a></li>
+			<li><a href="#formattedResults">Displaying Formatted Results Examples</a>
+				<ul>
+					<li><a href="#nodp">Unspecified number of decimal places</a></li>
+					<li><a href="#dp">Specified number of decimal places</a></li>
+					<li><a href="#fullText">Full text</a></li>
+					<li><a href="#fullText2">Full text with parameters</a></li>
+				</ul>
+			</li>
+			<li><a href="#supportedCountries">Supported Countries</a></li>
+		</ol>
+		<hr>
+		
+		<h3 id="howToInstall"><strong>A) How to Install</strong> - <a href="#toc">top</a></h3>
+		<p>To get setup and ready to use <em>Exchange Rate Converter</em>, simply copy the currency_convert_class.php file from the ZIP archive you downloaded into a directory, of your choice - usually your "classes" folder, within your project.</p>
+		<hr>
+
+		<h3 id="using"><strong>B) Using <em>Exchange Rate Converter</em></strong> - <a href="#toc">top</a></h3>
+
+		<p><em>Exchange Rate Converter</em> is designed to be easy and straight forward to use.</p> 
+		<p>1) The first step is to include the <em>Exchange Rate Converter</em> class library. Make sure you specify the path to where the file is located. </p>
+		<div class="code">
+			include("path/to/currency_convert_class.php");
+		</div>
+		
+		<br />
+		<p>2) The next step is to create an object of the <em>Exchange Rate Converter</em> class: </p>
+		<div class="code">
+			$convertObj = new CurrencyConvert();
+		</div>
+		<p>I've called the object $convertObj; you can call this what every you like.</p>
+		
+		<p>3) In this step we do the conversion. We call the <strong>currencyConvert</strong> method, passing it the amount, the <em>from</em> currency, and the currency we want the result of.</p>
+		<p>The result is returned and saved to the variable $result.</p>
+		<div class="code">
+			$result = $convertObj -> currencyConvert($amount, $from, $to);
+		</div>
+		<strong>Params:</strong>
+		<ul>
+			<li><strong>$amount:</strong> The amount you wish to convert</li>
+			<li><strong>$from</strong> The currency you wish to convert</li>
+			<li><strong>$to</strong> The currency you want the result of</li>
+		</ul>
+				
+		<p>4) In this final step, we display the result.</p>
+		<p>The result is returned as a floating, 2 decimal placed, value. To get the result in a different format, see the <a href="#formattedResults">Displaying Formatted Results Examples</a> section.</p>
+		<div class="code">
+			echo $result;
+		</div>
+		
+		<hr>
+
+		<h3 id="formattedResults"><strong>C) Displaying Formatted Results Examples</strong> - <a href="#toc">top</a></h3>		
+		<p>To give you control over how you wish to display the results, check out these full examples that show you what is possible.</p>
+		<p>All examples use an amount of $100 and convert from US Dollars to New Zealand Dollars.</p>
+		
+		<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+		
+		<div class="cakeTop" id="nodp">
+			<h3>Unspecified number of decimal places</h3>
+				To return the result as an unrounded value for maximum accuracy, call the <strong>getResult()</strong> method (highlighted below).
+		</div>
+		<div class="cakeMiddle">
+			<h3>Code</h3>
+			include("currency_convert_class.php"); <br />
+			$convertObj = new CurrencyConvert(); <br />
+			$convertObj -> currencyConvert(100, 'USD', 'NZD'); <br />
+			<span class="highlight">echo $convertObj -> getResult();</span>
+			
+		</div>
+		<div class="cakeBottom">
+			<h3>Result</h3>
+			124.115676
+		</div>		
+		
+		<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+		
+		<div class="cakeTop" id="dp">
+			<h3>Specified number of decimal places</h3>
+				To return the result as a rounded value with a specified number of decimal places, call the <strong>getResult()</strong> method, passing the desired number of decimal places.
+				<br /><br />
+				In this example, we want out value to be returned to 3 decimal places
+		</div>
+		<div class="cakeMiddle">
+			<h3>Code</h3>
+			include("currency_convert_class.php"); <br />
+			$convertObj = new CurrencyConvert(); <br />
+			$convertObj -> currencyConvert(100, 'USD', 'NZD'); <br />
+			echo $convertObj -> getResult(<span class="highlight">3</span>);
+			
+		</div>
+		<div class="cakeBottom">
+			<h3>Result (to 3dp)</h3>
+			124.116
+		</div>		
+		
+		<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+		
+		<div class="cakeTop" id="fullText">
+			<h3>Full text</h3>
+				If you wish to include the full name of the countries in the conversion, this is done by calling the <Strong>getFullResult()</strong> method.
+		</div>
+		<div class="cakeMiddle">
+			<h3>Code</h3>
+			include("currency_convert_class.php"); <br />
+			$convertObj = new CurrencyConvert(); <br />
+			$convertObj -> currencyConvert(100, 'USD', 'NZD'); <br />
+			<span class="highlight">echo $convertObj -> getFullResult();</span>
+			
+		</div>
+		<div class="cakeBottom">
+			<h3>Result</h3>
+			100 U.S. dollars = 124.115676 New Zealand dollars
+		</div>	
+		
+		<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->		
+		
+		<div class="cakeTop" id="fullText2">
+			<h3>Full text with parameters</h3>
+				getFullResult() can take two optional parameter like so:
+				<br /><br />
+				<strong style="margin-left:40px;">getFullResult($number_of_dp, $use_country_code)</strong>
+				<br /><br />
+				<ul>
+					<li><strong>$number_of_dp</strong> <em>(int)</em>: The number of decimal places to display. Default is unspecified number of decimal places. Accepts <em>NULL</em></li>	
+					<li><strong>$use_country_code</strong> <em>(boolean)</em> Display the currency code (true), or display the country name (false). Default is country name.</li>	
+				</ul>	
+		</div>
+		<div class="cakeMiddle">
+			<h3>Code</h3>
+			include("currency_convert_class.php"); <br />
+			$convertObj = new CurrencyConvert(); <br />
+			$convertObj -> currencyConvert(100, 'USD', 'NZD'); <br />
+			echo $convertObj -> getFullResult(<span class="highlight">2, true</span>);
+			
+		</div>
+		<div class="cakeBottom">
+			<h3>Result</h3>
+			100 USD = 124.12 NZD
+		</div>	
+		
+		<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->	
+		
+		<hr>
+		
+		<h3 id="supportedCountries"><strong>D) Supported Countries</strong> - <a href="#toc">top</a></h3>	
+		<p>The following is a list of supported countries and their currency codes.</p>
+		<ul>
+<li><strong>AED</strong> United Arab Emirates</li>
+<li><strong>ANG</strong> Netherlands Antilles</li>
+<li><strong>ARS</strong> Argentina</li>
+<li><strong>AUD</strong> Australia</li>
+<li><strong>BGN</strong> Bulgaria</li>
+<li><strong>BHD</strong> Bahrain</li>
+<li><strong>BND</strong> Brunei Darussalam</li>
+<li><strong>BOB</strong> Bolivia</li>
+<li><strong>BRL</strong> Brazil</li>
+<li><strong>BWP</strong> Botswana</li>
+<li><strong>CAD</strong> Canada</li>
+<li><strong>CHF</strong> Switzerland</li>
+<li><strong>CLP</strong> Chile</li>
+<li><strong>CNY</strong> China</li>
+<li><strong>COP</strong> Colombia</li>
+<li><strong>CRC</strong> Costa Rica</li>
+<li><strong>CZK</strong> Czech Republic</li>
+<li><strong>DKK</strong> Denmark</li>
+<li><strong>DOP</strong> Dominican Republic</li>
+<li><strong>DZD</strong> Algeria</li>
+<li><strong>EGP</strong> Egypt</li>
+<li><strong>EUR</strong> Euro Member Countries</li>
+<li><strong>FJD</strong> Fiji</li>
+<li><strong>GBP</strong> United Kingdom</li>
+<li><strong>HKD</strong> Hong Kong</li>
+<li><strong>HNL</strong> Honduras</li>
+<li><strong>HRK</strong> Croatia</li>
+<li><strong>HUF</strong> Hungary</li>
+<li><strong>IDR</strong> Indonesia</li>
+<li><strong>ILS</strong> Israel</li>
+<li><strong>INR</strong> India</li>
+<li><strong>JMD</strong> Jamaica</li>
+<li><strong>JOD</strong> Jordan</li>
+<li><strong>JPY</strong> Japan</li>
+<li><strong>KES</strong> Kenya</li>
+<li><strong>KRW</strong> Korea (South)</li>
+<li><strong>KWD</strong> Kuwait</li>
+<li><strong>KYD</strong> Cayman Islands</li>
+<li><strong>KZT</strong> Kazakhstan</li>
+<li><strong>LBP</strong> Lebanon</li>
+<li><strong>LKR</strong> Sri Lanka</li>
+<li><strong>LTL</strong> Lithuania</li>
+<li><strong>LVL</strong> Latvia</li>
+<li><strong>MAD</strong> Morocco</li>
+<li><strong>MDL</strong> Moldova</li>
+<li><strong>MKD</strong> Macedonia</li>
+<li><strong>MUR</strong> Mauritius</li>
+<li><strong>MXN</strong> Mexico</li>
+<li><strong>MYR</strong> Malaysia</li>
+<li><strong>NAD</strong> Namibia</li>
+<li><strong>NGN</strong> Nigeria</li>
+<li><strong>NIO</strong> Nicaragua</li>
+<li><strong>NOK</strong> Norway</li>
+<li><strong>NPR</strong> Nepal</li>
+<li><strong>NZD</strong> New Zealand</li>
+<li><strong>OMR</strong> Oman</li>
+<li><strong>PEN</strong> Peru</li>
+<li><strong>PGK</strong> Papua New Guinea</li>
+<li><strong>PHP</strong> Philippines</li>
+<li><strong>PKR</strong> Pakistan</li>
+<li><strong>PLN</strong> Poland</li>
+<li><strong>PYG</strong> Paraguay</li>
+<li><strong>QAR</strong> Qatar</li>
+<li><strong>RON</strong> Romania</li>
+<li><strong>RSD</strong> Serbia</li>
+<li><strong>RUB</strong> Russia</li>
+<li><strong>SAR</strong> Saudi Arabia</li>
+<li><strong>SCR</strong> Seychelles</li>
+<li><strong>SEK</strong> Sweden</li>
+<li><strong>SGD</strong> Singapore</li>
+<li><strong>SLL</strong> Sierra Leone</li>
+<li><strong>SVC</strong> El Salvador</li>
+<li><strong>THB</strong> Thailand</li>
+<li><strong>TND</strong> Tunisia</li>
+<li><strong>TRY</strong> Turkey</li>
+<li><strong>TTD</strong> Trinidad and Tobago</li>
+<li><strong>TWD</strong> Taiwan</li>
+<li><strong>TZS</strong> Tanzania</li>
+<li><strong>UAH</strong> Ukraine</li>
+<li><strong>UGX</strong> Uganda</li>
+<li><strong>USD</strong> United States of America</li>
+<li><strong>UYU</strong> Uruguay</li>
+<li><strong>UZS</strong> Uzbekistan</li>
+<li><strong>VEB</strong> Venezuela</li>
+<li><strong>VND</strong> Viet Nam</li>
+<li><strong>YER</strong> Yemen</li>
+<li><strong>ZAR</strong> South Africa</li>
+<li><strong>ZMK</strong> Zambia</li>			
+		</ul>
+	
+		
+		
+		
+		<hr>
+		<p>If you think this is the greatest piece of code since monkeys started wearing clothing, please consider giving it a <a href="http://codecanyon.net/item/exchange-rate-converter/305529?ref=oberto">5 star rating</a>. It gives me warm fuzzies. Honestly.</p>
+		<p>If you don't think it's worthy of 5 stars then please PLEASE <a href="mailto:codecanyon@yoberto.co.nz">send me an email (codecanyon@yoberto.co.nz)</a> and let me know why. I strive to make my code golden but can only do that with your feedback!</p>
+		
+		<p>Thanks for purchasing <em>Exchange Rate Converter</em>. As I said at the beginning, I'd be glad to help you if you have any questions relating to the code. No guarantees, but I'll do my best to assist! </p> 
+		
+		<p class="append-bottom alt large"><strong>Jarrod Oberto</strong></p>
+		<p><a href="#toc">Go To Table of Contents</a></p>
+		
+		<hr class="space">
+	</div><!-- end div .container -->
+</body>
+</html>

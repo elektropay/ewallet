@@ -1,0 +1,88 @@
+AED United Arab Emirates
+ANG Netherlands Antilles
+ARS Argentina
+AUD Australia
+BGN Bulgaria
+BHD Bahrain
+BND Brunei Darussalam
+BOB Bolivia
+BRL Brazil
+BWP Botswana
+CAD Canada
+CHF Switzerland
+CLP Chile
+CNY China
+COP Colombia
+CRC Costa Rica
+CZK Czech Republic
+DKK Denmark
+DOP Dominican Republic
+DZD Algeria
+EGP Egypt
+EUR Euro Member Countries
+FJD Fiji
+GBP United Kingdom
+HKD Hong Kong
+HNL Honduras
+HRK Croatia
+HUF Hungary
+IDR Indonesia
+ILS Israel
+INR India
+JMD Jamaica
+JOD Jordan
+JPY Japan
+KES Kenya
+KRW Korea (South)
+KWD Kuwait
+KYD Cayman Islands
+KZT Kazakhstan
+LBP Lebanon
+LKR Sri Lanka
+LTL Lithuania
+LVL Latvia
+MAD Morocco
+MDL Moldova
+MKD Macedonia
+MUR Mauritius
+MXN Mexico
+MYR Malaysia
+NAD Namibia
+NGN Nigeria
+NIO Nicaragua
+NOK Norway
+NPR Nepal
+NZD New Zealand
+OMR Oman
+PEN Peru
+PGK Papua New Guinea
+PHP Philippines
+PKR Pakistan
+PLN Poland
+PYG Paraguay
+QAR Qatar
+RON Romania
+RSD Serbia
+RUB Russia
+SAR Saudi Arabia
+SCR Seychelles
+SEK Sweden
+SGD Singapore
+SLL Sierra Leone
+SVC El Salvador
+THB Thailand
+TND Tunisia
+TRY Turkey
+TTD Trinidad and Tobago
+TWD Taiwan
+TZS Tanzania
+UAH Ukraine
+UGX Uganda
+USD United States of America
+UYU Uruguay
+UZS Uzbekistan
+VEB Venezuela
+VND Viet Nam
+YER Yemen
+ZAR South Africa
+ZMK Zambia

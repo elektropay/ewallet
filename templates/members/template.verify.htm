@@ -1,0 +1,71 @@
+<?if(isset($data['ScriptLoaded'])){?>
+<?if($post['action']=='verify'){?>
+
+Information what documents members should send to site administrator to verify his account...
+
+<?}elseif($post['action']=='certify'){?>
+
+Information what documents members should send to site administrator to certify his account...
+
+<?}else{?>
+Your account status can be viewed on the <a href="index.htm">Overview</a> page from within your account. When making purchases, the status of the vendor is available on the online form to submit payment. These account statuses are available for your protection. Please use the status to help make a decision concerning your purchase or receipt of funds. To obtain the status of a sender of funds, log into your accounts history and view the transaction details. The status of the sender or receiver is available there.<br><br>
+<table width=100% class=frame cellspacing=1 cellpadding=4>
+<tr><td class=capl>YOUR ACCOUNT CAN HAVE SEVERAL DIFFERENT STATUS LEVELS AS DEFINED BELOW</td></tr>
+<tr><td class=input style="text-align:justify">
+<font color=#FF0000><u><b>UNVERIFIED MEMBER</b></u></font>
+<blockquote style="margin:10px 10px 10px 10px">
+<b><i>UNVERIFIED</i></b> status means that your account has not been verified. Accounts with <b><i>UNVERIFIED</i></b> status may experience delays in receiving withdrawals and completion of spends to vendors. Accounts with <b><i>UNVERIFIED</i></b> status will have some <u>restrictions</u> on the amount that can be used for transactions, deposits, withdrawals and escrows. See restrictions for <b><i>UNVERIFIED</i></b> status below.
+</blockquote>
+</td></tr>
+<tr><td class=input style="text-align:justify">
+<font color=#FF0000><u><b>VERIFIED MEMBER</b></u></font>
+<blockquote style="margin:10px 10px 10px 10px">
+<b><i>VERIFIED</i></b> status means that your account has been verified. Accounts with <b><i>VERIFIED</i></b> status will not have any delays in receiving withdrawals and completion of spends to vendors. Accounts with <b><i>VERIFIED</i></b> status will not have any <u>restrictions</u> on the amount that can be used for the transaction. See benefits for <b><i>VERIFIED</i></b> status below.
+</blockquote>
+</td></tr>
+<tr><td class=input style="text-align:justify">
+<font color=#FF0000><u><b>CERTIFIED MEMBER</b></u></font>
+<blockquote style="margin:10px 10px 10px 10px">
+<b><i>CERTIFIED</i></b> users have been phone verified, and have faxed or mailed a copy of their <u>Government</u> issued identification and a copy of a recent utility bill verifying (certifying) the address match to the account profile. <b><i>CERTIFIED</i></b> status is requested and will greatly increase processing time for all accounts receiving payments and wishing to withdraw funds. <b><i>CERTIFIED</i></b> status does not have any restrictions for transactions. Use our <a href="<?=$data['Host']?>/contact.htm">Contact Us</a> page to get e-mail address and phone/fax numbers. See benefits for <b><i>CERTIFIED</i></b> status below.
+</blockquote>
+</td></tr>
+</table>
+<br>
+<table width=100% class=frame cellspacing=1 cellpadding=4>
+<tr><td class=capl>RESTRICTIONS FOR DIFFERENT STATUS LEVELS IS DEFINED BELOW</td></tr>
+<tr><td class=input>
+<font color=#FF0000><u><b>RESTRICTIONS FOR UNVERIFIED MEMBERS</b></u></font>
+<ol>
+ <li>Maximal <i>deposit</i> in the system cannot be more than <b><?=prntext($data['Currency'])?><?=prnsumm($data['DepositMaxSum'])?></b> per month;</li>
+ <li>Maximal <i>withdraw</i> from the system cannot be more than <b><?=prntext($data['Currency'])?><?=prnsumm($data['WithdrawMaxSum'])?></b> per month;</li>
+ <li>Maximal <i>transfer</i> inside the system cannot be more than <b><?=prntext($data['Currency'])?><?=prnsumm($data['PaymentMaxSum'])?></b> per transaction;</li>
+ <li>Maximal <i>escrow</i> inside the system cannot be more than <b><?=prntext($data['Currency'])?><?=prnsumm($data['PaymentMaxSum'])?></b> per transaction;</li>
+ <li>Maximal <i>price for your products</i> cannot be more than <b><?=prntext($data['Currency'])?><?=prnsumm($data['PaymentMaxSum'])?></b> per transaction;</li>
+ <li>Maximal <i>price for your subscriptions</i> cannot be more than <b><?=prntext($data['Currency'])?><?=prnsumm($data['PaymentMaxSum'])?></b> per transaction;</li>
+ <li>Maximal <i>price for your donations</i> cannot be more than <b><?=prntext($data['Currency'])?><?=prnsumm($data['PaymentMaxSum'])?></b> per transaction;</li>
+ <li>Maximal <i>price for your simple payments</i> cannot be more than <b><?=prntext($data['Currency'])?><?=prnsumm($data['PaymentMaxSum'])?></b> per transaction.</li>
+</ol>
+</td></tr>
+<tr><td class=input>
+<font color=#FF0000><u><b>BENEFITS FOR VERIFIED MEMBERS</b></u></font>
+<ol>
+ <li>Maximal <i>deposit</i> in the system can be more than <b><?=prntext($data['Currency'])?><?=prnsumm($data['DepositMaxSum'])?></b> per month;</li>
+ <li>Maximal <i>withdraw</i> from the system can be more than <b><?=prntext($data['Currency'])?><?=prnsumm($data['WithdrawMaxSum'])?></b> per month;</li>
+ <li>Maximal <i>transfer</i> inside the system can be more than <b><?=prntext($data['Currency'])?><?=prnsumm($data['PaymentMaxSum'])?></b> per transaction;</li>
+ <li>Maximal <i>escrow</i> inside the system can be more than <b><?=prntext($data['Currency'])?><?=prnsumm($data['PaymentMaxSum'])?></b> per transaction;</li>
+ <li>Maximal <i>price for your products</i> can be more than <b><?=prntext($data['Currency'])?><?=prnsumm($data['PaymentMaxSum'])?></b> per transaction;</li>
+ <li>Maximal <i>price for your subscriptions</i> can be more than <b><?=prntext($data['Currency'])?><?=prnsumm($data['PaymentMaxSum'])?></b> per transaction;</li>
+ <li>Maximal <i>price for your donations</i> can be more than <b><?=prntext($data['Currency'])?><?=prnsumm($data['PaymentMaxSum'])?></b> per transaction;</li>
+ <li>Maximal <i>price for your simple payments</i> can be more than <b><?=prntext($data['Currency'])?><?=prnsumm($data['PaymentMaxSum'])?></b> per transaction.</li>
+</ol>
+</td></tr>
+<tr><td class=input>
+<font color=#FF0000><u><b>BENEFITS FOR CERTIFIED MEMBERS</b></u></font>
+<ol>
+ <li>Includes all benefits for verified members;</li>
+ <li>Increases your online reputation, helping you attract more buyers and increase sales.</li>
+</ol>
+</td></tr>
+</table><br>
+<font color=red><b>VERIFIED/CERTIFIED STATUS DOES NOT GUARANTEE IN ANY WAY THE LEGITIMACY OF THE ACCOUNT HOLDER OR THE PRODUCT/SERVICES BEING PURCHASED/SOLD. PLEASE ALWAYS USE YOUR BEST JUDGMENT WHEN MAKING PURCHASES ON THE INTERNET AS PER OUR USER AGREEMENT. ANY ACCOUNT THAT IS NOT AT "CERTIFIED" STATUS, WILL HAVE A 5 DAY WAIT PERIOD TO WITHDRAW FUNDS FROM THEIR ACCOUNT. THE SYSTEM WILL NOT ALLOW YOU TO WITHDRAW FUNDS THAT WERE RECEIVED LESS THAN 5 DAYS PRIOR.</b></font>
+<?}?><?}else{?>SECURITY ALERT: Access Denied<?}?>

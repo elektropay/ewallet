@@ -1,0 +1,38 @@
+<?if(isset($data['ScriptLoaded'])){?><form method=post name=data><input type=hidden name=step value="<?=$post['step']?>"><?if($post['step']==1){?>
+<table class=frame width=100% align=center border=0 cellspacing=1 cellpadding=2>
+ <tr><td class=capl colspan=6>BANNERS</td></tr>
+ <tr><td class=capc>PATH</td>
+ <td class=capc width=1%>STATUS</td>
+ <td class=capc width=1%>VIEWS</td>
+ <td class=capc width=1%>CLICKS</td>
+ <td class=capc width=1%>ACTION</td>
+</tr>
+<?$idx=0;foreach($data['Banners'] as $value){$bgcolor=$idx%2?'#EEEEEE':'#E7E7E7'?><tr bgcolor=<?=$bgcolor?> onmouseover="setPointer(this, <?=$idx?>, 'over', '<?=$bgcolor?>', '#CCFFCC', '#FFCC99')" onmouseout="setPointer(this, <?=$idx?>, 'out', '<?=$bgcolor?>', '#CCFFCC', '#FFCC99')" onmousedown="setPointer(this, <?=$idx?>, 'click', '<?=$bgcolor?>', '#CCFFCC', '#FFCC99')"><td><a href="<?=$value['lurl']?>" target=_blank><?=prnintg($value['lurl'])?></a></td><td align=center><?=($value['active'])? 'ACTIVE':'VERIFYING'?></td><td align=center><?=$value['views']?></td><td align=center><?=prnintg($value['clicks'])?></td><td align=center nowrap><a href="advertising.htm?id=<?=$value['id']?>&action=delete" onclick="return cfmform()">DELETE</a></td></tr><?$idx++;}?>
+<tr><td class=capc align=center colspan=5><input type=submit class=submit name=send value="PAY FOR NEW BANNER PLACE NOW!"></td>
+</table>
+<?}elseif($post['step']==2){?>
+<?if($post['gid']){?><input type=hidden name=gid value="<?=$post['gid']?>"><?}?><table class=frame width=100% align=center border=0 cellspacing=1 cellpadding=4><tr><td class=capl colspan=2>NEW BANNER INFORMATION</td></tr><?if($data['Error']){?><tr><td colspan=2 class=error><?=prntext($data['Error'])?></td></tr><?}?>
+<tr><td class=field nowrap>URL to your banner (*):</td><td class=input width=1%><input type=text name=banner size=51 maxlength=255 value="<?=prntext($post['banner'])?>"></td></tr>
+<tr><td class=field nowrap>URL for banner site (*):</td><td class=input width=1%><input type=text name=url size=51 maxlength=255 value="<?=prntext($post['url'])?>"></td></tr>
+<tr><td class=field nowrap>Package (*):</td><td class=input width=1%><select name=package style='width:100%'><?=showselect($data['AdvVisiblePacks'], $post['package'])?></select></td></tr>
+<tr><td class=field nowrap>Period (*):</td><td class=input width=1%><select name=period style='width:100%'><?=showselect($data['AdvPeriods'], $post['period'])?></select></td></tr>
+<tr><td class=capc colspan=2><input class=submit type=submit name=cancel value="BACK">&nbsp;<input type=submit class=submit name=send value="CONTINUE"></td></tr></table>
+<?}elseif($post['step']==3){?>
+<input type=hidden name=banner value="<?=prntext($post['banner'])?>"><input type=hidden name=url value="<?=prntext($post['url'])?>"><input type=hidden name=package value="<?=prntext($post['package'])?>"><input type=hidden name=period value="<?=prntext($post['period'])?>">
+<table class=frame width=100% align=center border=0 cellspacing=1 cellpadding=4><tr><td class=capl colspan=2>TRANSACTION DETAILS</td></tr>
+<tr><td class=input><br><pre class=info>
+   · Amount         : <?=prnpays($post['amount'])."\n"?>
+   · Processing Fee : <?=prnpays(-$post['fees'])."\n"?>
+   · Banner         : <?=prntext($post['banner']?substr($post['banner'], 0, 48)."...":'N/A')."\n"?>
+   · URL            : <?=prntext($post['url']?$post['url']:'N/A')."\n"?>
+   · Packet         : <?=prntext($post['package_name']?$post['package_name']:'N/A')."\n"?>
+   · Period         : <?=prntext($post['period_name']?$post['period_name']:0)."\n"?>
+
+   · Total Sum      : <?=prnpays($post['total'])."\n"?>
+</pre></td></tr>
+<tr><td class=capc colspan=2><input class=submit type=submit name=cancel value="BACK">&nbsp;<input type=submit class=submit name=send value="CONTINUE"></td></tr></table>
+<?}elseif($post['step']==4){?>
+<table class=frame width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=input align=center>Thank you very much for using our service. Your banner will be shown at nearest time.</td></tr></table><br><table class=frame width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capc><a href="<?=$data['Members']?>/advertising.htm">BUY PLACE FOR NEW BANNER</a>&nbsp;|&nbsp;<a href="index.htm">ACCOUNT OVERVIEW</a></td></tr></table>
+<?}?>
+</form>
+<?}else{?>SECURITY ALERT: Access Denied<?}?>

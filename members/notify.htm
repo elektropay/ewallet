@@ -1,0 +1,75 @@
+<?
+###############################################################################
+# PROGRAM     : EPAY ENTERPRISE                                               #
+# VERSION     : 4.13                                                          #
+# AUTHOR      : DMITRY PEREUDA                                                #
+
+# COMPANY     : ALSTRASOFT	                                              #
+# COPYRIGHTS  : (C)2009 ALSTRASOFT. ALL RIGHTS RESERVED                       #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+# LICENSE KEY : C3FA-76A1-83A4-C2B4-AE1F-1D5A-14ED-1DCA                       #
+###############################################################################
+#    THIS FILE IS PART OF EPAY SCRIPT - THE NEW UNIVERSAL PAYMENT GATEWAY     #
+#               	     DEVELOPED BY ALSTRASOFT                          #
+###############################################################################
+#    ALL SOURCE CODE, IMAGES, PROGRAMS, FILES INCLUDED IN THIS DISTRIBUTION   #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+#       ANY REDISTRIBUTION WITHOUT PERMISSION OF ALSTRASOFT AND IS            #
+#                            STRICTLY FORBIDDEN                               #
+###############################################################################
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+
+
+
+
+###############################################################################
+include('../config.htm');
+###############################################################################
+if(!$_SESSION['login']){
+	header("Location:{$data['Host']}/index.htm");
+	echo('ACCESS DENIED.');
+	exit;
+}
+###############################################################################
+$fees=$_SESSION['fees'];unset($_SESSION['fees']);
+$dtype=$_SESSION['dtype'];unset($_SESSION['dtype']);
+$amount=$_SESSION['amount'];unset($_SESSION['amount']);
+$remote=parse_url($_SERVER["HTTP_REFERER"]);$remote=$remote['host'];
+###############################################################################
+$systems=array(
+	'paypal.com', 'stormpay.com', 'netpay.tv', 'e-gold.com', 'moneybookers.com',
+	'intgold.com', 'e-bullion.com', 'pecunix.com', 'epaydirect.net', 'evocash.com',
+	'qchex.com', 'goldmoney.com', 'virtualgold.net', 'emocorp.com', '2checkout.com'
+);
+###############################################################################
+$success=false;
+foreach($systems as $value){
+	if(eregi($value, $remote)){
+		$success=true;
+		break;
+	}
+}
+###############################################################################
+if($success){
+	transaction(
+		-1,
+		$uid,
+		$amount,
+		$fees,
+		1,
+		1,
+		"{$data['DepositMethod'][$dtype]['name']} Depositing"
+	);
+}
+###############################################################################
+header("Location:{$data['Members']}/index.htm");
+echo('ACCESS DENIED.');
+exit;
+###############################################################################
+?>

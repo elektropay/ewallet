@@ -1,0 +1,89 @@
+<?
+###############################################################################
+# PROGRAM     : EPAY ENTERPRISE                                               #
+# VERSION     : 4.13                                                          #
+# AUTHOR      : DMITRY PEREUDA                                                #
+
+# COMPANY     : ALSTRASOFT	                                              #
+# COPYRIGHTS  : (C)2009 ALSTRASOFT. ALL RIGHTS RESERVED                       #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+# LICENSE KEY : C3FA-76A1-83A4-C2B4-AE1F-1D5A-14ED-1DCA                       #
+###############################################################################
+#    THIS FILE IS PART OF EPAY SCRIPT - THE NEW UNIVERSAL PAYMENT GATEWAY     #
+#               	     DEVELOPED BY ALSTRASOFT                          #
+###############################################################################
+#    ALL SOURCE CODE, IMAGES, PROGRAMS, FILES INCLUDED IN THIS DISTRIBUTION   #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+#       ANY REDISTRIBUTION WITHOUT PERMISSION OF ALSTRASOFT AND IS            #
+#                            STRICTLY FORBIDDEN                               #
+###############################################################################
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+
+
+
+
+###############################################################################
+$data['PageName']='GENERAL INFORMATION OVERVIEW';
+$data['PageFile']='index';
+###############################################################################
+include('../config.htm');
+
+
+###############################################################################
+if(!$_SESSION['adm_login']){
+
+	header("location:{$data['Admins']}/login.htm");
+	//echo('ACCESS DENIED.');
+	exit;
+}
+###############################################################################
+$data['ActiveMembers']=get_members_count(1);
+$data['SuspendedMembers']=get_members_count(0);
+$data['ClosedMembers']=get_members_count(2);
+
+$data['AllTransactions']=get_transactions_count(-1);
+$data['PendingTransactions']=get_transactions_count(-1, 'both', '`status`=0');
+$data['CompletedTransactions']=get_transactions_count(-1, 'both', '`status`=1');
+$data['CancelledTransactions']=get_transactions_count(-1, 'both', '`status`=2');
+
+$data['AllDeposits']=get_transactions_count(-1, 'both', '`type`=1');
+$data['PendingDeposits']=get_transactions_count(-1, 'both', '`type`=1 AND `status`=0');
+$data['CompletedDeposits']=get_transactions_count(-1, 'both', '`type`=1 AND `status`=1');
+$data['CancelledDeposits']=get_transactions_count(-1, 'both', '`type`=1 AND `status`=2');
+
+$data['AllWithdrawals']=get_transactions_count(-1, 'both', '`type`=2');
+$data['PendingWithdrawals']=get_transactions_count(-1, 'both', '`type`=2 AND `status`=0');
+$data['CompletedWithdrawals']=get_transactions_count(-1, 'both', '`type`=2 AND `status`=1');
+$data['CancelledWithdrawals']=get_transactions_count(-1, 'both', '`type`=2 AND `status`=2');
+
+$data['AllEscrows']=get_transactions_count(-1, 'both', '`type`=3');
+$data['PendingEscrows']=get_transactions_count(-1, 'both', '`type`=3 AND `status`=0');
+$data['CompletedEscrows']=get_transactions_count(-1, 'both', '`type`=3 AND `status`=1');
+$data['CancelledEscrows']=get_transactions_count(-1, 'both', '`type`=3 AND `status`=2');
+
+$data['AllSignups']=get_transactions_count(-1, 'both', '`type`=4');
+$data['PendingSignups']=get_transactions_count(-1, 'both', '`type`=4 AND `status`=0');
+$data['CompletedSignups']=get_transactions_count(-1, 'both', '`type`=4 AND `status`=1');
+$data['CancelledSignups']=get_transactions_count(-1, 'both', '`type`=4 AND `status`=2');
+
+$data['AllCommissions']=get_transactions_count(-1, 'both', '`type`=5');
+$data['PendingCommissions']=get_transactions_count(-1, 'both', '`type`=5 AND `status`=0');
+$data['CompletedCommissions']=get_transactions_count(-1, 'both', '`type`=5 AND `status`=1');
+$data['CancelledCommissions']=get_transactions_count(-1, 'both', '`type`=5 AND `status`=2');
+
+$data['AllRefunds']=get_transactions_count(-1, 'both', '`type`=6');
+$data['PendingRefunds']=get_transactions_count(-1, 'both', '`type`=6 AND `status`=0');
+$data['CompletedRefunds']=get_transactions_count(-1, 'both', '`type`=6 AND `status`=1');
+$data['CancelledRefunds']=get_transactions_count(-1, 'both', '`type`=6 AND `status`=2');
+###############################################################################
+$data['SystemBalance']=select_balance(-1);
+###############################################################################
+display('admins');
+###############################################################################
+?>

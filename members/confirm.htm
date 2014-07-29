@@ -1,0 +1,64 @@
+<?
+###############################################################################
+# PROGRAM     : EPAY ENTERPRISE                                               #
+# VERSION     : 4.13                                                          #
+# AUTHOR      : DMITRY PEREUDA                                                #
+
+# COMPANY     : ALSTRASOFT	                                              #
+# COPYRIGHTS  : (C)2009 ALSTRASOFT. ALL RIGHTS RESERVED                       #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+# LICENSE KEY : C3FA-76A1-83A4-C2B4-AE1F-1D5A-14ED-1DCA                       #
+###############################################################################
+#    THIS FILE IS PART OF EPAY SCRIPT - THE NEW UNIVERSAL PAYMENT GATEWAY     #
+#               	     DEVELOPED BY ALSTRASOFT                          #
+###############################################################################
+#    ALL SOURCE CODE, IMAGES, PROGRAMS, FILES INCLUDED IN THIS DISTRIBUTION   #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+#       ANY REDISTRIBUTION WITHOUT PERMISSION OF ALSTRASOFT AND IS            #
+#                            STRICTLY FORBIDDEN                               #
+###############################################################################
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+
+
+
+
+###############################################################################
+$data['PageName']='ONLINE CONFIRMATION OF YOUR E-MAIL ADDRESS';
+$data['PageFile']='confirm';
+###############################################################################
+include('../config.htm');
+###############################################################################
+if($post['cid']){
+	if(!isset($post['email'])||empty($post['email'])){
+		$cid=select_confirmation('', '', strtolower($post['cid']));
+	}else{
+		$cid=select_confirmation($post['cid'], $post['email']);
+	}
+	if($cid){
+		update_confirmation($cid,$data['DepositMethod'],$data['WithdrawMethod']);
+		$data['PostSent']=true;
+	}else $data['Error']='Incorrect confirmation URL.';
+}elseif($post['confirm']){
+	if(!$post['ccode']){
+		$data['Error']='Please enter your confirmation code.';
+	}elseif(!$cid&&!$eid){
+		$data['Error']='Please enter of the valid confirmation code.';
+	}else{
+		if($cid)update_confirmation($cid);
+		elseif($eid){
+			update_email_confirmation($eid);
+			$data['Email']=true;
+		}
+		$data['PostSent']=true;
+	}
+}
+###############################################################################
+display('members');
+###############################################################################
+?>

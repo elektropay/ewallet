@@ -1,0 +1,20 @@
+<?if(isset($data['ScriptLoaded'])){?>
+<center><form method=post name=data><input type=hidden name=step value="<?=$post['step']?>">
+<?if($post['step']==1){?>
+<table class=frame width=100% border=0 cellspacing=1 cellpadding=2>
+<tr><td class=capl colspan=5>YOUR BANK ACCOUNTS</td></tr><tr><td class=capc>BANK NAME</td><td class=capc>PHONE</td><td class=capc>HOLDER NAME</td><td class=capc>ACCOUNT</td><td class=capc width=1%>ACTION</td></tr>
+<?$idx=0;foreach($data['Banks'] as $value){$bgcolor=$idx%2?'#EEEEEE':'#E7E7E7'?><tr bgcolor=<?=$bgcolor?> onmouseover="setPointer(this, <?=$idx?>, 'over', '<?=$bgcolor?>', '#CCFFCC', '#FFCC99')" onmouseout="setPointer(this, <?=$idx?>, 'out', '<?=$bgcolor?>', '#CCFFCC', '#FFCC99')" onmousedown="setPointer(this, <?=$idx?>, 'click', '<?=$bgcolor?>', '#CCFFCC', '#FFCC99')"><td nowrap><?=prntext($value['bname'])?></td><td align=center nowrap><?=prntext($value['bphone'])?></td><td align=center nowrap><?=prnintg($value['bnameacc'])?></td><td align=center nowrap><?=prntext($value['baccount'])?></td><td align=center nowrap><a href="bank.htm?id=<?=$value['id']?>&action=update">EDIT</a>|<a href="bank.htm?id=<?=$value['id']?>&action=delete" onclick="return cfmform()">DELETE</a></td></tr><?$idx++;}?>
+<tr><td class=capc colspan=5><input class=submit type=submit name=send value="ADD NEW BANK ACCOUNT!"></td></tr>
+</table>
+<?}elseif($post['step']==2){?>
+<?if($post['gid']){?>
+<input type=hidden name=gid value="<?=$post['gid']?>">
+<?}?>
+<table class=frame width=460 border=0 cellspacing=1 cellpadding=4><tr><td class=capl colspan=2>BANK ACCOUNT INFORMATION</td></tr>
+<?if($data['Error']){?>
+<tr><td colspan=2 class=error><?=prntext($data['Error'])?></td></tr>
+<?}?>
+<tr><td class=field nowrap>Bank Name (*):</td><td class=input><input type=text name=bname size=41 maxlength=128 value="<?=prntext($post['bname'])?>"></td></tr><tr><td class=field nowrap>Bank Address (*):</td><td class=input><input type=text name=baddress size=41 maxlength=128 value="<?=prntext($post['baddress'])?>"></td></tr><tr><td class=field nowrap>Bank City (*):</td><td class=input><input type=text name=bcity size=41 maxlength=64 value="<?=prntext($post['bcity'])?>"></td></tr><tr><td class=field nowrap>Bank ZIP Code (*):</td><td class=input><input type=text name=bzip size=20 maxlength=16 value="<?=prntext($post['bzip'])?>"></td></tr><tr><td class=field nowrap>Bank Country (*):</td><td class=input><select name=bcountry><?=showselect($data['Countries'], $post['bcountry'])?></select></td></tr><tr><td class=field nowrap>Bank State<br><small>(optional)</small>:</td><td class=input><input type=text name=bstate size=20 maxlength=32 value="<?=prntext($post['bstate'])?>"></td></tr><tr><td class=field nowrap>Bank Phone (*):</td><td class=input><input type=text name=bphone size=20 maxlength=32 value="<?=prntext($post['bphone'])?>"></td></tr><tr><td class=field nowrap>Account Holder's Name (*):</td><td class=input><input type=text name=bnameacc size=41 maxlength=128 value="<?=prntext($post['bnameacc'])?>"></td></tr><tr><td class=field nowrap>Account Number (*):</td><td class=input><input type=text name=baccount size=41 maxlength=32 value="<?=prntext($post['baccount'])?>"></td></tr><tr><td class=field nowrap>Account Type:<br><small>(optional)</small></td><td class=input><select name=btype><?=showselect($data['BankAccountType'], $post['btype'])?></select></td></tr><tr><td class=field nowrap>9 Digits Routing Number:<br><small>(optional)</small></td><td class=input><input type=text name=brtgnum size=41 maxlength=9 value="<?=prntext($post['brtgnum'])?>"></td></tr><tr><td class=field nowrap>S.W.I.F.T. Code:<br><small>(International only)</small></td><td class=input><input type=text name=bswift size=41 maxlength=32 value="<?=prntext($post['bswift'])?>"></td></tr><tr><td class=capc colspan=2><input class=submit type=submit name=cancel value="BACK">&nbsp;<input type=submit class=submit name=send value="CONTINUE"></td></tr></table>
+<?}?>
+</form></center>
+<?}else{?>SECURITY ALERT: Access Denied<?}?>

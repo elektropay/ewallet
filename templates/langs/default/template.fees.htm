@@ -1,0 +1,24 @@
+<u><b><font color=#FF0000>OPEN AN ACCOUNT</font></b></u>
+<blockquote style="margin:10px 10px 10px 10px">
+FREE<br><?if($data['SignupPays']){?><font class=remark>(But you will get signup bonus in <?=prntext($data['Currency'])?><?=prnsumm($data['SignupBonus'])?>)</font><?}?>
+</blockquote><br><br>
+<u><b><font color=#FF0000>SEND MONEY</font></b></u>
+<blockquote style="margin:10px 10px 10px 10px">
+FREE
+</blockquote><br><br>
+<u><b><font color=#FF0000>RECEIVE MONEY</font></b></u>
+<blockquote style="margin:10px 10px 10px 10px">
+<?=prnsumm($data['PaymentPercent'])?>% plus <?=prntext($data['Currency'])?><?=prnsumm($data['PaymentFees'])?> per transaction.
+</blockquote><br><br>
+<u><b><font color=#FF0000>DEPOSIT FUNDS</font></b></u>
+<ol>
+<?$idx=1;foreach($data['DepositMethod'] as $key=>$value){if($data['DepositMethod'][$key]['actv']){?>
+<li><b><u><?=prntext($data['DepositMethod'][$key]['name'])?></u></b> - <?=prnsumm($data['DepositMethod'][$key]['prcn'])?>% plus <?=prntext($data['Currency'])?><?=prnsumm($data['DepositMethod'][$key]['fees'])?> per transaction;</li>
+<?}$idx++;}?>
+</ol><br><br>
+<u><b><font color=#FF0000>WITHDRAW FUNDS</font></b></u>
+<ol>
+<?$idx=1;foreach($data['WithdrawMethod'] as $key=>$value){if($data['WithdrawMethod'][$key]['actv']){?>
+<li><b><u><?=prntext($data['WithdrawMethod'][$key]['name'])?></u></b> - <?=prntext($data['Currency'])?><?=prnsumm($data['WithdrawMethod'][$key]['fees'])?> per transaction;</li>
+<?}$idx++;}?>
+</ol>

@@ -1,0 +1,539 @@
+<?
+
+###############################################################################
+
+# PROGRAM     : EPAY ENTERPRISE                                               #
+
+# VERSION     : 4.1                                                           #
+
+# AUTHOR      : DMITRY PEREUDA                                                #
+
+
+
+# COMPANY     : ALSTRASOFT	                                              #
+
+# COPYRIGHTS  : (C)2009 ALSTRASOFT. ALL RIGHTS RESERVED                       #
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+# LICENSE KEY : C3FA-76A1-83A4-C2B4-AE1F-1D5A-14ED-1DCA                       #
+
+###############################################################################
+
+#    THIS FILE IS PART OF EPAY SCRIPT - THE NEW UNIVERSAL PAYMENT GATEWAY     #
+
+#               	     DEVELOPED BY ALSTRASOFT                          #
+
+###############################################################################
+
+#    ALL SOURCE CODE, IMAGES, PROGRAMS, FILES INCLUDED IN THIS DISTRIBUTION   #
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+###############################################################################
+
+#       ANY REDISTRIBUTION WITHOUT PERMISSION OF ALSTRASOFT AND IS            #
+
+#                            STRICTLY FORBIDDEN                               #
+
+###############################################################################
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+###############################################################################
+
+
+
+
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+
+
+
+
+
+
+
+
+
+
+###############################################################################
+
+$data['PageName']='MAIN CONFIGURATION';
+
+$data['PageFile']='main-conf';
+
+###############################################################################
+
+include('../config.htm');
+
+###############################################################################
+
+if(!$_SESSION['adm_login']){
+
+	header("Location:{$data['Admins']}/login.htm");
+
+	echo('ACCESS DENIED.');
+
+	exit;
+
+}
+
+###############################################################################
+
+if($post['send']){
+
+	$str=
+
+		"<?\n".
+
+		"################################################################################\n".
+
+		"\$db_hostname='{$db_hostname}';\n".
+
+		"\$db_username='{$db_username}';\n".
+
+		"\$db_password='{$db_password}';\n".
+
+		"\$db_database='{$db_database}';\n".
+
+		"\$db_tbprefix='{$db_tbprefix}';\n".
+
+		"################################################################################\n".
+
+		"\$folder='{$folder}';\n".
+
+		"################################################################################\n".
+
+		"\n\n\n\n\n".
+
+		"################################################################################\n".
+
+		"###    PLEASE DO NOT CHANGE ANY PARAMETERS MANUALLY! USE ADMIN AREA FOR IT   ###\n".
+
+		"################################################################################\n".
+
+		"\$site_name='".addslashes($post['n_site_name'])."';\n".
+
+		"\$site_title='".addslashes($post['n_site_title'])."';\n".
+
+		"\$site_charset='".addslashes($post['n_site_charset'])."';\n".
+
+		"\$site_copyrights='".addslashes($post['n_site_copyrights'])."';\n".
+
+		"\$site_keywords='".addslashes($post['n_site_keywords'])."';\n".
+
+		"\$site_description='".addslashes($post['n_site_description'])."';\n".
+
+		"\n".
+
+		"\$admin_email='{$post['n_admin_email']}';\n".
+
+		"\$admin_username='{$post['n_admin_username']}';\n".
+
+		"\$admin_password='{$post['n_admin_password']}';\n".
+
+		"\$admin_check_ip=".(($post['n_admin_check_ip']&&$post['n_admin_ip_address'])?'true':'false').";\n".
+
+		"\$admin_ip_address='{$post['n_admin_ip_address']}';\n".
+
+		"\n".
+
+		"\$protect_html='{$post['n_protect_html']}';\n".
+
+		"\$default_language='{$post['n_default_language']}';\n".
+
+		"\n".
+
+		"\$mail_address='{$post['n_mail_address']}';\n".
+
+		"\n".
+
+		"\$passlen=".($post['n_passlen']?$post['n_passlen']:6).";\n".
+
+		"\$passatt=".($post['n_passatt']?$post['n_passatt']:5).";\n".
+
+		"\$currency='{$post['n_currency']}';\n".
+
+		"\$currsize='{$post['n_currsize']}';\n".
+
+		"\$dateformat='{$post['n_dateformat']}';\n".
+
+		"\n".
+
+		"\$use_turing=".($post['n_use_turing']?'true':'false').";\n".
+
+		"\$use_numbers=".($post['n_use_numbers']?'true':'false').";\n".
+
+		"\$turing_size=".($post['n_turing_size']?$post['n_turing_size']:8).";\n".
+
+		"\$turing_quality=".($post['n_turing_quality']?$post['n_turing_quality']:15).";\n".
+
+		"\$turing_bgfile='".($post['n_turing_bgfile']?addslashes($post['n_turing_bgfile']):'')."';\n".
+
+		"\$use_extreg=".($post['n_use_extreg']?'true':'false').";\n".
+
+		"\n".
+
+		"\$signup_use=".($post['n_signup_use']?'true':'false').";\n".
+
+		"\$signup_bonus=".($post['n_signup_bonus']?prnsumm_two($post['n_signup_bonus']):'0.00').";\n".
+
+		"\$maxemails=".($post['n_maxemails']?$post['n_maxemails']:1).";\n".
+
+		"\n".
+
+		"\$minimal_transfer=".($post['n_minimal_transfer']?prnsumm_two($post['n_minimal_transfer']):'0.00').";\n".
+
+		"\$maximal_transfer=".($post['n_maximal_transfer']?prnsumm_two($post['n_maximal_transfer']):'0.00').";\n".
+
+		"\$transfer_percent=".($post['n_transfer_percent']?prnsumm_two($post['n_transfer_percent']):'0.00').";\n".
+
+		"\$transfer_fee=".($post['n_transfer_fee']?prnsumm_two($post['n_transfer_fee']):'0.00').";\n".
+
+        "\$maxtranser_fee=".($post['n_maxtranserfee']?prnsumm_two($post['n_maxtranserfee']):'0.00').";\n".
+
+		"\$refund_period=".($post['n_refund_period']?$post['n_refund_period']:'0').";\n".
+
+		"\n".
+
+		"\$affiliate_program=".($post['n_affiliate_program']?'true':'false').";\n".
+
+		"\$affiliate_levels=".($post['n_affiliate_levels']?$post['n_affiliate_levels']:'0').";\n".
+
+		"\$affiliate_percent=".($post['n_affiliate_percent']?prnsumm_two($post['n_affiliate_percent']):'0.00').";\n".
+
+		"\n".
+
+		"\$dep_minimal=".($post['n_dep_minimal']?prnsumm_two($post['n_dep_minimal']):'0.00').";\n".
+
+		"\$dep_maximal=".($post['n_dep_maximal']?prnsumm_two($post['n_dep_maximal']):'0.00').";\n".
+
+        
+
+        "\$dep_creditcard_use=".($post['n_dep_creditcard_use']?'true':'false').";\n".
+
+		"\$dep_creditcard_fee=".($post['n_dep_creditcard_fee']?prnsumm_two($post['n_dep_creditcard_fee']):'0.00').";\n".
+
+		"\$dep_creditcard_percent=".($post['n_dep_creditcard_percent']?prnsumm_two($post['n_dep_creditcard_percent']):'0.00').";\n".
+
+		"\$dep_creditcard_password='';\n".
+
+        
+
+        "\$dep_curencycloud_use=".($post['n_dep_curencycloud_use']?'true':'false').";\n".
+
+        "\$dep_curencycloud_fee=".($post['n_dep_curencycloud_fee']?prnsumm_two($post['n_dep_curencycloud_fee']):'0.00').";\n".
+
+        "\$dep_curencycloud_percent=".($post['n_dep_curencycloud_percent']?prnsumm_two($post['n_dep_curencycloud_percent']):'0.00').";\n".
+
+		"\$dep_curencycloud_login_id=".($post['n_dep_curencycloud_login_id']).";\n".
+
+        "\$dep_curencycloud_api_key=".($post['n_dep_curencycloud_api_key']).";\n".
+        
+        "\$dep_pp_use=".($post['n_dep_pp_use']&&!empty($post['n_dep_pp_username'])?'true':'false').";\n".
+
+		"\$dep_pp_fee=".($post['n_dep_pp_fee']?prnsumm_two($post['n_dep_pp_fee']):'0.00').";\n".
+
+		"\$dep_pp_percent=".($post['n_dep_pp_percent']?prnsumm_two($post['n_dep_pp_percent']):'0.00').";\n".
+
+		"\$dep_pp_username='{$post['n_dep_pp_username']}';\n".
+
+		"\$dep_pp_password='';\n".
+
+		"\$dep_sp_use=".($post['n_dep_sp_use']&&!empty($post['n_dep_sp_username'])?'true':'false').";\n".
+
+		"\$dep_sp_fee=".($post['n_dep_sp_fee']?prnsumm_two($post['n_dep_sp_fee']):'0.00').";\n".
+
+		"\$dep_sp_percent=".($post['n_dep_sp_percent']?prnsumm_two($post['n_dep_sp_percent']):'0.00').";\n".
+
+		"\$dep_sp_username='{$post['n_dep_sp_username']}';\n".
+
+		"\$dep_sp_password='';\n".
+
+		"\$dep_np_use=".($post['n_dep_np_use']&&!empty($post['n_dep_np_username'])?'true':'false').";\n".
+
+		"\$dep_np_fee=".($post['n_dep_np_fee']?prnsumm_two($post['n_dep_np_fee']):'0.00').";\n".
+
+		"\$dep_np_percent=".($post['n_dep_np_percent']?prnsumm_two($post['n_dep_np_percent']):'0.00').";\n".
+
+		"\$dep_np_username='{$post['n_dep_np_username']}';\n".
+
+		"\$dep_np_password='';\n".
+
+		"\$dep_eg_use=".($post['n_dep_eg_use']&&!empty($post['n_dep_eg_username'])?'true':'false').";\n".
+
+		"\$dep_eg_fee=".($post['n_dep_eg_fee']?prnsumm_two($post['n_dep_eg_fee']):'0.00').";\n".
+
+		"\$dep_eg_percent=".($post['n_dep_eg_percent']?prnsumm_two($post['n_dep_eg_percent']):'0.00').";\n".
+
+		"\$dep_eg_username='{$post['n_dep_eg_username']}';\n".
+
+		"\$dep_eg_password='';\n".
+
+		"\$dep_mb_use=".($post['n_dep_mb_use']&&!empty($post['n_dep_mb_username'])?'true':'false').";\n".
+
+		"\$dep_mb_fee=".($post['n_dep_mb_fee']?prnsumm_two($post['n_dep_mb_fee']):'0.00').";\n".
+
+		"\$dep_mb_percent=".($post['n_dep_mb_percent']?prnsumm_two($post['n_dep_mb_percent']):'0.00').";\n".
+
+		"\$dep_mb_username='{$post['n_dep_mb_username']}';\n".
+
+		"\$dep_mb_password='';\n".
+
+		"\$dep_ig_use=".($post['n_dep_ig_use']&&!empty($post['n_dep_ig_username'])?'true':'false').";\n".
+
+		"\$dep_ig_fee=".($post['n_dep_ig_fee']?prnsumm_two($post['n_dep_ig_fee']):'0.00').";\n".
+
+		"\$dep_ig_percent=".($post['n_dep_ig_percent']?prnsumm_two($post['n_dep_ig_percent']):'0.00').";\n".
+
+		"\$dep_ig_username='{$post['n_dep_ig_username']}';\n".
+
+		"\$dep_ig_password='';\n".
+
+		"\$dep_eb_use=".($post['n_dep_eb_use']&&!empty($post['n_dep_eb_username'])?'true':'false').";\n".
+
+		"\$dep_eb_fee=".($post['n_dep_eb_fee']?prnsumm_two($post['n_dep_eb_fee']):'0.00').";\n".
+
+		"\$dep_eb_percent=".($post['n_dep_eb_percent']?prnsumm_two($post['n_dep_eb_percent']):'0.00').";\n".
+
+		"\$dep_eb_username='{$post['n_dep_eb_username']}';\n".
+
+		"\$dep_eb_password='';\n".
+
+		"\$dep_px_use=".($post['n_dep_px_use']&&!empty($post['n_dep_px_username'])?'true':'false').";\n".
+
+		"\$dep_px_fee=".($post['n_dep_px_fee']?prnsumm_two($post['n_dep_px_fee']):'0.00').";\n".
+
+		"\$dep_px_percent=".($post['n_dep_px_percent']?prnsumm_two($post['n_dep_px_percent']):'0.00').";\n".
+
+		"\$dep_px_username='{$post['n_dep_px_username']}';\n".
+
+		"\$dep_px_password='';\n".
+
+		"\$dep_pd_use=".($post['n_dep_pd_use']&&!empty($post['n_dep_pd_username'])?'true':'false').";\n".
+
+		"\$dep_pd_fee=".($post['n_dep_pd_fee']?prnsumm_two($post['n_dep_pd_fee']):'0.00').";\n".
+
+		"\$dep_pd_percent=".($post['n_dep_pd_percent']?prnsumm_two($post['n_dep_pd_percent']):'0.00').";\n".
+
+		"\$dep_pd_username='{$post['n_dep_pd_username']}';\n".
+
+		"\$dep_pd_password='';\n".
+
+		"\$dep_ev_use=".($post['n_dep_ev_use']&&!empty($post['n_dep_ev_username'])?'true':'false').";\n".
+
+		"\$dep_ev_fee=".($post['n_dep_ev_fee']?prnsumm_two($post['n_dep_ev_fee']):'0.00').";\n".
+
+		"\$dep_ev_percent=".($post['n_dep_ev_percent']?prnsumm_two($post['n_dep_ev_percent']):'0.00').";\n".
+
+		"\$dep_ev_username='{$post['n_dep_ev_username']}';\n".
+
+		"\$dep_ev_password='';\n".
+
+		"\$dep_qc_use=".($post['n_dep_qc_use']&&!empty($post['n_dep_qc_username'])?'true':'false').";\n".
+
+		"\$dep_qc_fee=".($post['n_dep_qc_fee']?prnsumm_two($post['n_dep_qc_fee']):'0.00').";\n".
+
+		"\$dep_qc_percent=".($post['n_dep_qc_percent']?prnsumm_two($post['n_dep_qc_percent']):'0.00').";\n".
+
+		"\$dep_qc_username='{$post['n_dep_qc_username']}';\n".
+
+		"\$dep_qc_password='';\n".
+
+		"\$dep_gm_use=".($post['n_dep_gm_use']&&!empty($post['n_dep_gm_username'])?'true':'false').";\n".
+
+		"\$dep_gm_fee=".($post['n_dep_gm_fee']?prnsumm_two($post['n_dep_gm_fee']):'0.00').";\n".
+
+		"\$dep_gm_percent=".($post['n_dep_gm_percent']?prnsumm_two($post['n_dep_gm_percent']):'0.00').";\n".
+
+		"\$dep_gm_username='{$post['n_dep_gm_username']}';\n".
+
+		"\$dep_gm_password='';\n".
+
+		"\$dep_vg_use=".($post['n_dep_vg_use']&&!empty($post['n_dep_vg_username'])?'true':'false').";\n".
+
+		"\$dep_vg_fee=".($post['n_dep_vg_fee']?prnsumm_two($post['n_dep_vg_fee']):'0.00').";\n".
+
+		"\$dep_vg_percent=".($post['n_dep_vg_percent']?prnsumm_two($post['n_dep_vg_percent']):'0.00').";\n".
+
+		"\$dep_vg_username='{$post['n_dep_vg_username']}';\n".
+
+		"\$dep_vg_password='';\n".
+
+		"\$dep_pe_use=".($post['n_dep_pe_use']&&!empty($post['n_dep_pe_username'])?'true':'false').";\n".
+
+		"\$dep_pe_fee=".($post['n_dep_pe_fee']?prnsumm_two($post['n_dep_pe_fee']):'0.00').";\n".
+
+		"\$dep_pe_percent=".($post['n_dep_pe_percent']?prnsumm_two($post['n_dep_pe_percent']):'0.00').";\n".
+
+		"\$dep_pe_username='{$post['n_dep_pe_username']}';\n".
+
+		"\$dep_pe_password='';\n".
+
+		"\$dep_an_use=".($post['n_dep_an_use']&&!empty($post['n_dep_an_username'])?'true':'false').";\n".
+
+		"\$dep_an_fee=".($post['n_dep_an_fee']?prnsumm_two($post['n_dep_an_fee']):'0.00').";\n".
+
+		"\$dep_an_percent=".($post['n_dep_an_percent']?prnsumm_two($post['n_dep_an_percent']):'0.00').";\n".
+
+		"\$dep_an_username='{$post['n_dep_an_username']}';\n".
+
+		"\$dep_an_password='{$post['n_dep_an_password']}';\n".
+
+		"\$dep_cc_use=".($post['n_dep_cc_use']&&!empty($post['n_dep_cc_username'])?'true':'false').";\n".
+
+		"\$dep_cc_fee=".($post['n_dep_cc_fee']?prnsumm_two($post['n_dep_cc_fee']):'0.00').";\n".
+
+		"\$dep_cc_percent=".($post['n_dep_cc_percent']?prnsumm_two($post['n_dep_cc_percent']):'0.00').";\n".
+
+		"\$dep_cc_username='{$post['n_dep_cc_username']}';\n".
+
+		"\$dep_cc_password='';\n".
+
+		"\$dep_ec_use=".($post['n_dep_ec_use']?'true':'false').";\n".
+
+		"\$dep_ec_fee=".($post['n_dep_ec_fee']?prnsumm_two($post['n_dep_ec_fee']):'0.00').";\n".
+
+		"\$dep_ec_percent=".($post['n_dep_ec_percent']?prnsumm_two($post['n_dep_ec_percent']):'0.00').";\n".
+
+		"\$dep_ec_username='';\n".
+
+		"\$dep_ec_password='';\n".
+
+		"\$dep_mc_use=".($post['n_dep_mc_use']?'true':'false').";\n".
+
+		"\$dep_mc_fee=".($post['n_dep_mc_fee']?prnsumm_two($post['n_dep_mc_fee']):'0.00').";\n".
+
+		"\$dep_mc_percent=".($post['n_dep_mc_percent']?prnsumm_two($post['n_dep_mc_percent']):'0.00').";\n".
+
+		"\$dep_mc_username='';\n".
+
+		"\$dep_mc_password='';\n".
+
+		"\n".
+
+		"\$wdr_minimal=".($post['n_wdr_minimal']?prnsumm_two($post['n_wdr_minimal']):'0.00').";\n".
+
+		"\$wdr_maximal=".($post['n_wdr_maximal']?prnsumm_two($post['n_wdr_maximal']):'0.00').";\n".
+
+		"\$wdr_pp_use=".($post['n_wdr_pp_use']?'true':'false').";\n".
+
+		"\$wdr_pp_fee=".($post['n_wdr_pp_fee']?prnsumm_two($post['n_wdr_pp_fee']):'0.00').";\n".
+
+		"\$wdr_sp_use=".($post['n_wdr_sp_use']?'true':'false').";\n".
+
+		"\$wdr_sp_fee=".($post['n_wdr_sp_fee']?prnsumm_two($post['n_wdr_sp_fee']):'0.00').";\n".
+
+		"\$wdr_np_use=".($post['n_wdr_np_use']?'true':'false').";\n".
+
+		"\$wdr_np_fee=".($post['n_wdr_np_fee']?prnsumm_two($post['n_wdr_np_fee']):'0.00').";\n".
+
+		"\$wdr_eg_use=".($post['n_wdr_eg_use']?'true':'false').";\n".
+
+		"\$wdr_eg_fee=".($post['n_wdr_eg_fee']?prnsumm_two($post['n_wdr_eg_fee']):'0.00').";\n".
+
+		"\$wdr_mb_use=".($post['n_wdr_mb_use']?'true':'false').";\n".
+
+		"\$wdr_mb_fee=".($post['n_wdr_mb_fee']?prnsumm_two($post['n_wdr_mb_fee']):'0.00').";\n".
+
+		"\$wdr_ig_use=".($post['n_wdr_ig_use']?'true':'false').";\n".
+
+		"\$wdr_ig_fee=".($post['n_wdr_ig_fee']?prnsumm_two($post['n_wdr_ig_fee']):'0.00').";\n".
+
+		"\$wdr_eb_use=".($post['n_wdr_eb_use']?'true':'false').";\n".
+
+		"\$wdr_eb_fee=".($post['n_wdr_eb_fee']?prnsumm_two($post['n_wdr_eb_fee']):'0.00').";\n".
+
+		"\$wdr_px_use=".($post['n_wdr_px_use']?'true':'false').";\n".
+
+		"\$wdr_px_fee=".($post['n_wdr_px_fee']?prnsumm_two($post['n_wdr_px_fee']):'0.00').";\n".
+
+		"\$wdr_pd_use=".($post['n_wdr_pd_use']?'true':'false').";\n".
+
+		"\$wdr_pd_fee=".($post['n_wdr_pd_fee']?prnsumm_two($post['n_wdr_pd_fee']):'0.00').";\n".
+
+		"\$wdr_ev_use=".($post['n_wdr_ev_use']?'true':'false').";\n".
+
+		"\$wdr_ev_fee=".($post['n_wdr_ev_fee']?prnsumm_two($post['n_wdr_ev_fee']):'0.00').";\n".
+
+		"\$wdr_gm_use=".($post['n_wdr_gm_use']?'true':'false').";\n".
+
+		"\$wdr_gm_fee=".($post['n_wdr_gm_fee']?prnsumm_two($post['n_wdr_gm_fee']):'0.00').";\n".
+
+		"\$wdr_vg_use=".($post['n_wdr_vg_use']?'true':'false').";\n".
+
+		"\$wdr_vg_fee=".($post['n_wdr_vg_fee']?prnsumm_two($post['n_wdr_vg_fee']):'0.00').";\n".
+
+		"\$wdr_pe_use=".($post['n_wdr_pe_use']?'true':'false').";\n".
+
+		"\$wdr_pe_fee=".($post['n_wdr_pe_fee']?prnsumm_two($post['n_wdr_pe_fee']):'0.00').";\n".
+
+		"\$wdr_bw_use=".($post['n_wdr_bw_use']?'true':'false').";\n".
+
+		"\$wdr_bw_fee=".($post['n_wdr_bw_fee']?prnsumm_two_two($post['n_wdr_bw_fee']):'0.00').";\n".
+
+		"\$wdr_mc_use=".($post['n_wdr_mc_use']?'true':'false').";\n".
+
+		"\$wdr_mc_fee=".($post['n_wdr_mc_fee']?prnsumm_two($post['n_wdr_mc_fee']):'0.00').";\n".
+
+		"\$wdr_wu_use=".($post['n_wdr_wu_use']?'true':'false').";\n".
+
+		"\$wdr_wu_fee=".($post['n_wdr_wu_fee']?prnsumm_two($post['n_wdr_wu_fee']):'0.00').";\n".
+
+		"\$wdr_mg_use=".($post['n_wdr_mg_use']?'true':'false').";\n".
+
+		"\$wdr_mg_fee=".($post['n_wdr_mg_fee']?prnsumm_two($post['n_wdr_mg_fee']):'0.00').";\n".
+        
+         "\$wdr_CC_use=".($post['n_wdr_CC_use']?'true':'false').";\n".
+
+		"\$wdr_CC_fee=".($post['n_wdr_CC_fee']?prnsumm_two($post['n_wdr_CC_fee']):'0.00').";\n".
+
+		"################################################################################\n".
+
+		"include('consts.htm');\n".
+
+		"include('common.htm');\n".
+
+		"################################################################################\n".
+
+		"?>"
+
+	;
+//print_r($post);
+
+	$file=@fopen("../config.htm", "w");
+
+	if($file){
+
+		@fwrite($file, $str);
+
+		@fclose($file);
+
+		header("Location:main-conf.htm");
+
+		echo('ACCESS DENIED.');
+
+		exit;
+
+	}else{
+
+		$data['Message']='Update configuration parameters failed. Check write permissions for file "config.htm".';
+
+	}
+
+}
+
+###############################################################################
+
+$data['SystemBalance']=select_balance(-1);
+
+###############################################################################
+
+display('admins');
+
+###############################################################################
+
+?>
+

@@ -1,0 +1,226 @@
+<?
+###############################################################################
+# PROGRAM     : EPAY ENTERPRISE                                               #
+# VERSION     : 4.13                                                          #
+# AUTHOR      : DMITRY PEREUDA                                                #
+
+# COMPANY     : ALSTRASOFT	                                              #
+# COPYRIGHTS  : (C)2009 ALSTRASOFT. ALL RIGHTS RESERVED                       #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+# LICENSE KEY : C3FA-76A1-83A4-C2B4-AE1F-1D5A-14ED-1DCA                       #
+###############################################################################
+#    THIS FILE IS PART OF EPAY SCRIPT - THE NEW UNIVERSAL PAYMENT GATEWAY     #
+#               	     DEVELOPED BY ALSTRASOFT                          #
+###############################################################################
+#    ALL SOURCE CODE, IMAGES, PROGRAMS, FILES INCLUDED IN THIS DISTRIBUTION   #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+#       ANY REDISTRIBUTION WITHOUT PERMISSION OF ALSTRASOFT AND IS            #
+#                            STRICTLY FORBIDDEN                               #
+###############################################################################
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+
+
+
+
+###############################################################################
+$data['PageName']='WITHDRAW FUNDS FROM YOUR ACCOUNT';
+$data['PageFile']='withdraw';
+###############################################################################
+include('../config.htm');
+###############################################################################
+if(!$_SESSION['login']){
+        header("Location:{$data['Host']}/index.htm");
+        echo('ACCESS DENIED.');
+        exit;
+}
+if(is_info_empty($uid)){
+        header("Location:{$data['Host']}/members/profile.htm");
+        echo('ACCESS DENIED.');
+        exit;
+}
+###############################################################################
+$data['WithdrawMethod']=setWidthdrawMethod($data['WithdrawMethod']);
+
+###############################################################################
+if(!$post['step'])$post['step']=1;
+$post=select_info($uid, $post);
+$data['Balance']=select_balance($uid);
+$post['BanksInfo']=select_banks($uid);
+###############################################################################
+if($post['send']){
+	$post['LastWithdraw']=get_transactions($uid, 'outgoing', 2, 1, 0, 1);
+	$post['LastWithdraw']=$post['LastWithdraw'][0];
+	if($post['step']==1){
+		if(!$post['amount']){
+			$data['Error']='Please enter valid amount for transfering.';
+		}elseif(!$post['wtype']){
+			$data['Error']='Please select a payment method.';
+		}elseif($post['amount']<$data['WithdrawMinSum']+$data['WithdrawMethod'][$post['wtype']]['fees']){
+			$data['Error']=
+				"The minimum amount of funds you may withdraw is {$data['Currency']}".
+				($data['WithdrawMinSum']+$data['WithdrawMethod'][$post['wtype']]['fees']);
+		}elseif($post['amount']>$data['Balance']){
+				$data['Error']='You do not have enough money in your account.';
+		}elseif(get_member_status($uid)<2&&isset($post['LastWithdraw']['period'])&&$post['LastWithdraw']['period']<30){
+			if($post['LastWithdraw']['period']==0)$days='today';
+			elseif($post['LastWithdraw']['period']==1)$days='yesterday';
+			else $days="{$post['LastWithdraw']['period']} days ago";
+			$data['Error']="You cannot withdraw more than".
+				" {$data['Currency']}{$data['WithdrawMaxSum']}".
+				" each 30 days because you are UNVERIFIED member.".
+				" Your latest withdraw was {$days}.";
+		}else{
+			$post['step']++;
+		}
+	}elseif($post['step']==2){
+                if($post['wtype']=='bwire'){
+                        if($post['bank']==-1){
+                                if(!$post['bname']){
+                                        $data['Error']='Please enter name of your bank.';
+                                }elseif(!$post['baddress']){
+                                        $data['Error']='Please enter address of your bank.';
+                                }elseif(!$post['bcity']){
+                                        $data['Error']='Please enter city of your bank.';
+                                }elseif(!$post['bzip']){
+                                        $data['Error']='Please enter postal code of your bank.';
+                                }elseif(!$post['bcountry']){
+                                        $data['Error']='Please choose country of your bank.';
+                                }elseif(!$post['bphone']){
+                                        $data['Error']='Please enter telephone number of your bank.';
+                                }elseif(!$post['bnameacc']){
+                                        $data['Error']='Please enter account name.';
+                                }elseif(!$post['baccount']){
+                                        $data['Error']='Please enter account number.';
+                                }
+                        }else{
+                                $bankinfo=select_banks($uid, $post['bank'], true);
+                                if($bankinfo[0]){
+                                       foreach($bankinfo[0] as $key=>$val)$post[$key]=$val;
+                                }else{
+                                       $data['Error']='Incorrect bank account.';
+                                }
+                        }
+                        if(!$data['Error']){
+                                $bwireinfo=
+                                        "   · Amount                  : {$data['Currency']}".
+                                                prnsumm($post['amount'])."\n".
+                                        "   · Fee                     : {$data['Currency']}".
+                                                prnsumm($data['WithdrawMethod'][$post['wtype']]['fees'])."\n".
+                                        "   · Total Withdrawn         : {$data['Currency']}".
+                                                prnsumm($post['amount']-$data['WithdrawMethod'][$post['wtype']]['fees'])."\n\n".
+                                        "   · Type of Payment         : {$data['WithdrawMethod'][$post['wtype']]['name']}\n".
+                                        "   · Bank Name               : {$post['bname']}\n".
+                                        "   · Bank Address            : {$post['baddress']}\n".
+                                        "   · Bank City               : {$post['bcity']}\n".
+                                        "   · Bank ZIP Code           : {$post['bzip']}\n".
+                                        "   · Bank Country            : {$data['Countries'][$post['bcountry']]}\n".
+                                        "   · Bank State              : {$post['bstate']}\n".
+                                        "   · Bank Phone              : {$post['bphone']}\n".
+                                        "   · Account Holder's Name   : {$post['bnameacc']}\n".
+                                        "   · Account Number          : {$post['baccount']}\n".
+                                        "   · Account Type            : {$data['BankAccountType'][$post['btype']]}\n".
+                                        "   · 9 Digits Routing Number : {$post['brtgnum']}\n".
+                                        "   · S.W.I.F.T. Code         : {$post['bswift']}\n".
+                                        "   · Additional Information  : {$post['comments']}"
+                                ;
+                                $_SESSION['transinfo']="TRANSACTION DETAILS:\n".$bwireinfo;
+                                $post['info']=prntext($bwireinfo);
+                                $post['step']++;
+                        }
+                }elseif($post['wtype']=='check'||$post['wtype']=='western'||$post['wtype']=='moneygram'){
+                        if(!$post['fname']){
+                                $data['Error']='Please enter your first name.';
+                        }elseif(!$post['lname']){
+                                $data['Error']='Please enter your last name.';
+                        }elseif(!$post['address']){
+                                $data['Error']='Please enter address where you live.';
+                        }elseif(!$post['city']){
+                                $data['Error']='Please enter city where you live.';
+                        }elseif(!$post['country']){
+                                $data['Error']='Please enter country where you live.';
+                        }elseif(!$post['zip']){
+                                $data['Error']='Please enter your postal code.';
+                        }elseif(!$post['phone']){
+                                $data['Error']='Please enter your telephone number.';
+                        }else{
+                                $checkinfo=
+                                        "   · Amount          : {$data['Currency']}".
+                                                prnsumm($post['amount'])."\n".
+                                        "   · Fee             : {$data['Currency']}".
+                                                prnsumm($data['WithdrawMethod'][$post['wtype']]['fees'])."\n".
+                                        "   · Total Withdrawn : {$data['Currency']}".
+                                                prnsumm($post['amount']-$data['WithdrawMethod'][$post['wtype']]['fees'])."\n\n".
+                                        "   · Type of Payment : {$data['WithdrawMethod'][$post['wtype']]['name']}\n".
+                                        "   · Name            : {$post['lname']}, {$post['fname']}\n".
+                                        "   · Company Name    : {$post['company']}\n".
+                                        "   · Address         : {$post['address']}\n".
+                                        "   · City            : {$post['city']}\n".
+                                        "   · Country         : {$data['Countries'][$post['country']]}\n".
+                                        "   · State           : {$post['state']}\n".
+                                        "   · Postal Code     : {$post['zip']}\n".
+                                        "   · Phone           : {$post['phone']}"
+                                ;
+                                if($post['wtype']=='western'||$post['wtype']=='moneygram'){
+                                        $add="{$post['wtype']}#-#-#";
+                                }else $add='';
+                                $_SESSION['transinfo']="{$add}TRANSACTION DETAILS:\n{$checkinfo}";
+                                $post['info']=prntext($checkinfo);
+                                $post['step']++;
+                        }
+                }else{
+                        if(!$post['payee1']){
+                                $data['Error']="Please enter your {$data['WithdrawMethod'][$post['wtype']]['name']} username.";
+                        }elseif(!$post['payee2']){
+                                $data['Error']="Please confirm your {$data['WithdrawMethod'][$post['wtype']]['name']} username.";
+                        }elseif($post['payee1']!=$post['payee2']){
+                                $data['Error']="Your {$data['WithdrawMethod'][$post['wtype']]['name']} username is not equal with confirmation.";
+                        }else{
+                                $traninfo=
+                                        "   · Amount          : {$data['Currency']}".
+                                                prnsumm($post['amount'])."\n".
+                                        "   · Fee             : {$data['Currency']}".
+                                                prnsumm($data['WithdrawMethod'][$post['wtype']]['fees'])."\n".
+                                        "   · Total Withdrawn : {$data['Currency']}".
+                                                prnsumm($post['amount']-$data['WithdrawMethod'][$post['wtype']]['fees'])."\n\n".
+                                        "   · Type of Payment : {$data['WithdrawMethod'][$post['wtype']]['name']}\n".
+                                        "   · Payee Name      : {$post['payee1']}"
+                                ;
+                                $_SESSION['transinfo']=
+                                        "{$post['wtype']}#".($post['amount']-$data['WithdrawMethod'][$post['wtype']]['fees'])."#{$post['payee1']}#".
+                                        "TRANSACTION DETAILS:\n".$traninfo
+                                ;
+                                $post['info']=prntext($traninfo);
+                                $post['step']++;
+                        }
+                }
+        }elseif($post['step']==3){
+                transaction(
+                        $uid,
+                        -1,
+                        $post['amount'],
+                        $data['WithdrawMethod'][$post['wtype']]['fees'],
+                        2,
+                        0,
+                        "Wire transfer with {$data['WithdrawMethod'][$post['wtype']]['name']}",
+                        $_SESSION['transinfo']
+                );
+                /*
+                        TODO: Send notification e-mail
+                */
+                unset($_SESSION['transinfo']);
+                $post['step']++;
+        }
+}elseif($post['cancel'])$post['step']--;
+
+$balance=select_balance($uid);
+$data['current_balance'] =  $balance;
+###############################################################################
+display('members');
+###############################################################################
+?>

@@ -1,0 +1,42 @@
+<?if(isset($data['ScriptLoaded'])){?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title><?=$data['SiteTitle']?> [ADMINISTRATION AREA]</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel=stylesheet type=text/css href="<?=$data['Host']?>/commerce/wp-content/themes/zoanga/style.css">
+
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script><script type=text/javascript language=JavaScript src="<?=$data['Host']?>/js/script.js"></script><!-- media-queries.js (fallback) -->
+		<!--[if lt IE 9]>
+			<script src="//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>			
+		<![endif]-->
+		<!-- html5.js -->
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]--><script text/javascript language=JavaScript>document.oncontextmenu=new Function("return false")</script><script type=text/javascript>function s(){window.status="<?=$data['SiteTitle']?> ���������� [ADMINISTRATION AREA]";return true};if(document.layers)document.captureEvents(Event.MOUSEOVER|Event.MOUSEOUT|Event.CLICK|Event.DBLCLICK);document.onmouseover=s;document.onmouseout=s;</script>
+</head>
+<body cz-shortcut-listen="true"><center>
+
+<div class="container">
+<tr>
+<td nowrap>
+
+<div class="row">
+<b>ADMINISTRATION AREA (YOUR IP ADDRESS: <?=$data['Addr']?>)</b></td><?if(!$data['HideMenu']){?><td align=right nowrap><b>YOUR CURRENT BALANCE IS: <?=prnpays($data['SystemBalance'])?></b></td><?}?></tr></table>
+
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#0066CC><tr><td></td></tr></table><br>
+
+<table width=99% border=0 cellspacing=0 cellpadding=0><tr><?if(!$data['HideMenu']){?><td width=1% align=right valign=top>
+
+<table class=frame width=140 border=0 cellspacing=1 cellpadding=1>
+<tr>
+<th class=caption>&nbsp;CONFIGURATION</th></tr>
+<tr>
+</div>
+<td nowrap>
+
+<a<?if($data['PageFile']=='index'){?> style="color:#FF3399"<?}?> href="<?=$data['Admins']?>/index.htm">&nbsp;&middot;&nbsp;HOME</a><br><a href="<?=$data['Admins']?>/main-conf.htm#general">&nbsp;&middot;&nbsp;GENERAL</a><br><a href="<?=$data['Admins']?>/main-conf.htm#additional">&nbsp;&middot;&nbsp;ADDITIONAL</a><br><a href="<?=$data['Admins']?>/main-conf.htm#currency">&nbsp;&middot;&nbsp;CURRENCY</a><br><a href="<?=$data['Admins']?>/main-conf.htm#signup">&nbsp;&middot;&nbsp;SIGNUP</a><br><a href="<?=$data['Admins']?>/main-conf.htm#payments">&nbsp;&middot;&nbsp;PAYMENTS</a><br><a href="<?=$data['Admins']?>/main-conf.htm#deposit">&nbsp;&middot;&nbsp;DEPOSIT</a><br><a href="<?=$data['Admins']?>/main-conf.htm#withdraw">&nbsp;&middot;&nbsp;WITHDRAW</a><br><a href="<?=$data['Admins']?>/main-conf.htm#affiliate">&nbsp;&middot;&nbsp;AFFILIATE</a><br><a href="<?=$data['Admins']?>/main-conf.htm#advertising">&nbsp;&middot;&nbsp;ADVERTISING</a><br><hr style="color:#CCCCFF"><a<?if($data['PageFile']=='langs-conf'){?> style="color:#FF3399"<?}?> href="<?=$data['Admins']?>/langs-conf.htm">&nbsp;&middot;&nbsp;TEMPLATES LANGS</a><br><br><a<?if($data['PageFile']=='html-conf'){?> style="color:#FF3399"<?}?> href="<?=$data['Admins']?>/html-conf.htm">&nbsp;&middot;&nbsp;HTML TEMPLATES</a><br><a<?if($data['PageFile']=='mail-conf'){?> style="color:#FF3399"<?}?> href="<?=$data['Admins']?>/mail-conf.htm">&nbsp;&middot;&nbsp;E-MAIL TEMPLATES</a><?if($data['HotNewsSection']){?><br><a<?if($data['PageFile']=='news'){?> style="color:#FF3399"<?}?> href="<?=$data['Admins']?>/news.htm">&nbsp;&middot;&nbsp;HOT&nbsp;NEWS</a><br><a<?if($data['PageFile']=='faqs'){?> style="color:#FF3399"<?}?> href="<?=$data['Admins']?>/faqs.htm">&nbsp;&middot;&nbsp;FAQs</a><?}?></td></tr></table><br><table class=frame width=140 border=0 cellspacing=1 cellpadding=1><tr><th class=caption>FAQ</th></tr><tr><td><a href="<?=$data['Admins']?>/faq_section.htm">&nbsp;&middot;&nbsp;FAQ SECTION</a><br></td></tr><tr><td nowrap><a href="<?=$data['Admins']?>/faq_list.htm">&nbsp;&middot;&nbsp;FAQ LIST</a></td></table><br><table class=frame width=140 border=0 cellspacing=1 cellpadding=1><tr><th class=caption>&nbsp;MEMBERS</th></tr><tr><td nowrap><a href="<?=$data['Admins']?>/members.htm?action=select&type=active">&nbsp;&middot;&nbsp;ACTIVE</a><br><a href="<?=$data['Admins']?>/members.htm?action=select&type=suspended">&nbsp;&middot;&nbsp;SUSPENDED</a><br><a href="<?=$data['Admins']?>/members.htm?action=select&type=closed">&nbsp;&middot;&nbsp;CLOSED</a><br><a href="<?=$data['Admins']?>/members.htm?action=select&type=online">&nbsp;&middot;&nbsp;ONLINE</a><br><a href="<?=$data['Admins']?>/members.htm?action=search">&nbsp;&middot;&nbsp;SEARCH</a><br><a href="<?=$data['Admins']?>/members.htm?action=insert&type=suspended">&nbsp;&middot;&nbsp;ADD NEW</a>
+<br><a href="<?=$data['Admins']?>/members.htm?action=creditcard&type=active">&nbsp;&middot;&nbsp;CREDIT-CARD REQUEST</a>
+</td></tr></table><br><table class=frame width=100% border=0 cellspacing=1 cellpadding=1><tr><th class=caption>&nbsp;ACCOUNTING</th></tr><tr><td><a href="<?=$data['Admins']?>/transactions.htm?action=summary">&nbsp;&middot;&nbsp;SUMMARY</a><br><a href="<?=$data['Admins']?>/transactions.htm?action=select">&nbsp;&middot;&nbsp;TRANSACTIONS</a><br><a href="<?=$data['Admins']?>/transactions.htm?type=1&action=select">&nbsp;&middot;&nbsp;DEPOSITS</a><br><a href="<?=$data['Admins']?>/transactions.htm?type=2&action=select">&nbsp;&middot;&nbsp;WITHDRAWALS</a><br><a href="<?=$data['Admins']?>/transactions.htm?type=3&action=select">&nbsp;&middot;&nbsp;ESCROWS</a><br><a href="<?=$data['Admins']?>/transactions.htm?type=4&action=select">&nbsp;&middot;&nbsp;SIGNUPS</a><br><a href="<?=$data['Admins']?>/transactions.htm?type=5&action=select">&nbsp;&middot;&nbsp;COMMISSIONS</a><br><a href="<?=$data['Admins']?>/transactions.htm?type=-1&status=3&action=select">&nbsp;&middot;&nbsp;REFUNDS</a><hr style="color:#CCCCFF"><a<?if($data['PageFile']=='investment'){?> style="color:#FF3399"<?}?> href="<?=$data['Admins']?>/investment.htm">&nbsp;&middot;&nbsp;INVESTMENT</a><br><a<?if($data['PageFile']=='payment'){?> style="color:#FF3399"<?}?> href="<?=$data['Admins']?>/payment.htm">&nbsp;&middot;&nbsp;SINGLE&nbsp;PAYMENT</a><br><a<?if($data['PageFile']=='payments'){?> style="color:#FF3399"<?}?> href="<?=$data['Admins']?>/payments.htm">&nbsp;&middot;&nbsp;MASS&nbsp;PAYMENTS</a><br><a<?if($data['PageFile']=='mass-mail'){?> style="color:#FF3399"<?}?> href="<?=$data['Admins']?>/mass-mail.htm">&nbsp;&middot;&nbsp;MASS MAILING</a></td></tr></table><br><?if($data['Advertising']){?><table class=frame width=140 border=0 cellspacing=1 cellpadding=1><tr><th class=caption>&nbsp;ADVERTISING</th></tr><tr><td nowrap><a href="<?=$data['Admins']?>/advertising.htm">&nbsp;&middot;&nbsp;SETTINGS</a></td></tr></table><br><?}?><?if($data['LiveSupport']){?><table class=frame width=140 border=0 cellspacing=1 cellpadding=1><tr><th class=caption>&nbsp;LIVE SUPPORT</th></tr><tr><td nowrap><a href="<?=$data['Admins']?>/support/index.htm">&nbsp;&middot;&nbsp;ADMIN AREA</a></td></tr></table><br><?}?>
+<table class=frame width=140 border=0 cellspacing=1 cellpadding=1><tr><th class=caption>SHOP</th></tr><tr><td nowrap><a href="<?=$data['Admins']?>/shopcategories.htm?action=view">&nbsp;&middot;&nbsp;MANAGEMENT</a></td><tr><td><a href="<?=$data['Admins']?>/shopcategories.htm?action=search">&nbsp;&middot;&nbsp;SEARCH</a><br></td></tr></table><br>
+<table class=frame width=140 border=0 cellspacing=1 cellpadding=1><tr><td nowrap><a href="<?=$data['Admins']?>/logout.htm">&nbsp;&middot;&nbsp;LOGOUT</a>
+</td></tr></table></td>
+
+<td width=1%>&nbsp;</td><?}?>
+<td width=96% align=left valign=top><table class=frame width=100% border=0 cellspacing=1 cellpadding=1><tr><th class=caption><?=$data['PageName']?></th></tr><tr><td class=text><?}else{?>SECURITY ALERT: Access Denied<?}?>

@@ -1,0 +1,379 @@
+                                                                      
+              
+  <?if(isset($data['ScriptLoaded'])){?> <center>
+<div class="row-fluid">
+<table width=98% border=0 cellspacing=0 cellpadding=0>
+<tr>
+<td colspan="8"><br />
+<div class="innerLR">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="widget widget-4 margin-none">
+				<div class="widget-head">
+					<h4 class="heading">Activity</h4>
+					<a href="#" class="details pull-right">view all</a>
+				</div>
+				<div class="widget-body list">
+					<ul>
+						<li>
+							<span> Transfers Today</span>
+							<span class="count"><?=balance($data['Balance'])?></span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+								<div class="col-md-4">
+					<a href="#" class="widget-stats">
+						<span class="glyphicons money"></span>
+						<span class="txt"><strong><? echo count($post['Treceived']);  ?></strong>Received</span>
+						<div class="clearfix"></div>
+					</a>
+				</div>
+								<div class="col-md-4">
+					<a href="#" class="widget-stats">
+                        
+						<span class="glyphicons money"></span>
+						<span class="txt"><strong><? echo count($post['Tsend']);  ?></strong>Sent</span>
+						<div class="clearfix"></div>
+					</a>
+				</div>
+								<div class="col-md-4">
+					<a href="#" class="widget-stats">
+						<span class="glyphicons money"></span>
+						<span class="txt"><strong><? echo count($post['Tpending_count']);  ?></strong>Pending</span>
+						<div class="clearfix"></div>
+					</a>
+				</div>
+							</div>
+		</div>
+	</div>
+</div>
+<div class="separator bottom"></div>
+</td>
+</tr>
+
+<? if( count($post['Treceived'])>0 || count($post['Tsend'])>0 ) {  ?>
+<tr>
+<td colspan="8"><br />
+<div class="widget widget-2 widget-tabs widget-tabs-2">
+	<div class="widget-head">
+		<ul>
+			<li class="active"><a class="glyphicons cardio" href="#website-traffic-tab" data-toggle="tab">Wallet Overview</a></li>
+			<li><a class="glyphicons cardio" href="#website-traffic-tab2" data-toggle="tab">Bitcoin Overview</a></li>
+		</ul>
+	</div>
+	<div class="widget-body">
+		<div class="tab-pane active" id="website-traffic-tab">
+			<div class="btn-group separator bottom pull-right">
+				<button id="websiteTraffic24Hours" class="btn btn-small btn-default">24 Hours</button>
+				<button id="websiteTraffic7Days" class="btn btn-small btn-default">7 Days</button>
+				<button id="websiteTraffic14Days" class="btn btn-small btn-default">14 Days</button>
+				<button id="websiteTrafficClear" class="btn btn-small btn-default" disabled="disabled">Clear</button>
+			</div>
+			<div class="clearfix" style="clear: both;"></div>
+			<div id="placeholder" style="height: 200px;"></div>
+			<div id="overview" style="height: 40px;"></div>
+		</div>
+	</div>
+</div>
+
+
+<script src="https://zoanga.com/assets/plugins/jquery-1.10.1.min.js"></script>
+<!-- Global -->
+	<script>
+    var recevied = "<? echo count($post['Treceived']);  ?>";
+    recevied = parseInt(recevied);
+    var send = "<? echo count($post['Tsend']);  ?>";
+    send = parseInt(send);
+    // graph graph24hours dates
+    var today = new Date();
+    today_date_start = today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate()+" 00:00:00";
+    today_date_end = today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate()+" 23:59:59";
+    today_date_start = new Date(today_date_start);    
+    today_date_start = today_date_start.getTime();    
+    today_date_end = new Date(today_date_end);
+    today_date_end = today_date_end.getTime();
+    //alert(today_date_start);
+    //alert(today_date_end);
+    
+    // graph graph7days dates
+    var date7days_start = new Date('<? echo $post['date_before_seven_days']." 00:00:00";   ?>');   
+    date7days_start = date7days_start.getTime();
+    
+    // graph graph7days dates
+    var date14days_start = new Date('<? echo $post['date_before_forteen_days']." 00:00:00";   ?>');   
+    date14days_start = date14days_start.getTime();
+    
+    // graph d1 data
+    var received = [],integer_date;
+    var temp_received = '<? echo json_encode($post['Treceived'])  ?>';
+    temp_received = eval("("+temp_received+")");
+    
+    for(var i=0; i<temp_received.length;i++){
+        integer_date = new Date(temp_received[i].tdate);        
+        received.push([integer_date.getTime(),temp_received[i].total]);
+    }
+   
+   // graph d2 data
+    var received = [],integer_date;
+    var temp_received = '<? echo json_encode($post['Treceived'])  ?>';
+    temp_received = eval("("+temp_received+")");
+    
+    for(var i=0; i<temp_received.length;i++){
+        integer_date = new Date(temp_received[i].tdate);        
+        received.push([integer_date.getTime(),parseInt(temp_received[i].total)]);
+    }
+    
+    // graph d2 data
+    var send = [],integer_date;
+    var temp_received = '<? echo json_encode($post['Tsend'])  ?>';
+    temp_received = eval("("+temp_received+")");
+    
+    for(var i=0; i<temp_received.length;i++){
+        integer_date = new Date(temp_received[i].tdate);        
+        send.push([integer_date.getTime(), parseInt(temp_received[i].total) ]);
+    }
+    
+    var themerPrimaryColor = '#21162F';
+	var basePath = '',
+		commonPath = '../common/',
+
+		
+		// charts data
+		charts_data = {
+			
+			// 24 hours
+			graph24hours: {
+				from: today_date_start,
+				to: today_date_end			},
+
+			// 7 days
+			graph7days: {
+				from: date7days_start,
+				to: today_date_end			},
+
+			// 14 days
+			graph14days: {
+				from: date14days_start,
+				to: today_date_end			},
+
+			// main dashboard graph - website traffic
+			website_traffic: {
+				d1: received,
+				d2: send	
+			}
+
+		};
+	</script>
+	<!-- Charts Helper Demo Script -->
+	<script src="https://zoanga.com/js/charts/charts.helper90fc.js?1403808223"></script>
+    	<!-- Sparkline -->
+	<script src="https://zoanga.com/assets/js/jquery.sparkline.min.js" type="text/javascript"></script>
+	
+		<!--  Flot (Charts) JS -->
+	<script src="https://zoanga.com/assets/js/flot/jquery.flot.js" type="text/javascript"></script>
+	<script src="https://zoanga.com/assets/js/jquery.flot.pie.js" type="text/javascript"></script>
+	<script src="https://zoanga.com/assets/js/jquery.flot.tooltip.js" type="text/javascript"></script>
+	<script src="https://zoanga.com/assets/js/jquery.flot.selection.js"></script>
+	<script src="https://zoanga.com/assets/js/jquery.flot.resize.js" type="text/javascript"></script>
+	<script src="https://zoanga.com/assets/js/jquery.flot.orderBars.js" type="text/javascript"></script>
+    
+    <script>
+    $(function()
+{
+  
+	
+	// initialize charts
+	if (typeof charts != 'undefined') 
+		charts.initIndex();
+});
+    </script>
+</td>
+</tr>
+<? }else {  ?>
+<tr><td></td></tr>
+<tr>
+<td class= colspan=8 align=center>
+<div class="alert alert-info fade in" role="alert" style="text-align:center">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">�</span><span class="sr-only">Close</span></button>
+      <h3>No TRANSACTION FOUND FOR GRAPH PREVIEW</h3>    
+
+      <p>
+      </p>
+    </div>
+</td></tr>
+
+
+<? } ?>
+
+<tr><td></td></tr>
+<tr>
+<td  colspan=8 >
+<div class="innerLR">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="widget widget-4">
+				<div class="widget-head">
+					<h4 class="heading">Overview</h4>
+				</div>
+				<div class="widget-body list">
+					<ul>
+						<li><span class="count"><? echo count($post['Treceived']);  ?><span class="sparkline"></span></span> Recevied</li>
+						<li><span class="count"><? echo count($post['Tsend']);  ?><span class="sparkline"></span></span> Send</li>
+						<li><span class="count"><? echo count($post['Treceived'])+count($post['Tsend']);  ?><span class="sparkline"></span></span> Total</li>
+					</ul>
+				</div>
+			</div>
+		<!--	<div class="widget widget-4">
+				<div class="widget-head">
+					<h4 class="heading">Interest</h4>
+				</div>
+				<div class="widget-body list">
+					<ul>
+						<li><span class="count">00:01:59 <span class="sparkline"></span></span> avg.time</li>
+						<li><span class="count">48% <span class="sparkline"></span></span> returning</li>
+					</ul>
+				</div>
+			</div>-->
+		</div>
+		<div class="col-md-6">
+			<div class="widget widget-4">
+				<div class="widget-head">
+					<h4 class="heading">Traffic sources</h4>
+				</div>
+				<div class="widget-body">
+					<div id="pie" style="height: 220px;"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="well">
+<div class="row">
+	<div class="col-md-12">
+		<div class="widget widget-2 widget-tabs">
+			<div class="widget-head">
+				<ul>
+					<li class="active"><a class="glyphicons coffe_cup" href="#dataTableSourcesTab" data-toggle="tab">
+                    Recevied</a></li>
+					<li><a class="glyphicons share_alt" href="#dataTableRefferingTab" data-toggle="tab">Send</a></li>
+                    	<li><a class="glyphicons share_alt" href="#dataTableunregisterTab" data-toggle="tab">Un-Registered Member Transactions</a></li>
+				</ul>
+			</div>
+			<div class="widget-body">
+				<div class="tab-content">
+					<div class="tab-pane active" id="dataTableSourcesTab">
+						<div id="dataTableSources">
+                        <table class="google-visualization-table-table" width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capc>DIR</td><td class="google-visualization-table-th gradient google-visualization-table-sorthdr">MEMBER</td><td class="google-visualization-table-th gradient google-visualization-table-sorthdr">AMOUNT</td><td class="google-visualization-table-th gradient google-visualization-table-sorthdr">FEE</td><td class="google-visualization-table-th gradient google-visualization-table-sorthdr">PAID</td><td class="google-visualization-table-th gradient google-visualization-table-sorthdr">DATE</td><td class="google-visualization-table-th gradient google-visualization-table-sorthdr">TYPE</td><td class="google-visualization-table-th gradient google-visualization-table-sorthdr">STATUS</td></tr><?if($post['Treceived_data']){?><?$idx=0;foreach($post['Treceived_data'] as $value){$bgcolor=$idx%2?'#EEEEEE':'#E7E7E7'?><tr bgcolor=<?=$bgcolor?> onmouseover="setPointer(this,<?=$idx?>,'over','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmouseout="setPointer(this,<?=$idx?>,'out','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmousedown="setPointer(this,<?=$idx?>,'click','<?=$bgcolor?>','#CCFFCC','#FFCC99')"><td align=center valign=top><?=$value['direction']?></td><td align=right valign=top><?if($value['userid']>0){?><a href="userinfo.htm?id=<?=$value['userid']?>&bp=<?=$data['PageFile']?>"><?=prntext($value['username'])?></a><?}else{?><?=prntext($value['username'])?><?}?></td><td align=right valign=top><?=$value['amount']?></td><td align=right valign=top><?=$value['fees']?></td><td align=right valign=top><?=$value['nets']?></td><td align=center valign=top nowrap><?=prndate($value['tdate'])?></td><td align=right valign=top><?=$value['type']?></td><td align=center valign=top><?=$value['status']?></td></tr><?$idx++;}?>
+                        <!--<tr><td class=capc colspan=8><a href="transactions.htm">VIEW ALL TRANSACTIONS</a></td></tr>-->
+                        
+                        <?}else{?><tr><td class=error colspan=8 align=center>NO TRANSACTIONS FOUND</td></tr><?}?></table>
+                        </div>
+					</div>
+					<div class="tab-pane" id="dataTableRefferingTab">
+						<div id="dataTableReffering">
+                         <table class="google-visualization-table-table" width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capc>DIR</td><td class="google-visualization-table-th gradient google-visualization-table-sorthdr">MEMBER</td><td class="google-visualization-table-th gradient google-visualization-table-sorthdr">AMOUNT</td><td class="google-visualization-table-th gradient google-visualization-table-sorthdr">FEE</td><td class="google-visualization-table-th gradient google-visualization-table-sorthdr">PAID</td><td class="google-visualization-table-th gradient google-visualization-table-sorthdr">DATE</td><td class="google-visualization-table-th gradient google-visualization-table-sorthdr">TYPE</td><td class="google-visualization-table-th gradient google-visualization-table-sorthdr">STATUS</td></tr><?if($post['Tsend_data']){?><?$idx=0;foreach($post['Tsend_data'] as $value){$bgcolor=$idx%2?'#EEEEEE':'#E7E7E7'?><tr bgcolor=<?=$bgcolor?> onmouseover="setPointer(this,<?=$idx?>,'over','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmouseout="setPointer(this,<?=$idx?>,'out','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmousedown="setPointer(this,<?=$idx?>,'click','<?=$bgcolor?>','#CCFFCC','#FFCC99')"><td align=center valign=top><?=$value['direction']?></td><td align=right valign=top><?if($value['userid']>0){?><a href="userinfo.htm?id=<?=$value['userid']?>&bp=<?=$data['PageFile']?>"><?=prntext($value['username'])?></a><?}else{?><?=prntext($value['username'])?><?}?></td><td align=right valign=top><?=$value['amount']?></td><td align=right valign=top><?=$value['fees']?></td><td align=right valign=top><?=$value['nets']?></td><td align=center valign=top nowrap><?=prndate($value['tdate'])?></td><td align=right valign=top><?=$value['type']?></td><td align=center valign=top><?=$value['status']?></td></tr><?$idx++;}?>
+                        <!--<tr><td class=capc colspan=8><a href="transactions.htm">VIEW ALL TRANSACTIONS</a></td></tr>-->
+                        
+                        <?}else{?><tr><td class=error colspan=8 align=center>NO TRANSACTIONS FOUND</td></tr><?}?></table>
+                        
+                        </div>
+					</div>
+                    <div class="tab-pane" id="dataTableunregisterTab">
+						<div id="dataTableReffering">
+                    
+                    <table class="google-visualization-table-table" width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capl colspan=8>PENDING PAYMENTS TO UNREGISTERED MEMBERS</td></tr><tr><td class="google-visualization-table-th gradient google-visualization-table-sorthdr">UNREG. MEMBER</td><td class=""google-visualization-table-th gradient google-visualization-table-sorthdr>AMOUNT</td><td class="google-visualization-table-th gradient google-visualization-table-sorthdr">FEE</td><td class="google-visualization-table-th gradient google-visualization-table-sorthdr">DATE</td></tr>
+<?if($post['PaysToUnregMembers']){?><?$idx=0;foreach($post['PaysToUnregMembers'] as $value){$bgcolor=$idx%2?'#EEEEEE':'#E7E7E7'?><tr bgcolor=<?=$bgcolor?> onmouseover="setPointer(this,<?=$idx?>,'over','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmouseout="setPointer(this,<?=$idx?>,'out','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmousedown="setPointer(this,<?=$idx?>,'click','<?=$bgcolor?>','#CCFFCC','#FFCC99')"><td align=right valign=top><?=prntext($value['receiver'])?></td><td align=right valign=top><?=$value['amount']?></td><td align=right valign=top><?=prnfees($value['fees'])?></td><td align=center valign=top nowrap><?=prndate($post['tdate'])?></td></tr><?$idx++;}?><?}else{?><tr><td class=error colspan=8 align=center>NO TRANSACTIONS FOUND</td></tr><?}?>
+
+</table>
+
+</div>
+</div>
+				</div>
+			</div>
+		</div>
+		<!-- <a href="" class="btn btn-block btn-icon right btn-inverse glyphicon cardio" style="margin-bottom: 20px;"> Full Analytics</a> -->
+	</div>
+</div>
+</div>
+
+<h4 class="heading-arrow">Recent Activity</h4>
+<div class="innerLR">
+	<div class="widget-activity">
+		<!--<ul class="filters">
+			<li>Filter by</li>
+			<li class="glyphicons user_add"></li>
+			<li class="glyphicons shopping_cart active"></li>
+			<li class="glyphicons envelope"></li>
+			<li class="glyphicons link"></li>
+			<li class="glyphicons camera"></li>
+		</ul>-->
+		<div class="clearfix"></div>
+		<ul class="activities">
+        
+            <?if($post['Transactions']){?>
+            <?$idx=0;foreach($post['Transactions'] as $value){
+                $class=$idx%2?'':'highlight';
+                if($idx>2){ break; }
+                ?>
+                
+                	<li class="<?=$class ?>">
+				
+				<a href="userinfo.htm?id=<?=$value['userid']?>&bp=<?=$data['PageFile']?>"><?=prntext($value['username'])?></a> did <?=$value['type']?> amount worth of <?=$value['amount']?> 
+			</li>
+               <?$idx++;}?>
+                       
+                        
+                        <?}else{?>
+                        
+                        <li class="highlight">
+				
+				NO RECENT ACTIVITY FOUND
+			</li>
+                        <?}?>
+						
+					</ul>
+	</div>
+</div>
+<div class="separator bottom"></div>
+
+<div class="innerLR">
+	<div class="row">
+		<div class="col-md-12">
+		<h4 class="glyphicons clock"> Activity</h4>
+		
+		<div class="row">
+			<div class="col-md-6">
+			
+				<div class="btn-group btn-group-vertical block">
+					<a class="btn btn-icon btn-default btn-block glyphicons group count"> <span><?=count($post['Treceived_data']);  ?></span>Total Recevied</a>
+					<a class="btn btn-icon btn-default btn-block glyphicons user_add count"> <span><?=count($post['Tsend_data']);  ?></span>Total Send</a>
+					<a class="btn btn-icon btn-default btn-block glyphicons shopping_cart count"> <span><?=count($post['Treceived_data'])+count($post['Tsend_data']);  ?></span>Total Transactions</a>
+				</div>
+			</div>
+		<!--	<div class="col-md-6">
+				<div class="btn-group btn-group-vertical block">
+					<a class="btn btn-icon btn-default btn-block glyphicons cargo count"> <span>687</span>Total orders</a>
+					<a class="btn btn-icon btn-default btn-block glyphicons download count"> <span>15</span>Pending orders</a>
+					<a class="btn btn-icon btn-default btn-block glyphicons download count"> <span>3</span>Pending delivery</a>
+					<a class="btn btn-icon btn-primary btn-block glyphicons fire count"> <span>5</span>Support</a>
+				</div>
+			</div>-->
+		</div>
+	</div>
+</div>
+<div class="separator bottom"></div>
+
+</td></tr>
+
+
+</table>
+
+</center>
+</div>
+<?}else{?>SECURITY ALERT: Access Denied<?}?>                                    
+                                    

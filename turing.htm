@@ -1,0 +1,71 @@
+<?
+###############################################################################
+# PROGRAM     : EPAY ENTERPRISE                                               #
+# VERSION     : 4.13                                                          #
+# AUTHOR      : DMITRY PEREUDA                                                #
+
+# COMPANY     : ALSTRASOFT	                                              #
+# COPYRIGHTS  : (C)2009 ALSTRASOFT. ALL RIGHTS RESERVED                       #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+# LICENSE KEY : C3FA-76A1-83A4-C2B4-AE1F-1D5A-14ED-1DCA                       #
+###############################################################################
+#    THIS FILE IS PART OF EPAY SCRIPT - THE NEW UNIVERSAL PAYMENT GATEWAY     #
+#               	     DEVELOPED BY ALSTRASOFT                          #
+###############################################################################
+#    ALL SOURCE CODE, IMAGES, PROGRAMS, FILES INCLUDED IN THIS DISTRIBUTION   #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+#       ANY REDISTRIBUTION WITHOUT PERMISSION OF ALSTRASOFT AND IS            #
+#                            STRICTLY FORBIDDEN                               #
+###############################################################################
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+
+
+
+
+###############################################################################
+include('config.htm');
+$text=$_SESSION['turing'];
+if(!$text)$text='DENIED';
+###############################################################################
+$bgpath=$data['TuringBackground'];
+$image=imagecreatefromjpeg($bgpath);
+$sizes=getimagesize($bgpath);
+$iw=$sizes[0];
+$ih=$sizes[1];
+
+srand(time());
+
+$font=5;
+$fw=imagefontwidth($font)*strlen($text);
+$fh=imagefontheight($font);
+
+$x=($iw-$fw)/2;
+$y=($ih-$fh)/2;
+
+$tc=imagecolorallocate($image, 0, 50, 0);
+$lc=imagecolorallocate($image, 70, 70, 70);
+$step=8;
+for($i=1; $i<=$iw/$step; $i++) imageline($image, $i*$step, 0, $i*$step, $ih, $lc);
+$step=5;
+for($i=1; $i<=$ih/$step; $i++) imageline($image, 0, $i*$step, $iw, $i*$step, $lc);
+$step=3;
+for($i=0; $i<strlen($text); $i++){
+	imagestring(
+		$image, $font,
+		$x-($step/2)+rand(2, $step)+$i*imagefontwidth($font),
+		$y-($step/2)+rand(0, $step),
+		$text[$i], $tc
+	);
+}
+
+header('Content-type: image/jpeg');
+imagejpeg($image, '', $data['TuringQuality']);
+imagedestroy($image);
+###############################################################################
+?>

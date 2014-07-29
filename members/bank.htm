@@ -1,0 +1,93 @@
+<?
+###############################################################################
+# PROGRAM     : EPAY ENTERPRISE                                               #
+# VERSION     : 4.13                                                          #
+# AUTHOR      : DMITRY PEREUDA                                                #
+
+# COMPANY     : ALSTRASOFT	                                              #
+# COPYRIGHTS  : (C)2009 ALSTRASOFT. ALL RIGHTS RESERVED                       #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+# LICENSE KEY : C3FA-76A1-83A4-C2B4-AE1F-1D5A-14ED-1DCA                       #
+###############################################################################
+#    THIS FILE IS PART OF EPAY SCRIPT - THE NEW UNIVERSAL PAYMENT GATEWAY     #
+#               	     DEVELOPED BY ALSTRASOFT                          #
+###############################################################################
+#    ALL SOURCE CODE, IMAGES, PROGRAMS, FILES INCLUDED IN THIS DISTRIBUTION   #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+#       ANY REDISTRIBUTION WITHOUT PERMISSION OF ALSTRASOFT AND IS            #
+#                            STRICTLY FORBIDDEN                               #
+###############################################################################
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+
+
+
+
+###############################################################################
+$data['PageName']='BANK INFORMATION';
+$data['PageFile']='bank';
+###############################################################################
+include('../config.htm');
+###############################################################################
+if(!$_SESSION['login']){
+        header("Location:{$data['Host']}/index.htm");
+        echo('ACCESS DENIED.');
+        exit;
+}
+###############################################################################
+if(is_info_empty($uid)){
+        header("Location:{$data['Host']}/members/profile.htm");
+        echo('ACCESS DENIED.');
+        exit;
+}
+###############################################################################
+$post=select_info($uid, $post);
+if(!$post['step'])$post['step']=1;
+###############################################################################
+if($post['send']){
+        if($post['step']==1){
+                $post['step']++;
+        }elseif($post['step']==2){
+          if(!$post['bname']){
+                $data['Error']='Please enter name of your bank.';
+          }elseif(!$post['baddress']){
+                $data['Error']='Please enter address of your bank.';
+          }elseif(!$post['bcity']){
+                $data['Error']='Please enter city of your bank.';
+          }elseif(!$post['bzip']){
+                $data['Error']='Please enter postal code of your bank.';
+          }elseif(!$post['bcountry']){
+                $data['Error']='Please choose country of your bank.';
+          }elseif(!$post['bphone']){
+                $data['Error']='Please enter telephone number of your bank.';
+          }elseif(!$post['bnameacc']){
+                $data['Error']='Please enter account name.';
+          }elseif(!$post['baccount']){
+                $data['Error']='Please enter account number.';
+          }else{
+                if(!$post['gid'])insert_bank_info($post, $uid);
+                else update_bank_info($post, $post['gid'], $uid);
+                $post['step']--;
+          }
+        }
+}elseif($post['cancel'])$post['step']--;
+if($post['action']=='update'){
+        $bank=select_banks($uid, $post['gid'], true);
+        foreach($bank[0] as $key=>$value)if(!$post[$key])$post[$key]=$value;
+        $post['actn']='update';
+        $post['step']++;
+}elseif($post['action']=='delete'){
+        delete_bank($post['gid']);
+}
+if($post['step']==1){
+        $data['Banks']=select_banks($uid);
+}
+###############################################################################
+display('members');
+###############################################################################
+?>

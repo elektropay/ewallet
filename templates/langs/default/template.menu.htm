@@ -1,0 +1,35 @@
+<?if($data['mode']=='horz'){?>
+<tr><td class=menu align=center nowrap><a class=menu href="<?=$data['Host']?>/index.htm">HOME</a>&nbsp;&middot;&nbsp;<a class=menu href="<?=$data['Host']?>/about.htm">ABOUT US</a>&nbsp;&middot;&nbsp;<a class=menu href="<?=$data['Host']?>/fees.htm">FEES</a>&nbsp;&middot;&nbsp;<a class=menu href="<?=$data['Host']?>/policy.htm">PRIVACY POLICY</a>&nbsp;&middot;&nbsp;<a class=menu href="<?=$data['Host']?>/agreement.htm">MEMBER AGREEMENT</a>&nbsp;&middot;&nbsp;<a class=menu href="<?=$data['Host']?>/faq.htm">FAQ</a>&nbsp;&middot;&nbsp;<a class=menu href="<?=$data['Host']?>/contact.htm">CONTACT&nbsp;US</a><?if(!$_SESSION['login']){?>&nbsp;&middot;&nbsp;<a class=menu href="<?=$data['Members']?>/login.htm">LOGIN</a><?}?></td></tr>
+<?}elseif($data['mode']=='vert'){?>
+<?if(!$_SESSION['login']){?>
+<table class=frame width=100% border=0 cellspacing=1 cellpadding=2>
+<tr><th class=caption>MAIN MENU</th></tr>
+<tr><td><a href="<?=$data['Host']?>/index.htm">&nbsp;&middot;&nbsp;HOME</a><br><a href="<?=$data['Host']?>/about.htm">&nbsp;&middot;&nbsp;ABOUT&nbsp;US</a><br><a href="<?=$data['Host']?>/fees.htm">&nbsp;&middot;&nbsp;FEES</a><br><a href="<?=$data['Host']?>/policy.htm">&nbsp;&middot;&nbsp;PRIVACY&nbsp;POLICY</a><br><a href="<?=$data['Host']?>/agreement.htm">&nbsp;&middot;&nbsp;USER&nbsp;AGREEMENT</a><br><a href="<?=$data['Host']?>/faq.htm">&nbsp;&middot;&nbsp;FAQ</a><br><a href="<?=$data['Host']?>/contact.htm">&nbsp;&middot;&nbsp;CONTACT&nbsp;US</a><br><a href="<?=$data['Host']?>/shop.htm">&nbsp;&middot;&nbsp;SHOP</a><br><a href="<?=$data['Members']?>/login.htm">&nbsp;&middot;&nbsp;MEMBER&nbsp;LOGIN</a></td></tr>
+</table>
+<br>
+<?}?>
+<?if($data['PageFile']=='shop'){?>
+<br>
+<table class=frame width=100% border=0 cellspacing=1 cellpadding=2>
+<tr><th class=caption nowrap>CATEGORIES</th></tr>
+<?foreach($data['RootCategoriesList'] as $key=>$value){?><tr><td><a href="shop.htm?cid=<?=$value['id']?>&action=view"><?=$value['name']?></a></td></tr><?}?>
+</table><?}?>
+<?}elseif($data['mode']=='acch'){?>
+<tr><td class=info align=right nowrap><a href="<?=$data['Members']?>/index.htm"<?if($data['PageFile']=='index'){?> style="color:#FF3399"<?}?>>MY&nbsp;ACCOUNT</a>&nbsp;&middot;&nbsp;<a href="<?=$data['Members']?>/send.htm"<?if($data['PageFile']=='send'){?> style="color:#FF3399"<?}?>>SEND&nbsp;MONEY</a>&nbsp;&middot;&nbsp;<a href="<?=$data['Members']?>/deposit.htm"<?if($data['PageFile']=='deposit'){?> style="color:#FF3399"<?}?>>DEPOSIT&nbsp;MONEY</a>&nbsp;&middot;&nbsp;<a href="<?=$data['Members']?>/withdraw.htm"<?if($data['PageFile']=='withdraw'){?> style="color:#FF3399"<?}?>>WITHDRAW&nbsp;MONEY</a>&nbsp;&middot;&nbsp;<a href="<?=$data['Members']?>/escrow.htm"<?if($data['PageFile']=='escrow'){?> style="color:#FF3399"<?}?>>ESCROW</a>&nbsp;&middot;&nbsp;<a href="<?=$data['Members']?>/products.htm"<?if($data['PageFile']=='products'){?> style="color:#FF3399"<?}?>>PRODUCTS</a>&nbsp;&middot;&nbsp;<a href="<?=$data['Members']?>/logout.htm">LOGOUT</a></td></tr>
+<?}elseif($data['mode']=='accv'){?>
+<table class=frame width=100% border=0 cellspacing=1 cellpadding=2>
+<tr><th class=caption>ACCOUNT MENU</th></tr>
+<tr><td><a href="<?=$data['Members']?>/index.htm"<?if($data['PageFile']=='index'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;OVERVIEW</a><br><a href="<?=$data['Members']?>/profile.htm"<?if($data['PageFile']=='profile'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;EDIT&nbsp;PROFILE</a><br><a href="<?=$data['Members']?>/emails.htm"<?if($data['PageFile']=='emails'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;MANAGE&nbsp;EMAILS</a><br><a href="<?=$data['Members']?>/password.htm"<?if($data['PageFile']=='password'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;EDIT&nbsp;PASSWORD</a><br><a href="<?=$data['Members']?>/card.htm"<?if($data['PageFile']=='card'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;CREDIT&nbsp;CARDS</a><br><a href="<?=$data['Members']?>/bank.htm"<?if($data['PageFile']=='bank'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;BANK&nbsp;ACCOUNTS</a><br><a href="<?=$data['Members']?>/close.htm"<?if($data['PageFile']=='close'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;CLOSE&nbsp;ACCOUNT</a></td></tr>
+<tr><th class=caption>MERCHANT MENU</th></tr>
+<tr><td><a href="<?=$data['Members']?>/products.htm"<?if($data['PageFile']=='products'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;PRODUCTS</a><br><a href="<?=$data['Members']?>/donations.htm"<?if($data['PageFile']=='donations'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;DONATIONS</a><br><a href="<?=$data['Members']?>/subscriptions.htm"<?if($data['PageFile']=='subscriptions'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;SUBSCRIPTIONS</a><br><a href="<?=$data['Members']?>/shopcart.htm"<?if($data['PageFile']=='shopcart'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;SHOPPING&nbsp;CART</a><br><a href="<?=$data['Members']?>/payment.htm"<?if($data['PageFile']=='payment'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;SIMPLE&nbsp;PAYMENTS</a></td></tr>
+<tr><th class=caption>PAYMENTS MENU</th></tr>
+<tr><td><a href="<?=$data['Members']?>/deposit.htm"<?if($data['PageFile']=='deposit'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;DEPOSIT&nbsp;MONEY</a><br><a href="<?=$data['Members']?>/withdraw.htm"<?if($data['PageFile']=='withdraw'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;WITHDRAW&nbsp;MONEY</a><br><a href="<?=$data['Members']?>/send.htm"<?if($data['PageFile']=='send'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;SEND&nbsp;PAYMENT</a><br><a href="<?=$data['Members']?>/request.htm"<?if($data['PageFile']=='request'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;REQUEST&nbsp;PAYMENT</a><br><a href="<?=$data['Members']?>/mass.htm"<?if($data['PageFile']=='mass'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;MASS&nbsp;PAYMENTS</a><br><a href="<?=$data['Members']?>/escrow.htm"<?if($data['PageFile']=='escrow'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;ESCROW</a></td></tr>
+<?if($data['ReferralPays']){?>
+<tr><th class=caption>AFFILIATE MENU</th></tr>
+<tr><td><a href="<?=$data['Members']?>/affdetails.htm"<?if($data['PageFile']=='affdetails'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;PROGRAM&nbsp;DETAILS</a><br><a href="<?=$data['Members']?>/affdownline.htm"<?if($data['PageFile']=='affdownline'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;YOUR&nbsp;DOWNLINE</a><br><a href="<?=$data['Members']?>/affbanners.htm"<?if($data['PageFile']=='affbanners'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;OUR&nbsp;BANNERS</a></td></tr><?}?>
+<?if($data['Advertising']){?>
+<tr><th class=caption>ADVERTISING</th></tr>
+<tr><td><a href="<?=$data['Members']?>/advertising.htm"<?if($data['PageFile']=='advertising'){?> style="color:#FF3399"<?}?>>&nbsp;&middot;&nbsp;YOUR&nbsp;BANNERS</a></td></tr><?}?>
+<tr><td><table width=100% bgcolor=#CCCCFF border=0 cellspacing=0 cellpadding=0><tr><td></td></tr></table></td></tr><tr><td><a href="<?=$data['Members']?>/logout.htm">&nbsp;&middot;&nbsp;LOGOUT</a></td></tr>
+</table>
+<?}?>

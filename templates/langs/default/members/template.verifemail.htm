@@ -1,0 +1,12 @@
+<?if(isset($data['ScriptLoaded'])){?><center>
+
+<? if (isset($data['error'])) { ?>
+<font color=red><?=$data['error']?></font>
+
+<? } elseif (isset($_GET['c'])) { ?>
+
+You have successfully activated your newly added e-mail address.
+
+<? } ?>
+
+</center><?}else{?>SECURITY ALERT: Access Denied<?}?>

@@ -1,0 +1,150 @@
+                            
+              
+  <?if(isset($data['ScriptLoaded'])){?> <center>
+<div class="row-fluid">
+<table width=100% border=0 cellspacing=0 cellpadding=0><tr><td valign=top>
+<table class=frame width=100% border=0 cellspacing=1 cellpadding=2><tr>
+
+<td class=capl colspan=2>GENERAL INFORMATION</td></tr><tr>
+<td class=field width=30% nowrap>Status:</td><td class=input nowrap><table width=100% border=0 cellspacing=0 cellpadding=0>
+<tr><td><b><a href="verify.htm?action=help"><font color=<?if($post['status']<2){?>#FF0000<?}else{?>#0066CC<?}?>><?=prntext($data['MemberStatus'][$post['status']]['status'])?></font></a></b></td>
+
+<td width=1% align=right nowrap><?if(!empty($data['MemberStatus'][$post['status']]['action'])){?><font color=#FFFFFF>|</font> <a href="verificationDocs.htm"><?=prntext($data['MemberStatus'][$post['status']]['button'])?></a><?}else{?>&nbsp;<?}?></td></tr></table></td></tr><tr><td class=field nowrap>Full Name:</td><td class=input nowrap><?=prntext($post['fname'])?> <?=prntext($post['lname'])?></td></tr><tr><td class=field width=30% nowrap>Username:</td><td class=input nowrap><?=prntext($post['username'])?></td></tr><tr><td class=field nowrap>Primary E-Mail:</td><td class=input nowrap><?=prntext($post['Emails'])?></td></tr><tr><td class=field nowrap>Last Login:</td><td class=input nowrap><?=prndate($post['ldate'])?> (<?=prntext($post['last_ip'])?>)</td></tr><tr><td class=field nowrap>Current Balance, <?=prntext($data['Currency'])?>:</td><td class=input nowrap><a href="transactions.htm"><?=balance($data['Balance'])?></a></td></tr><?if($data['ReferralPays']){?><tr><td class=field nowrap>Your referral URL:</td><td class=input nowrap><a href="<?=$data['Host']?>/?rid=<?=$post['username']?>" target=new><?=$data['Host']?>/?rid=<?=$post['username']?></a></td></tr><?}?></table></td><td>&nbsp;&nbsp;<td valign=top><?if($post['LastTransaction']){?><table class=frame width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capl colspan=2><a href="transactions.htm?id=<?=$post['LastTransaction']['id']?>&action=details"><font color=#000000>LAST TRANSACTION</font></a></td></tr><tr><td class=field width=30% nowrap>Date:</td><td class=input nowrap><?=prndate($post['LastTransaction']['tdate'])?></td></tr><tr><td class=field nowrap>Direction:</td><td class=input nowrap><?=strtolower($post['LastTransaction']['direction'])?>&nbsp;<?if($post['LastTransaction']['userid']>0){?><a href="userinfo.htm?id=<?=$post['LastTransaction']['userid']?>&bp=<?=$data['PageFile']?>"><?=prntext($post['LastTransaction']['username'])?></a><?}else{?><?=prntext($post['LastTransaction']['username'])?><?}?></td></tr><tr><td class=field nowrap>Amount, <?=prntext($data['Currency'])?>:</td><td class=input nowrap><?=$post['LastTransaction']['amount']?></td></tr><tr><td class=field nowrap>Fee, <?=prntext($data['Currency'])?>:</td><td class=input nowrap><?=$post['LastTransaction']['fees']?></td></tr><tr><td class=field nowrap>Paid, <?=prntext($data['Currency'])?>:</td><td class=input nowrap><?=$post['LastTransaction']['nets']?></td></tr><tr><td class=field nowrap>Type:</td><td class=input nowrap><?=$post['LastTransaction']['type']?></td></tr><tr><td class=field nowrap>Status:</td><td class=input nowrap><?=$post['LastTransaction']['status']?></td></tr><?if($post['LastTransaction']['canrefund']){?><tr><td class=capc colspan=2><a href="transactions.htm?id=<?=$post['LastTransaction']['id']?>&action=irefund" onclick="return cfmform()">REFUND</a></td></tr><?}?></table><?}?></td></tr></table><br><table class=frame width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capl colspan=8>MOST RECENT TRANSACTIONS (LAST 20)</td></tr><tr><td class=capc>DIR</td><td class=capc>MEMBER</td><td class=capc>AMOUNT</td><td class=capc>FEE</td><td class=capc>PAID</td><td class=capc>DATE</td><td class=capc>TYPE</td><td class=capc>STATUS</td></tr><?if($post['Transactions']){?><?$idx=0;foreach($post['Transactions'] as $value){$bgcolor=$idx%2?'#EEEEEE':'#E7E7E7'?><tr bgcolor=<?=$bgcolor?> onmouseover="setPointer(this,<?=$idx?>,'over','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmouseout="setPointer(this,<?=$idx?>,'out','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmousedown="setPointer(this,<?=$idx?>,'click','<?=$bgcolor?>','#CCFFCC','#FFCC99')"><td align=center valign=top><?=$value['direction']?></td><td align=right valign=top><?if($value['userid']>0){?><a href="userinfo.htm?id=<?=$value['userid']?>&bp=<?=$data['PageFile']?>"><?=prntext($value['username'])?></a><?}else{?><?=prntext($value['username'])?><?}?></td><td align=right valign=top><?=$value['amount']?></td><td align=right valign=top><?=$value['fees']?></td><td align=right valign=top><?=$value['nets']?></td><td align=center valign=top nowrap><?=prndate($value['tdate'])?></td><td align=right valign=top><?=$value['type']?></td><td align=center valign=top><?=$value['status']?></td></tr><?$idx++;}?><tr><td class=capc colspan=8><a href="transactions.htm">VIEW ALL TRANSACTIONS</a></td></tr><?}else{?><tr><td class=error colspan=8 align=center>NO TRANSACTIONS FOUND</td></tr><?}?></table>
+<br>
+<table class=frame width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capl colspan=8>PENDING PAYMENTS TO UNREGISTERED MEMBERS</td></tr><tr><td class=capc>UNREG. MEMBER</td><td class=capc>AMOUNT</td><td class=capc>FEE</td><td class=capc>DATE</td></tr>
+<?if($post['PaysToUnregMembers']){?><?$idx=0;foreach($post['PaysToUnregMembers'] as $value){$bgcolor=$idx%2?'#EEEEEE':'#E7E7E7'?><tr bgcolor=<?=$bgcolor?> onmouseover="setPointer(this,<?=$idx?>,'over','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmouseout="setPointer(this,<?=$idx?>,'out','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmousedown="setPointer(this,<?=$idx?>,'click','<?=$bgcolor?>','#CCFFCC','#FFCC99')"><td align=right valign=top><?=prntext($value['receiver'])?></td><td align=right valign=top><?=$value['amount']?></td><td align=right valign=top><?=prnfees($value['fees'])?></td><td align=center valign=top nowrap><?=prndate($post['tdate'])?></td></tr><?$idx++;}?><?}else{?><tr><td class=error colspan=8 align=center>NO TRANSACTIONS FOUND</td></tr><?}?>
+<? if( count($post['Treceived'])>0 || count($post['Tsend'])>0 ) {  ?>
+<tr>
+<td colspan="8"><br />
+<div class"row">
+<div class="tab-pane active" id="website-traffic-tab">
+			<div class="btn-group separator bottom pull-right">
+				<button id="websiteTraffic24Hours" class="btn btn-small btn-default">24 Hours</button>
+				<button id="websiteTraffic7Days" class="btn btn-small btn-default">7 Days</button>
+				<button id="websiteTraffic14Days" class="btn btn-small btn-default">14 Days</button>
+				<button id="websiteTrafficClear" class="btn btn-small btn-default" disabled="disabled">Clear</button>
+			</div>
+			<div class="clearfix" style="clear: both;"></div>
+			<div id="placeholder" style="height: 200px;"></div>
+			<div id="overview" style="height: 40px;"></div>
+		</div>
+</div>
+<script src="https://zoanga.com/assets/plugins/jquery-1.10.1.min.js"></script>
+<!-- Global -->
+	<script>
+    
+    // graph graph24hours dates
+    var today = new Date();
+    today_date_start = today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate()+" 00:00:00";
+    today_date_end = today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate()+" 23:59:59";
+    today_date_start = new Date(today_date_start);    
+    today_date_start = today_date_start.getTime();    
+    today_date_end = new Date(today_date_end);
+    today_date_end = today_date_end.getTime();
+    //alert(today_date_start);
+    //alert(today_date_end);
+    
+    // graph graph7days dates
+    var date7days_start = new Date('<? echo $post['date_before_seven_days']." 00:00:00";   ?>');   
+    date7days_start = date7days_start.getTime();
+    
+    // graph graph7days dates
+    var date14days_start = new Date('<? echo $post['date_before_forteen_days']." 00:00:00";   ?>');   
+    date14days_start = date14days_start.getTime();
+    
+    // graph d1 data
+    var received = [],integer_date;
+    var temp_received = '<? echo json_encode($post['Treceived'])  ?>';
+    temp_received = eval("("+temp_received+")");
+    
+    for(var i=0; i<temp_received.length;i++){
+        integer_date = new Date(temp_received[i].tdate);        
+        received.push([integer_date.getTime(),temp_received[i].total]);
+    }
+   
+   // graph d2 data
+    var received = [],integer_date;
+    var temp_received = '<? echo json_encode($post['Treceived'])  ?>';
+    temp_received = eval("("+temp_received+")");
+    
+    for(var i=0; i<temp_received.length;i++){
+        integer_date = new Date(temp_received[i].tdate);        
+        received.push([integer_date.getTime(),parseInt(temp_received[i].total)]);
+    }
+    
+    // graph d2 data
+    var send = [],integer_date;
+    var temp_received = '<? echo json_encode($post['Tsend'])  ?>';
+    temp_received = eval("("+temp_received+")");
+    
+    for(var i=0; i<temp_received.length;i++){
+        integer_date = new Date(temp_received[i].tdate);        
+        send.push([integer_date.getTime(), parseInt(temp_received[i].total) ]);
+    }
+    
+    var themerPrimaryColor = '#21162F';
+	var basePath = '',
+		commonPath = '../common/',
+
+		
+		// charts data
+		charts_data = {
+			
+			// 24 hours
+			graph24hours: {
+				from: today_date_start,
+				to: today_date_end			},
+
+			// 7 days
+			graph7days: {
+				from: date7days_start,
+				to: today_date_end			},
+
+			// 14 days
+			graph14days: {
+				from: date14days_start,
+				to: today_date_end			},
+
+			// main dashboard graph - website traffic
+			website_traffic: {
+				d1: received,
+				d2: send	
+			}
+
+		};
+	</script>
+	<!-- Charts Helper Demo Script -->
+	<script src="https://zoanga.com/js/charts/charts.helper90fc.js?1403808223"></script>
+    	<!-- Sparkline -->
+	<script src="https://zoanga.com/assets/js/jquery.sparkline.min.js" type="text/javascript"></script>
+	
+		<!--  Flot (Charts) JS -->
+	<script src="https://zoanga.com/assets/js/jquery.flot.js" type="text/javascript"></script>
+	<script src="https://zoanga.com/assets/js/jquery.flot.pie.js" type="text/javascript"></script>
+	<script src="https://zoanga.com/assets/js/jquery.flot.tooltip.js" type="text/javascript"></script>
+	<script src="https://zoanga.com/assets/js/jquery.flot.selection.js"></script>
+	<script src="https://zoanga.com/assets/js/jquery.flot.resize.js" type="text/javascript"></script>
+	<script src="https://zoanga.com/assets/js/jquery.flot.orderBars.js" type="text/javascript"></script>
+    
+    <script>
+    $(function()
+{
+  
+	
+	// initialize charts
+	if (typeof charts != 'undefined') 
+		charts.initIndex();
+});
+    </script>
+</td>
+</tr>
+<? }else {  ?>
+<tr><td></td></tr>
+<tr>
+<td class=error colspan=8 align=center>No TRANSACTION FOUND FOR GRAPH PREVIEW</td></tr>
+
+
+<? } ?>
+</table></center>
+</div>
+<?}else{?>SECURITY ALERT: Access Denied<?}?>                                    

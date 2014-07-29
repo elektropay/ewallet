@@ -1,0 +1,148 @@
+<?if(isset($data['ScriptLoaded'])){?>
+
+<?	if($_REQUEST["farea"]){
+		ob_start();
+?>
+		<br>
+		<table class=frame border=0 cellpadding=0 cellspacing=0 width=100% align="center">
+		<tr valign="top">
+			<td class=input valign="top">
+<?
+		$qr1 = mysql_query("SELECT * FROM dp_faq_list WHERE cat='".$_REQUEST["farea"]."' ORDER BY cat");
+		$qr2 = mysql_query("SELECT * FROM dp_faq_list WHERE cat='".$_REQUEST["farea"]."' ORDER BY cat");
+		$num = 0;
+		for ($i = mysql_num_rows($qr2) - 1; $i >= 0; $i--){
+			if (mysql_result($qr2, $i, 'question')){
+				$num++;
+			}
+		}
+		$middle = (int)($num / 3);
+		$mr = 1;
+		$mycnt = 0;
+		$abc = 0;
+		while ($r1 = mysql_fetch_object($qr1)){
+			if (!$r1->question) continue;
+?>
+			<a href="#<?=$r1->id?>&brand=$brand">&raquo;&nbsp;<?=$r1->question?></a><br>
+<?		
+		$mycnt++;
+	}
+?>
+			</td>
+		</tr>
+		</table>
+		<br>
+		<table class=frame border=0 cellpadding=0 cellspacing=0 width=95% align="center">
+		<tr valign="top">
+			<td class=text valign="top">
+<?
+		$qr1 = mysql_query("SELECT * FROM dp_faq_list WHERE cat='".$_REQUEST["farea"]."' ORDER BY cat");
+		$qr2 = mysql_query("SELECT * FROM dp_faq_list WHERE cat='".$_REQUEST["farea"]."' ORDER BY cat");
+		$num = 0;
+		for ($i = mysql_num_rows($qr2) - 1; $i >= 0; $i--){
+			if (mysql_result($qr2, $i, 'question')){
+				$num++;
+			}
+		}
+		$middle = (int)($num / 3);
+		$mr = 1;
+		$mycnt = 0;
+		$abc = 0;
+		while ($r1 = mysql_fetch_object($qr1)){
+			if (!$r1->question) continue;
+?>
+			<a name="<?=$r1->id?>"></a>
+			<table class=frame border="0" width=100% cellpadding="0" cellspacing="0">
+			<tr>
+				<td><h1><?=$r1->question?></h1></td>
+				<td align="right"><a href="#top">Top</a></td>
+			</tr>
+			<tr>
+				<td align=justify colspan=1>
+				
+						<?=$r1->answer?>
+				
+				</td>
+			</tr>
+			</table>
+			<br><br>
+<?		
+			$mycnt++;
+		}
+?>
+			</td>
+		</tr>
+		</table>
+<?
+		$faqs = ob_get_contents();
+		ob_end_clean(); 
+	}else{
+		ob_start();
+?>
+		<table border=0 cellpadding=0 cellspacing=0 width=100% align="center">
+		<tr valign="top">
+			<td valign="top">
+<?
+		$qr1 = mysql_query("SELECT * FROM dp_faq_cat_list ORDER BY id") or die( mysql_error() );
+		$qr2 = mysql_query("SELECT * FROM dp_faq_cat_list ORDER BY id");
+		$num = 0;
+		for ($i = mysql_num_rows($qr2) - 1; $i >= 0; $i--){
+			if (mysql_result($qr2, $i, 'title')){
+				$num++;
+			}
+		}
+		$middle = (int)($num / 2);
+		$mr = 1;
+		while ($r1 = mysql_fetch_object($qr1)){
+			if (!$r1->title) continue;
+			list($cnt) = mysql_fetch_row(mysql_query("SELECT COUNT(*) FROM dp_faq_list WHERE cat=".$r1->id));
+?>
+			<a href="faq.htm?farea=<?=$r1->id?>&brand=$brand">&raquo;&nbsp;<?=$r1->title?></a><br>
+<?
+		}
+?>
+			</td>
+		</tr>
+		</table>
+<?
+		$cats = ob_get_contents();
+		ob_end_clean(); 
+	}
+	ob_start();
+
+	if($_REQUEST["farea"]){
+		$catname = getCatTitle($_REQUEST["farea"]);
+?>
+		<table border="0" width="100%" cellpadding="0" cellspacing="0">
+		<tr>
+			<td>
+				<a href="faq.htm?<?=$id?>brand=<?$brand?>">main</a>
+					&nbsp;/&nbsp;
+					<a href="faq.htm?farea=<?=$_REQUEST["farea"]?>&id=<?=$id?>brand=<?$brand?>"><?=strtolower($catname);?></a>
+				
+			</td>
+		</tr>
+		</table>
+		
+<?	}	?>
+<?
+	//echo "<br><br>";
+	$breadcrumb = ob_get_contents();
+	ob_end_clean(); 
+	if (!$_REQUEST["farea"]){$faqs = $cats;}
+	if ($_REQUEST["srch"]){
+		$faqs = FAQSearch($_REQUEST["srch"]);
+	}
+	$tpl = join("", file("defaultfaq.htm"));
+	$vars = array(	
+		"breadcrumb" => $breadcrumb,
+		"faqs" => $faqs,
+		"cats" => $cats,
+	);
+	while ($a = each($vars)){
+		$tpl = str_replace("[[{$a[0]}]]", $a[1], $tpl);
+	}
+	echo $tpl;
+?>
+	
+	<?}else{?>SECURITY ALERT: Access Denied<?}?>

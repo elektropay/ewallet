@@ -1,0 +1,72 @@
+<?
+###############################################################################
+# PROGRAM     : EPAY ENTERPRISE                                               #
+# VERSION     : 4.13                                                          #
+# AUTHOR      : DMITRY PEREUDA                                                #
+
+# COMPANY     : ALSTRASOFT	                                              #
+# COPYRIGHTS  : (C)2009 ALSTRASOFT. ALL RIGHTS RESERVED                       #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+# LICENSE KEY : C3FA-76A1-83A4-C2B4-AE1F-1D5A-14ED-1DCA                       #
+###############################################################################
+#    THIS FILE IS PART OF EPAY SCRIPT - THE NEW UNIVERSAL PAYMENT GATEWAY     #
+#               	     DEVELOPED BY ALSTRASOFT                          #
+###############################################################################
+#    ALL SOURCE CODE, IMAGES, PROGRAMS, FILES INCLUDED IN THIS DISTRIBUTION   #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+#       ANY REDISTRIBUTION WITHOUT PERMISSION OF ALSTRASOFT AND IS            #
+#                            STRICTLY FORBIDDEN                               #
+###############################################################################
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+
+
+
+
+###############################################################################
+$data['PageName']='HTML CODE FOR SIMPLE PAYMENTS';
+$data['PageFile']='payment';
+###############################################################################
+include('../config.htm');
+###############################################################################
+if(!$_SESSION['login']){
+	header("Location:{$data['Host']}/index.htm");
+	echo('ACCESS DENIED.');
+	exit;
+}
+if(is_info_empty($uid)){
+	header("Location:{$data['Host']}/members/profile.htm");
+	echo('ACCESS DENIED.');
+	exit;
+}
+###############################################################################
+$post['HtmlCode']=htmlspecialchars(
+	"<!-- {$data['SiteName']} PAYMENT FORM -->\n".
+	"<form method=post action={$data['Host']}/process.htm>\n".
+	"<input type=hidden name=member value=\"--YOUR-USER-NAME-OR-EMAIL--\">\n".
+	"<input type=hidden name=action value=\"product/donation/subscription/payment\">\n".
+	"<input type=hidden name=product value=\"--PRODUCT-NAME-HERE--\">\n".
+	"<input type=hidden name=price value=\"--PRICE--\">\n".
+	"<input type=hidden name=quantity value=\"--QUANTITY--\">\n".
+	"<input type=hidden name=period value=\"--DURATION-DAYS--\">\n".
+	"<input type=hidden name=trial value=\"--TRIAL-PERIOD-DAYS--\">\n".
+	"<input type=hidden name=setup value=\"--SETUP-FEES--\">\n".
+	"<input type=hidden name=tax value=\"--TAX-FEES--\">\n".
+	"<input type=hidden name=shipping value=\"--SHIPPING-FEES--\">\n".
+	"<input type=hidden name=ureturn value=\"--RETURN-URL--\">\n".
+	"<input type=hidden name=unotify value=\"--NOTIFY-URL--\">\n".
+	"<input type=hidden name=ucancel value=\"--CANCEL-URL--\">\n".
+	"<input type=hidden name=comments value=\"--YOUR-COMMENTS--\">\n".
+	"<input type=image src=\"--YOUR-BUTTON-HERE--\">\n".
+	"</form>\n".
+	"<!-- {$data['SiteName']} PAYMENT FORM -->", ENT_QUOTES
+);
+###############################################################################
+display('members');
+###############################################################################
+?>

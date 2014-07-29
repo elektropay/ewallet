@@ -1,0 +1,17 @@
+[27-Jun-2014 14:54:02] PHP Fatal error:  Call to undefined function  get_received_transactions() in /home3/everpayi/public_html/zoanga.com/ewallet/members/index.htm on line 52
+[27-Jun-2014 14:54:06] PHP Fatal error:  Call to undefined function  get_received_transactions() in /home3/everpayi/public_html/zoanga.com/ewallet/members/index.htm on line 52
+[27-Jun-2014 14:54:10] PHP Fatal error:  Call to undefined function  get_received_transactions() in /home3/everpayi/public_html/zoanga.com/ewallet/members/index.htm on line 52
+[27-Jun-2014 14:54:11] PHP Fatal error:  Call to undefined function  get_received_transactions() in /home3/everpayi/public_html/zoanga.com/ewallet/members/index.htm on line 52
+[27-Jun-2014 15:43:18] PHP Fatal error:  Call to undefined function  get_send_transactions() in /home3/everpayi/public_html/zoanga.com/ewallet/members/index.htm on line 53
+[28-Jun-2014 16:40:18] PHP Fatal error:  Call to undefined function  get_pending_transactions() in /home3/everpayi/public_html/zoanga.com/ewallet/members/index.htm on line 56
+[28-Jun-2014 18:40:40] PHP Parse error:  syntax error, unexpected $end in /home3/everpayi/public_html/zoanga.com/ewallet/templates/langs/English/members/template.index.htm on line 259
+[29-Jun-2014 11:49:14] PHP Fatal error:  Call to undefined function  get_send_transaction_data() in /home3/everpayi/public_html/zoanga.com/ewallet/members/index.htm on line 54
+[29-Jun-2014 11:50:10] PHP Fatal error:  Cannot redeclare get_received_transaction_data() (previously declared in /home3/everpayi/public_html/zoanga.com/ewallet/common.htm:1937) in /home3/everpayi/public_html/zoanga.com/ewallet/common.htm on line 2066
+[29-Jun-2014 12:10:44] PHP Parse error:  syntax error, unexpected T_IF in /home3/everpayi/public_html/zoanga.com/ewallet/templates/langs/English/members/template.index.htm on line 302
+[29-Jun-2014 12:10:48] PHP Parse error:  syntax error, unexpected T_IF in /home3/everpayi/public_html/zoanga.com/ewallet/templates/langs/English/members/template.index.htm on line 302
+[03-Jul-2014 14:05:28] PHP Parse error:  syntax error, unexpected $end in /home3/everpayi/public_html/zoanga.com/ewallet/templates/langs/English/members/template.deposit.htm on line 206
+[04-Jul-2014 08:46:18] PHP Parse error:  syntax error, unexpected '{' in /home3/everpayi/public_html/zoanga.com/ewallet/common.htm on line 330
+[04-Jul-2014 12:59:01] PHP Parse error:  syntax error, unexpected '}' in /home3/everpayi/public_html/zoanga.com/ewallet/templates/langs/English/members/template.deposit.htm on line 678
+[04-Jul-2014 14:00:46] PHP Parse error:  syntax error, unexpected $end in /home3/everpayi/public_html/zoanga.com/ewallet/templates/langs/English/members/template.deposit.htm on line 397
+[04-Jul-2014 21:41:45] PHP Parse error:  syntax error, unexpected '}' in /home3/everpayi/public_html/zoanga.com/ewallet/templates/langs/English/members/template.deposit.htm on line 240
+[06-Jul-2014 01:34:52] PHP Parse error:  syntax error, unexpected $end in /home3/everpayi/public_html/zoanga.com/ewallet/templates/langs/English/members/template.deposit.htm on line 63

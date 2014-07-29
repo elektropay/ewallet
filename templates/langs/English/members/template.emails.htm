@@ -1,0 +1,41 @@
+<?if(isset($data['ScriptLoaded'])){?><?if(!$data['PostSent']){?>
+<form method=post>
+<center><table class=frame width=475 border=0 cellspacing=1 cellpadding=4><tr><td class=capl colspan=3>MANAGE YOUR EMAIL ADDRESSES (MAX <?=$data['maxemails']?>)</td></tr><?if($data['error']){?><tr><td colspan=3 class=error><?=prntext($data['error'])?></td></tr>
+<?}elseif(isset($_POST['addnow'])) {?><tr><td colspan=3>New e-mail address has been successfully submitted. Check your e-mail to activate it.
+<?}elseif(isset($_GET['c'])) {?><tr><td colspan=3>
+Your new e-mail address has been sucessfully activated.
+<?}elseif(isset($_POST['primbtn'])) {?><tr><td colspan=3>
+Your default e-mail address has been sucessfully changed.
+<?}elseif(isset($_POST['deletebtn'])) {?><tr><td colspan=3>
+Your e-mail has been successfully deleted.
+<?}?></td></tr>
+<?if(isset($_GET['addnew'])||isset($post['add'])) {?>
+<tr><td class=field nowrap>Your new e-mail address: </td><td class=input ><input type=text name=newmail size=41 maxlength=32><br><input type="submit" name="addnow" value="Add"></td></tr></table></center></form>
+<?}else{?>
+    <tr>
+    <td class=capl colspan=2>E-mails</td>
+    <td class=capl>Status</td>
+    </tr>
+
+    <? foreach($data['emails'] as $ind=>$email) {?>
+    <tr>
+    <td class=input><input type="radio" name="choice" value="<?=$email['email']?>"></td>
+    <td class=input width=100%><?=$email['email']?></td>
+    <td class=input nowrap>
+    <? if(!$email['active']) echo("Not Confirmed");
+    	elseif($email['primary']) echo("Primary");
+     	else echo("Confirmed");
+    ?>
+    </td></tr>
+    <?}?>
+    <tr><td colspan=3 class=capc>
+    <input type="submit" name="deletebtn" value="DELETE">
+    <input type="submit" name="primbtn" value="SET TO PRIMARY">
+    <input type="submit" name="add" value="ADD NEW EMAIL">
+    </td></tr>    
+</table>
+</center></form>
+<?}?>
+<?}?><?}else{?>SECURITY ALERT: Access Denied<?}?>
+
+

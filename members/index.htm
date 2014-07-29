@@ -1,0 +1,64 @@
+<?
+###############################################################################
+# PROGRAM     : EPAY ENTERPRISE                                               #
+# VERSION     : 4.13                                                          #
+# AUTHOR      : DMITRY PEREUDA                                                #
+
+# COMPANY     : ALSTRASOFT	                                              #
+# COPYRIGHTS  : (C)2009 ALSTRASOFT. ALL RIGHTS RESERVED                       #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+# LICENSE KEY : C3FA-76A1-83A4-C2B4-AE1F-1D5A-14ED-1DCA                       #
+###############################################################################
+#    THIS FILE IS PART OF EPAY SCRIPT - THE NEW UNIVERSAL PAYMENT GATEWAY     #
+#               	     DEVELOPED BY ALSTRASOFT                          #
+###############################################################################
+#    ALL SOURCE CODE, IMAGES, PROGRAMS, FILES INCLUDED IN THIS DISTRIBUTION   #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+#       ANY REDISTRIBUTION WITHOUT PERMISSION OF ALSTRASOFT AND IS            #
+#                            STRICTLY FORBIDDEN                               #
+###############################################################################
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+
+
+
+
+###############################################################################
+$data['PageName']='ACCOUNT OVERVIEW';
+$data['PageFile']='index';
+###############################################################################
+include('../config.htm');
+###############################################################################
+if(!$_SESSION['login']){
+	header("Location:{$data['Host']}/index.htm");
+	echo('ACCESS DENIED.');
+	exit;
+}
+if(is_info_empty($uid)){
+	header("Location:{$data['Host']}/members/profile.htm");
+	echo('ACCESS DENIED.');
+	exit;
+}
+###############################################################################
+$post=select_info($uid, $post);
+$post['Emails']=get_member_email($uid, false, false);
+$data['Balance']=select_balance($uid);
+$post['Transactions']=get_transactions($uid, 'both', -1, -1, 0, 20);
+$post['Treceived'] = get_received_transactions($uid);
+$post['Treceived_data'] = get_received_transaction_data($uid,'incoming', -1, 0, 0);
+$post['Tsend_data'] = get_send_transaction_data($uid,'outgoing', -1, 0, 0);
+$post['date_before_seven_days'] = date("Y-m-d",strtotime("-7 days"));
+$post['date_before_forteen_days'] = date("Y-m-d",strtotime("-14 days"));
+$post['Tsend'] = get_send_transactions($uid);
+$post['Tpending_count'] = get_pending_transactions($uid);
+$post['LastTransaction']=$post['Transactions'][0];
+$post['PaysToUnregMembers']=get_unreg_member_pay($uid);
+###############################################################################
+display('members');
+###############################################################################
+?>

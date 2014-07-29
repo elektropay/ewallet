@@ -1,0 +1,82 @@
+BODY{
+background-color: rgb(247, 247, 247)!important;
+color: rgb(68, 68, 68);
+font-size:14px;
+font-family: "Open Sans",sans-serif !important;
+}
+
+TABLE,TR,TD,TH{font-family:"Open Sans",sans-serif; font-size:16px; 
+}
+
+
+TABLE.frame{border:0px solid #CCCCFF important}
+
+
+TH.caption {
+    color: rgb(255, 255, 255);
+    background-color: rgb(106, 106, 106);
+    border: 2px none rgb(68, 68, 68);
+    font-size: 16px;
+    text-align: left;
+    padding: 15px!important;
+    text-transform: none !important;
+border-radius: 5px !important;
+}
+
+TD.justify{text-align:justify}
+TD.text{text-align:justify;padding:10px;}
+TD.menu{color:#FFFFFF;background-color:#0B0B61; height:45px;}
+.topmenu { padding-left:16%;font-size: 14px; }
+TD.submenu{color:#0066CC;background-color:#FFFFFF}
+TD.submenu a{width:100%;padding:10px;margin:0px}
+TD.submenu a:visited{padding:10px}
+TD.submenu a:hover{background-color:#EEEEEE;border:1px solid #0066CC;padding:1px}
+TD.info{color:#000000;background-color:#DDDDDD;text-align:center;padding:10px;}
+DIV.info{color:#000000;background-color:#DDDDDD;text-align:center;padding:10px; margin-top: 20px;}
+.snbmenu1{ padding:0 !important; font-size:14px;}
+TD.capl{color:#000000;background-color:#CCCCCC;font-weight:bolder}
+TD.capc{color:#000000;background-color:#CCCCCC;text-align:center;font-weight:bolder}
+TD.capr{color:#000000;background-color:#CCCCCC;text-align:right;font-weight:bolder}
+TD.field{color:#444444;background-color:#EAEAEA;text-align:right;vertical-align:top;font-weight:bolder}
+TD.input{background-color:#EEEEEE;vertical-align:top}
+TD.error{font-weight:bolder;color:#FFFFFF;background-color:#FF0000;padding: 15px;}
+TD.courier{font-family:Courier New,Courier;font-size:14px;background-color:#FFFFFF}
+TD.row{font-size:16px; padding:10px;}
+
+
+A,A:active,A:visited{color:#0066CC;text-decoration:none}
+A:hover{color:#FF3399}
+A.menu,A.menu:active,A.menu:visited{color:#FFFFFF;text-decoration:none;border-right: 0px solid #888;padding: 9px;padding-right: 20px;padding-left: 20px;}
+A.menu:hover{color:#CCCCFF}
+A.copy,A.copy:active,A.copy:visited,A.copy:hover{color:#777777;font-size:14px;text-decoration:none}
+
+H1{color:#0066CC;font-size:36px;font-weight:700}
+H2{color:#000000;font-size:28px;font-weight:700}
+
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    display: inline-block;
+    height: 36px!important;
+    padding: 4px 6px;
+    margin-bottom: 10px;
+    font-size: 16px!important;
+    line-height: 20px;
+    color: rgb(85, 85, 85);
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+INPUT.submit{font-family:Verdana,Tahoma,Trebuchet MS,Arial;font-size:14px;color:#0066CC;background-color:#CCCCFF;border:solid 1px #0066CC; border-radius:5px; cursor:hand}
+INPUT.checkbox{border:0px}
+
+HR{color:#0066CC;height:1px}
+FONT.remark{color:#777777;font-size:11px}
+
+IMG.frame{border:solid 1px #0066CC}
+PRE.info{font-family:"Open Sans",sans-serif;font-size:12px;font-weight:bolder;color:#000000}
+PRE.comms{font-family:"Open Sans",sans-serif;font-size:11px;color:#000000}
+IMG.turing{border:solid 1px #0066CC}
+IMG.logos{border:solid 1px #DDDDDD}
+
+LABEL{cursor:hand}
+

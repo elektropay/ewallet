@@ -1,0 +1,225 @@
+<?if(isset($data['ScriptLoaded'])){?>
+<center>
+<?if($post['action']=='select'){?>
+
+<?if($data['Pages']){?>
+<table class=frame width=100% border=0 cellspacing=1 cellpadding=4><tr><td class=capc>
+<?$count=count($data['Pages']);for($i=0; $i<$count; $i++){?>
+<?if($data['Pages'][$i]==$post['StartPage']){?>
+<?=$i+1?>
+<? }else{?>
+<a href="members.htm?action=<?=$post['action']?>&type=<?=$post['type']?>&page=<?=$data['Pages'][$i]?>"><?=$i+1?></a><?}?><?if($i<$count-1)echo("|");}?></td></tr></table><br>
+<?}?>
+
+<table class=frame width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capl colspan=7>LIST OF <?if($post['type']=='found'){?>FOUND<?} else if($post['type']=='active'){?>ACTIVE<?}elseif($post['type']=='suspended'){?>SUSPENDED<?}elseif($post['type']=='closed'){?>CLOSED<?}elseif($post['type']=='online'){?>ONLINE<?}?> MEMBERS<?if($post['type']!='online'){?> (AVAILABLE <?=$data['MembersCount']?> MEMBERS)<?}?></td></tr><tr><td class=capc>USERNAME</td><td class=capc width=40%>FULL NAME</td><td class=capc>E-MAIL</td><td class=capc>PASSWORD</td><td class=capc>SPONSOR</td><td class=capc>TR</td><td class=capc width=1%>ACTION</td></tr><?foreach($data['MembersList'] as $key=>$value){$bgcolor=$key%2?'#EEEEEE':'#E7E7E7'?><tr bgcolor=<?=$bgcolor?> onmouseover="setPointer(this,<?=$key?>,'over','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmouseout="setPointer(this,<?=$key?>,'out','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmousedown="setPointer(this,<?=$key?>,'click','<?=$bgcolor?>','#CCFFCC','#FFCC99')"><td align=right valign=top><a href="members.htm?id=<?=$value['id']?>&action=detail&type=<?=$post['type']?>&page=<?=$post['StartPage']?>"><?=$value['username']?></a></td><td valign=top><?=$value['fname']?> <?=$value['lname']?><?if($post['type']=='online'){?> (<?=$value['last_ip']?>)<?}?></td><td valign=top><a href="mailto:<?=$value['email']?>"><?=$value['email']?></a></td><td valign=top><?=$value['password']?></td><td align=center valign=top><a href="members.htm?id=<?=$value['sponsor']?>&action=detail&type=<?=$post['type']?>&page=<?=$post['StartPage']?>"><?=$value['sname']?></a></td><td align=right valign=top><a href="transactions.htm?bid=<?=$value['id']?>&action=select"><?=$value['transactions']?></a></td><td align=center valign=top nowrap><?if($post['type']=='online'){?>---<?}else{?><a href="members.htm?id=<?=$value['id']?>&action=detail&type=<?=$post['type']?>&page=<?=$post['StartPage']?>">VIEW</a>|<a href="members.htm?id=<?=$value['id']?>&action=update&type=<?=$post['type']?>&page=<?=$post['StartPage']?>">EDIT</a><br><?if($post['type']=='active'){?><a href="members.htm?id=<?=$value['id']?>&action=suspend&type=<?=$post['type']?>&page=<?=$post['StartPage']?>" onclick="return cfmform()">SUSPEND</a><br><a href="members.htm?id=<?=$value['id']?>&action=close&type=<?=$post['type']?>&page=<?=$post['StartPage']?>" onclick="return cfmform()">CLOSE</a><?}else{?><a href="members.htm?id=<?=$value['id']?>&action=activate&type=<?=$post['type']?>&page=<?=$post['StartPage']?>" onclick="return cfmform()">ACTIVATE</a><?}?><?if($value['candelete']){?>|<a href="members.htm?id=<?=$value['id']?>&action=delete&type=<?=$post['type']?>&page=<?=$post['StartPage']?>" onclick="return cfmform()">DELETE</a><?}}?></td></tr><?}?></table>
+
+<?if($data['Pages']){?>
+<br><table class=frame width=100% border=0 cellspacing=1 cellpadding=4><tr><td class=capc><?$count=count($data['Pages']);for($i=0; $i<$count; $i++){?><?if($data['Pages'][$i]==$post['StartPage']){?><?=$i+1?><?}else{?><a href="members.htm??action=<?=$post['action']?>&type=<?=$post['type']?>&page=<?=$data['Pages'][$i]?>"><?=$i+1?></a><?}?><?if($i<$count-1)echo(" | ");}?></td></tr></table>
+<?}?>
+<?}elseif($post['action']=='creditcard'){?>
+
+<table class=frame width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capl colspan=7>LIST OF <?if($post['type']=='found'){?>FOUND<?} else if($post['type']=='active'){?>ACTIVE<?}elseif($post['type']=='suspended'){?>SUSPENDED<?}elseif($post['type']=='closed'){?>CLOSED<?}elseif($post['type']=='online'){?>ONLINE<?}?> MEMBERS<?if($post['type']!='online'){?> (AVAILABLE <?=$data['MembersCount']?> MEMBERS)<?}?></td></tr><tr><td class=capc>USERNAME</td><td class=capc width=40%>FULL NAME</td><td class=capc>E-MAIL</td><td class=capc>AMOUNT</td><td class=capc>REQUEST DATE</td><td class=capc>STATUS</td><td class=capc width=1%>ACTION</td></tr><?foreach($data['CreditCardList'] as $key=>$value){$bgcolor=$key%2?'#EEEEEE':'#E7E7E7'?><tr bgcolor=<?=$bgcolor?> onmouseover="setPointer(this,<?=$key?>,'over','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmouseout="setPointer(this,<?=$key?>,'out','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmousedown="setPointer(this,<?=$key?>,'click','<?=$bgcolor?>','#CCFFCC','#FFCC99')"><td align=right valign=top><a href="members.htm?id=<?=$value['id']?>&action=detail&type=<?=$post['type']?>&page=<?=$post['StartPage']?>"><?=$value['username']?></a></td><td valign=top><?=$value['fullname']?><?if($post['type']=='online'){?> (<?=$value['last_ip']?>)<?}?></td><td valign=top><a href="mailto:<?=$value['email']?>"><?=$value['email']?></a></td><td valign=top><?=$value['amount']?></td><td align=center valign=top><a href="members.htm?id=<?=$value['date']?>&action=detail&type=<?=$post['type']?>&page=<?=$post['StartPage']?>"><?=$value['date']?></a></td><td align=right valign=top><a href="transactions.htm?bid=<?=$value['id']?>&action=select"><?=$value['status']?></a></td><td align=center valign=top nowrap><?if($post['type']=='online'){?>---<?}else{?><a href="members.htm?id=<?=$value['id']?>&action=detail&type=<?=$post['type']?>&page=<?=$post['StartPage']?>">VIEW</a>|<br><?if($post['type']=='active'){?><br><a href="members.htm?id=<?=$value['id']?>&action=close&type=<?=$post['type']?>&page=<?=$post['StartPage']?>" onclick="return cfmform()">Complete</a><?}else{?><a href="members.htm?id=<?=$value['id']?>&action=activate&type=<?=$post['type']?>&page=<?=$post['StartPage']?>" onclick="return cfmform()">Cancel</a><?}?><?if($value['candelete']){?>|<a href="members.htm?id=<?=$value['id']?>&action=delete&type=<?=$post['type']?>&page=<?=$post['StartPage']?>" onclick="return cfmform()">DELETE</a><?}}?></td></tr><?}?></table>
+<?}elseif($post['action']=='detail'){?>
+<table class=frame width=600 border=0 cellspacing=1 cellpadding=2>
+<tr><td class=capl>GENERAL INFORMATION</td><td class=capl align=right><font color=green>CURRENT BALANCE: <a href="transactions.htm?bid=<?=$post['MemberInfo']['id']?>&action=select"><?=balance($post['MemberInfo']['balance'])?></a></font></td></tr>
+<tr><td width=200 class=field nowrap>Username:</td><td width=380 class=input nowrap><?=$post['MemberInfo']['username']?></td></tr><tr><td width=200 class=field nowrap>Status:</td><td width=380 class=input nowrap><table width=100% border=0 cellspacing=0 cellpadding=0><tr><td><b><font color=<?if($post['MemberInfo']['active']==1){?>green>ACTIVE<?}elseif($post['MemberInfo']['active']==2){?>gray>CLOSED<?}else{?>maroon>SUSPENDED<?}?></font>, <a href="verify.htm?action=help&status=<?=$post['MemberInfo']['status']?>"><font color=<?if($post['MemberInfo']['status']<2){?>#FF0000<?}else{?>#0066CC<?}?>><?=$data['MemberStatus'][$post['MemberInfo']['status']]['status']?></font></a></b></td><td align=right><?if($post['MemberInfo']['active']==1){?><font color=#FFFFFF>|</font> <a href="members.htm?id=<?=$post['MemberInfo']['id']?>&action=<?if($post['MemberInfo']['status']==0){?>verify<?}elseif($post['MemberInfo']['status']==1){?>certify<?}else{?>unverify<?}?>&page=<?=$post['StartPage']?>" onclick="return cfmform()"><?}?><?if($post['MemberInfo']['status']==0){?>VERIFY NOW<?}elseif($post['MemberInfo']['status']==1){?>CERTIFY NOW<?}elseif($post['MemberInfo']['status']==2){?>UNVERIFY<?}?><?if($post['MemberInfo']['status']<2){?></a><?}?></td></tr></table></td></tr><tr><td class=field nowrap>Password:</td><td class=input nowrap><?=$post['MemberInfo']['password']?></td></tr><tr><td class=field nowrap>E-Mails:</td><td class=input nowrap>
+
+<table class=frame width=100% border=0 cellspacing=1 cellpadding=1><tr bgcolor=#EEEEEE onmouseover="setPointer(this,0,'over','#EEEEEE','#CCFFCC','#FFCC99')" onmouseout="setPointer(this,0,'out','#EEEEEE','#CCFFCC','#FFCC99')" onmousedown="setPointer(this,0,'click','#EEEEEE','#CCFFCC','#FFCC99')"><td><?=$post['MemberInfo']['email']?>&nbsp;</td><td align=right></td></tr><?if($post['MemberInfo']['emails']){?><?foreach($post['MemberInfo']['emails'] as $key=>$val){$bgcolor=($key+1)%2?'#EEEEEE':'#E7E7E7'?><tr bgcolor=<?=$bgcolor?> onmouseover="setPointer(this,<?=$key+1?>,'over','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmouseout="setPointer(this,<?=$key+1?>,'out','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmousedown="setPointer(this,<?=$key+1?>,'click','<?=$bgcolor?>','#CCFFCC','#FFCC99')"><td><?=$val['email']?>&nbsp;</td><td align=right><?if($val['status']>=2){?><a href="members.htm?id=<?=$post['MemberInfo']['id']?>&bid=<?=$val['id']?>&action=setdefault&type=<?=$post['type']?>&page=<?=$post['StartPage']?>">PRIMARY</a><?}elseif($val['status']<2){?><a href="members.htm?id=<?=$post['MemberInfo']['id']?>&bid=<?=$val['id']?>&action=sendemail&type=<?=$post['type']?>&page=<?=$post['StartPage']?>">VERIFY</a><?}?>|<a href="members.htm?id=<?=$post['MemberInfo']['id']?>&bid=<?=$val['id']?>&action=delemail&type=<?=$post['type']?>&page=<?=$post['StartPage']?>" onclick="return cfmform()">DELETE</a></td></tr><?}?><?}?></table>
+
+</td></tr><tr><td class=field nowrap>Sponsor:</td><td class=input nowrap><?if($post['MemberInfo']['sponsor']){?><a href="members.htm?id=<?=$post['MemberInfo']['sponsor']?>&action=detail"><?=$post['MemberInfo']['sname']?></a> (<a href="mailto:<?=$post['MemberInfo']['smail']?>"><?=$post['MemberInfo']['smail']?></a>)<?}else{?>---<?}?></td></tr><tr><td class=field nowrap>Create Date:</td><td class=input nowrap><?=prndate($post['MemberInfo']['cdate'])?></td></tr><tr><td class=field nowrap>Last Access:</td><td class=input nowrap><table width=100% border=0 cellspacing=0 cellpadding=0><tr><td><?=prndate($post['MemberInfo']['ldate'])?><?if($post['MemberInfo']['last_ip']){?> (From IP: <?=$post['MemberInfo']['last_ip']?>)<?}?></td><td align=right><font color=#FFFFFF> | </font><a href="javascript:view('<?=$data['Admins']?>/history.htm?member=<?=$post['MemberInfo']['id']?>',300,400)">IP HISTORY</a></td></tr></table></td></tr><tr><td class=field nowrap>Full Name:</td><td class=input nowrap><?=$post['MemberInfo']['fname']?> <?=$post['MemberInfo']['lname']?></td></tr><tr><td class=field nowrap>Company:</td><td class=input nowrap><?=$post['MemberInfo']['company']?></td></tr><tr><td class=field nowrap>Company Registration Number:</td><td class=input nowrap><?=$post['MemberInfo']['regnum']?></td></tr><tr><td class=field nowrap>Drivers License Number:</td><td class=input nowrap><?=$post['MemberInfo']['drvnum']?></td></tr><tr><td class=field nowrap>Address:</td><td class=input nowrap><?=$post['MemberInfo']['address']?></td></tr><tr><td class=field nowrap>City:</td><td class=input nowrap><?=$post['MemberInfo']['city']?></td></tr><tr><td class=field nowrap>Country:</td><td class=input nowrap><?=$data['Countries'][$post['MemberInfo']['country']]?></td></tr><tr><td class=field nowrap>State:</td><td class=input nowrap><?=$post['MemberInfo']['state']?></td></tr><tr><td class=field nowrap>Postal Code:</td><td class=input nowrap><?=$post['MemberInfo']['zip']?></td></tr><tr><td class=field nowrap>Phone:</td><td class=input nowrap><?=$post['MemberInfo']['phone']?></td></tr>
+
+<tr><td class=field nowrap>Fax:</td><td class=input nowrap><?=$post['MemberInfo']['fax']?></td></tr>
+<form method="post" >
+<tr><td class=field nowrap>Deposite Method:</td><td class=input nowrap>
+
+<? if($data['DepositMethod']['creditcard']['actv']){ ?>
+<label><input class=checkbox type=checkbox name=creditcard value=creditcard "<? if($data[permissionCheck][0]['depo_creditcard']){?> checked=checked <?} ?>">CreditCard</label><br>
+<? }   ?>
+<? if($data['DepositMethod']['paypal']['actv']){ ?>
+<label><input class=checkbox type=checkbox name=paypal value=paypal "<? if($data[permissionCheck][0]['depo_paypal']){?> checked=checked <?} ?>">Paypal</label><br>
+<? }   ?>
+<? if($data['DepositMethod']['stormpay']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=stormpay value=stormpay "<? if($data[permissionCheck][0]['depo_stormpay']){?> checked=checked <?} ?>" >Stormpay</label><br>
+<? }?>
+<? if($data['DepositMethod']['netpay']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=netpay value=netpay "<? if($data[permissionCheck][0]['depo_netpay']){?> checked=checked <?} ?>">Netpay</label><br>
+<? }?>
+<? if($data['DepositMethod']['egold']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=egold value=egold "<? if($data[permissionCheck][0]['depo_egold']){?> checked=checked <?} ?>">E-Gold</label><br>
+<? }?>
+<? if($data['DepositMethod']['moneybookers']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=moneybookers value=moneybookers "<? if($data[permissionCheck][0]['depo_moneybookers']){?> checked=checked <?} ?>">MoneyBooker</label><br>
+<? }?>
+<? if($data['DepositMethod']['intgold']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=intgold value=intgold "<? if($data[permissionCheck][0]['depo_intgold']){?> checked=checked <?} ?>">Intgold</label><br>
+<? }?>
+<? if($data['DepositMethod']['ebullion']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=ebullion value=ebullion "<? if($data[permissionCheck][0]['depo_ebullion']){?> checked=checked <?} ?>">ebullion</label><br>
+<? }?>
+<? if($data['DepositMethod']['pecunix']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=pecunix value=pecunix "<? if($data[permissionCheck][0]['depo_pecunix']){?> checked=checked <?} ?>">pecunix</label><br>
+<? }?>
+<? if($data['DepositMethod']['epaydirect']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=epaydirect value=epaydirect "<? if($data[permissionCheck][0]['depo_epaydirect']){?> checked=checked <?} ?>">epaydirect</label><br>
+<? }?>
+<? if($data['DepositMethod']['qchex']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=qchex value=qchex "<? if($data[permissionCheck][0]['depo_qchex']){?> checked=checked <?} ?>">qchex</label><br>
+<? }?>
+<? if($data['DepositMethod']['evocash']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=evocash value=evocash "<? if($data[permissionCheck][0]['depo_evocash']){?> checked=checked <?} ?>">evocash</label><br>
+<? }?>
+<? if($data['DepositMethod']['goldmoney']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=goldmoney value=goldmoney "<? if($data[permissionCheck][0]['depo_goldmoney']){?> checked=checked <?} ?>">goldmoney</label><br>
+<? }?>
+<? if($data['DepositMethod']['virtualgold']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=virtualgold value=virtualgold "<? if($data[permissionCheck][0]['depo_virtualgold']){?> checked=checked <?} ?>">virtualgold</label><br>
+<? }?>
+<? if($data['DepositMethod']['payemo']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=payemo value=payemo "<? if($data[permissionCheck][0]['depo_payemo']){?> checked=checked <?} ?>">payemo</label><br>
+<? }?>
+<? if($data['DepositMethod']['autorize']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=autorize value=autorize"<? if($data[permissionCheck][0]['depo_autorize']){?> checked=checked <?} ?>">autorize</label><br>
+<? }?>
+<? if($data['DepositMethod']['checkout']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=checkout value=checkout "<? if($data[permissionCheck][0]['depo_checkout']){?> checked=checked <?} ?>">checkout</label><br>
+<? }?>
+<? if($data['DepositMethod']['echeck']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=echeck value=echeck "<? if($data[permissionCheck][0]['depo_echeck']){?> checked=checked <?} ?>">echeck</label><br>
+<? }?>
+<? if($data['DepositMethod']['mail']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=mail value=mail "<? if($data[permissionCheck][0]['depo_mail']){?> checked=checked <?} ?>">mail</label><br>
+<? }?>
+
+
+
+</td></tr>
+
+
+
+
+
+<tr><td class=field nowrap>Widthraw Method:</td><td class=input nowrap>
+
+<? if($data['WithdrawMethod']['paypal']['actv']){ ?>
+<label><input class=checkbox type=checkbox name=w_paypal value=paypal "<? if($data[permissionCheck][0]['width_paypal']){?> checked=checked <?} ?>">Paypal</label><br>
+<? }   ?>
+<? if($data['WithdrawMethod']['stormpay']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=w_stormpay value=stormpay "<? if($data[permissionCheck][0]['width_stormpay']){?> checked=checked <?} ?>" >Stormpay</label><br>
+<? }?>
+<? if($data['WithdrawMethod']['netpay']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=w_netpay value=netpay "<? if($data[permissionCheck][0]['width_netpay']){?> checked=checked <?} ?>">Netpay</label><br>
+<? }?>
+<? if($data['WithdrawMethod']['egold']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=w_egold value=egold "<? if($data[permissionCheck][0]['width_egold']){?> checked=checked <?} ?>">E-Gold</label><br>
+<? }?>
+<? if($data['WithdrawMethod']['moneybookers']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=w_moneybookers value=moneybookers "<? if($data[permissionCheck][0]['width_moneybookers']){?> checked=checked <?} ?>">MoneyBooker</label><br>
+<? }?>
+<? if($data['WithdrawMethod']['intgold']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=w_intgold value=intgold "<? if($data[permissionCheck][0]['width_intgold']){?> checked=checked <?} ?>">Intgold</label><br>
+<? }?>
+<? if($data['WithdrawMethod']['ebullion']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=w_ebullion value=ebullion "<? if($data[permissionCheck][0]['width_ebullion']){?> checked=checked <?} ?>">ebullion</label><br>
+<? }?>
+<? if($data['WithdrawMethod']['pecunix']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=w_pecunix value=pecunix "<? if($data[permissionCheck][0]['width_pecunix']){?> checked=checked <?} ?>">pecunix</label><br>
+<? }?>
+<? if($data['WithdrawMethod']['epaydirect']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=w_epaydirect value=epaydirect "<? if($data[permissionCheck][0]['width_epaydirect']){?> checked=checked <?} ?>">epaydirect</label><br>
+<? }?>
+<? if($data['WithdrawMethod']['evocash']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=w_evocash value=evocash "<? if($data[permissionCheck][0]['width_evocash']){?> checked=checked <?} ?>">evocash</label><br>
+<? }?>
+
+<? if($data['WithdrawMethod']['goldmoney']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=w_goldmoney value=goldmoney "<? if($data[permissionCheck][0]['`width_goldmoney`']){?> checked=checked <?} ?>">goldmoney</label><br>
+<? }?>
+<? if($data['WithdrawMethod']['virtualgold']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=w_virtualgold value=virtualgold "<? if($data[permissionCheck][0]['width_virtualgold']){?> checked=checked <?} ?>">virtualgold</label><br>
+<? }?>
+<? if($data['WithdrawMethod']['payemo']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=w_payemo value=payemo "<? if($data[permissionCheck][0]['width_payemo']){?> checked=checked <?} ?>">payemo</label><br>
+<? }?>
+<? if($data['WithdrawMethod']['bwire']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=w_bwire value=bwire"<? if($data[permissionCheck][0]['width_bwire']){?> checked=checked <?} ?>">autorize</label><br>
+<? }?>
+
+<? if($data['WithdrawMethod']['echeck']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=w_echeck value=echeck "<? if($data[permissionCheck][0]['width_check']){?> checked=checked <?} ?>">echeck</label><br>
+<? }?>
+<? if($data['WithdrawMethod']['western']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=w_western value=western "<? if($data[permissionCheck][0]['width_western']){?> checked=checked <?} ?>">checkout</label><br>
+<? }?>
+
+<? if($data['WithdrawMethod']['moneygram']['actv']) { ?>
+<label><input class=checkbox type=checkbox name=w_moneygram value=moneygram "<? if($data[permissionCheck][0]['width_moneygram']){?> checked=checked <?} ?>">mail</label><br>
+<? }?>
+
+</td></tr>
+<input type=hidden name=save value="true"/>
+<tr><td class=field nowrap></td><td class=input nowrap><input type=submit value=save></td></tr>
+</form>
+<tr><td class=field nowrap>User Upload Document:</td><td class=input nowrap>
+<table cellpadding="0" cellspacing="0">
+
+<?php
+if($post['MemberInfo']['documents']){ 
+$uploadstr=explode(',',$post['MemberInfo']['documents']);
+	foreach ($uploadstr as $file) {
+		$a = array();
+        $a = explode("-",$file);
+		if($a[0]!=''){
+            echo "<tr><td>".$a[0]."</td>";
+            echo '<td><a href="'.$data['Members'].'/uploaddoc/'.$a[1].'" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view</a><td></tr>';
+        }
+  	}
+}else {echo '<tr><td><font color="#FF0000">Document not uploaded by member.</font></td></tr>';}?></table></td></tr>
+
+
+<tr><td class=capl colspan=2>DESCRIPTION</td></tr><tr><td class=input colspan=2><?=$post['MemberInfo']['description']?$post['MemberInfo']['description']:'N/A'?></td></tr>
+<tr><td class=capc colspan=2><a href="members.htm?id=<?=$post['MemberInfo']['id']?>&action=cancel&type=<?=$post['MemberInfo']['active']?>&page=<?=$post['StartPage']?>">BACK</a>|<a href="members.htm?id=<?=$post['MemberInfo']['id']?>&action=update&type=<?=$post['MemberInfo']['active']?>&page=<?=$post['StartPage']?>">EDIT</a>|<?if($post['type']=='active'||$post['type']==1){?><a href="members.htm?id=<?=$post['MemberInfo']['id']?>&action=suspend&type=<?=$post['MemberInfo']['active']?>&page=<?=$post['StartPage']?>" onclick="return cfmform()">SUSPEND</a><?}else{?><a href="members.htm?id=<?=$post['MemberInfo']['id']?>&action=activate&type=<?=$post['MemberInfo']['active']?>&page=<?=$post['StartPage']?>" onclick="return cfmform()">ACTIVATE</a><?}?></td></tr><tr><td class=capc colspan=2><a href="transactions.htm?bid=<?=$post['MemberInfo']['id']?>&action=select">ALL TRANSACTIONS</a>|<a href="transactions.htm?bid=<?=$post['MemberInfo']['id']?>&action=select&type=1">ALL DEPOSITS</a>|<a href="transactions.htm?bid=<?=$post['MemberInfo']['id']?>&action=select&type=2">ALL WITHDRAWALS</a></td></tr><tr><td class=capc colspan=2><a href="transactions.htm?bid=<?=$post['MemberInfo']['id']?>&action=select&type=1&status=0">PENDING DEPOSITS</a>|<a href="transactions.htm?bid=<?=$post['MemberInfo']['id']?>&action=select&type=2&status=0">PENDING WITHDRAWALS</a></td></tr></table><br>
+<table class=frame width=600 border=0 cellspacing=1 cellpadding=2>
+<tr><td class=capl colspan=2>CREDIT CARD INFORMATION</td></tr>
+<?if($post['CardsInfo']){?>
+<?foreach($post['CardsInfo'] as $key=>$val){?>
+<tr><td width=200 class=field nowrap>Card Type:</td><td width=280 class=input nowrap><?=$data['CreditCardType'][$val['ctype']]?></td></tr><tr><td class=field nowrap>Name Of Card:</td><td class=input nowrap><?=$val['cname']?></td></tr><tr><td class=field nowrap>Card Number:</td><td class=input nowrap><?=$val['cnumber']?></td></tr><tr><td class=field nowrap>AVS or CVV Code:</td><td class=input nowrap><?=$val['ccvv']?></td></tr><tr><td class=field nowrap>Expire Date MM/YYYY:</td><td class=input nowrap><?=$val['cmonth']?>/<?=$val['cyear']?></td></tr>
+<tr><td class=capc colspan=2><a href="members.htm?id=<?=$post['MemberInfo']['id']?>&action=insert_card&type=<?=$post['type']?>&page=<?=$post['StartPage']?>">ADD</a>|<a href="members.htm?id=<?=$post['MemberInfo']['id']?>&bid=<?=$val['id']?>&action=update_card&type=<?=$post['type']?>&page=<?=$post['StartPage']?>">EDIT</a>|<a href="members.htm?id=<?=$post['MemberInfo']['id']?>&bid=<?=$val['id']?>&action=delete_card&type=<?=$post['type']?>&page=<?=$post['StartPage']?>" onclick="return cfmform()">DELETE</a></td></tr>
+<?}?>
+<?}else{?>
+<tr><td class=error align=center colspan=2>NO CREDIT CARD INFORMATION FOUND</td></tr>
+<?}?>
+</table><br>
+
+<table class=frame width=600 border=0 cellspacing=1 cellpadding=2>
+<tr><td class=capl colspan=2>BANK ACCOUNT INFORMATION</td></tr>
+<?if($post['BanksInfo']){?>
+<?foreach($post['BanksInfo'] as $key=>$val){?>
+<tr><td width=200 class=field nowrap>Bank Name:</td><td width=280 class=input nowrap><?=$val['bname']?></td></tr><tr><td class=field nowrap>Bank Address:</td><td class=input nowrap><?=$val['baddress']?></td></tr><tr><td class=field nowrap>Bank City:</td><td class=input nowrap><?=$val['bcity']?></td></tr><tr><td class=field nowrap>Bank ZIP Code:</td><td class=input nowrap><?=$val['bzip']?></td></tr><tr><td class=field nowrap>Bank Country:</td><td class=input nowrap><?=$data['Countries'][$val['bcountry']]?></td></tr><tr><td class=field nowrap>Bank State:</td><td class=input nowrap><?=$val['bstate']?></td></tr><tr><td class=field nowrap>Bank Phone:</td><td class=input nowrap><?=$val['bphone']?></td></tr><tr><td class=field nowrap>Account Holder's Name:</td><td class=input nowrap><?=$val['bnameacc']?></td></tr><tr><td class=field nowrap>Account Number:</td><td class=input nowrap><?=$val['baccount']?></td></tr><tr><td class=field nowrap>Account Type:</td><td class=input nowrap><?=$data['BankAccountType'][$val['btype']]?></td></tr><tr><td class=field nowrap>9 Digits Routing Number:</td><td class=input nowrap><?=$val['brtgnum']?></td></tr><tr><td class=field nowrap>S.W.I.F.T. Code:</td><td class=input nowrap><?=$val['bswift']?></td></tr>
+<tr><td class=capc colspan=2><a href="members.htm?id=<?=$post['MemberInfo']['id']?>&action=insert_bank&type=<?=$post['type']?>&page=<?=$post['StartPage']?>">ADD</a>|<a href="members.htm?id=<?=$post['MemberInfo']['id']?>&bid=<?=$val['id']?>&action=update_bank&type=<?=$post['type']?>&page=<?=$post['StartPage']?>">EDIT</a>|<a href="members.htm?id=<?=$post['MemberInfo']['id']?>&bid=<?=$val['id']?>&action=delete_bank&type=<?=$post['type']?>&page=<?=$post['StartPage']?>" onclick="return cfmform()">DELETE</a></td></tr>
+<?}?>
+<?}else{?>
+<tr><td class=error align=center colspan=2>NO BANK INFORMATION FOUND</td></tr>
+<?}?>
+</table>
+
+<?}elseif($post['action']=='insert'||$post['action']=='update'){?>
+<?if(!$post['PostSent']){?>
+<form method=post><input type=hidden name=action value="<?=$post['action']?>"><input type=hidden name=gid value="<?=$post['id']?>"><input type=hidden name=type value="<?=$post['type']?>"><input type=hidden name=StartPage value="<?=$post['StartPage']?>"><table class=frame width=480 border=0 cellspacing=1 cellpadding=2><tr><td class=capl colspan=2><?if($post['action']=='insert'){?>CREATE NEW MEMBER<?}else{?>MODIFY MEMBER INFORMATION<?}?></td></tr><?if($data['Error']){?><tr><td colspan=2 class=error><?=$data['Error']?></td></tr><?}?><tr><td class=field nowrap>Sponsor:</td><td class=input nowrap><select name=sponsor><?=showselect($data['Sponsors'], $post['sponsor'])?></select></td></tr><tr><td class=field nowrap>Username (*):</td><td class=input nowrap><input type=text name=username size=40 value="<?=$post['username']?>"></td></tr><tr><td class=field nowrap>Password (*):</td><td class=input nowrap><input type=text name=password size=40 value="<?=$post['password']?>"></td></tr><?if($post['action']=='insert'){?><tr><td class=field nowrap>Email address (*):</td><td class=input nowrap><input type=text name=email size=40 value="<?=$post['email']?>"></td></tr><?}?><tr><td class=field nowrap>First Name (*):</td><td class=input nowrap><input type=text name=fname size=40 value="<?=$post['fname']?>"></td></tr><tr><td class=field nowrap>Last Name (*):</td><td class=input nowrap><input type=text name=lname size=40 value="<?=$post['lname']?>"></td></tr><tr><td class=field nowrap>Company:</td><td class=input nowrap><input type=text name=company size=40 value="<?=$post['company']?>"></td></tr><tr><td class=field nowrap>Company Registration Number:</td><td class=input nowrap><input type=text name=regnum size=40 value="<?=$post['regnum']?>"></td></tr><tr><td class=field nowrap>Drivers License No:</td><td class=input nowrap><input type=text name=drvnum size=40 value="<?=$post['drvnum']?>"></td></tr><tr><td class=field nowrap>Address (*):</td><td class=input nowrap><input type=text name=address size=40 value="<?=$post['address']?>"></td></tr><tr><td class=field nowrap>City (*):</td><td class=input nowrap><input type=text name=city size=40 value="<?=$post['city']?>"></td></tr><tr><td class=field nowrap>Country (*):</td><td class=input nowrap><select name=country><?=showselect($data['Countries'], $post['country'])?></select></td></tr><tr><td class=field nowrap>State:</td><td class=input nowrap><input type=text name=state size=20 value="<?=$post['state']?>"></td></tr><tr><td class=field nowrap>Postal Code (*):</td><td class=input nowrap><input type=text name=zip size=20 value="<?=$post['zip']?>"></td></tr><tr><td class=field nowrap>Phone (*):</td><td class=input nowrap><input type=text name=phone size=30 value="<?=$post['phone']?>"></td></tr><tr><td class=field nowrap>Fax:</td><td class=input nowrap><input type=text name=fax size=30 value="<?=$post['fax']?>"></td></tr><tr><td class=capl colspan=2>DESCRIPTION</td></tr><tr><td class=input colspan=2><textarea cols=75 rows=10 name=description><?=$post['description']?></textarea></td></tr><tr><td class=capc colspan=2><input class=submit type=submit name=cancel value="BACK">&nbsp;<input class=submit type=submit name=send value="SAVE CHANGES"></td></tr></table></form>
+<?}else{?>
+All changes was stored in the database.<?if($post['action']=='insert'){?><br><br>Just created member has SUSPENDED status therefore you should change member status manually.<?}?><br><br><hr><br><a href="members.htm?id=<?=$post['id']?>&action=update&type=<?=$post['type']?>&page=<?=$post['StartPage']?>">BACK</a> | <a href="index.htm">HOME</a>
+<?}?>
+<?}elseif($post['action']=='insert_card'||$post['action']=='update_card'){?>
+<?if(!$post['PostSent']){?>
+<form method=post><input type=hidden name=action value="<?=$post['action']?>"><input type=hidden name=gid value="<?=$post['gid']?>"><input type=hidden name=bid value="<?=$post['bid']?>"><input type=hidden name=type value="<?=$post['type']?>"><input type=hidden name=StartPage value="<?=$post['StartPage']?>"><table class=frame width=480 border=0 cellspacing=1 cellpadding=2><tr><td class=capl colspan=2><?if($post['action']=='insert'){?>CREATE NEW CARD FOR MEMBER<?}else{?>MODIFY MEMBER CARD<?}?></td></tr><?if($data['Error']){?><tr><td colspan=2 class=error><?=$data['Error']?></td></tr><?}?><tr><td class=field nowrap>Card Type:</td><td class=input nowrap><select name=ctype><?=showselect($data['CreditCardType'], $post['ctype'])?></select></td></tr><tr><td class=field nowrap>Name Of Card:</td><td class=input nowrap><input type=text name=cname size=40 value="<?=$post['cname']?>"></td></tr><tr><td class=field nowrap>Card Number:</td><td class=input nowrap><input type=text name=cnumber size=40 value="<?=$post['cnumber']?>"></td></tr><tr><td class=field nowrap>AVS or CVV Code:</td><td class=input nowrap><input type=text name=ccvv size=10 value="<?=$post['ccvv']?>"></td></tr><tr><td class=field nowrap>Expire Date MM/YYYY:</td><td class=input nowrap><select name=cmonth><?=showselect($data['Months'], $post['cmonth'])?></select> / <select name=cyear><?=showselect($data['Years'], $post['cyear'])?></select></td></tr><tr><td class=capc colspan=2><input class=submit type=submit name=cancel value="BACK">&nbsp;<input class=submit type=submit name=send value="SAVE CHANGES"></td></tr></table></form>
+<?}else{?>
+All changes was stored in the database.<br><br><hr><br><a href="members.htm?id=<?=$post['gid']?>&bid=<?=$post['bid']?>&action=update_card&type=<?=$post['type']?>&page=<?=$post['StartPage']?>">BACK</a> | <a href="members.htm?id=<?=$post['gid']?>&action=detail&type=<?=$post['type']?>&page=<?=$post['StartPage']?>">DETAIL</a>
+<?}?>
+<?}elseif($post['action']=='insert_bank'||$post['action']=='update_bank'){?>
+<?if(!$post['PostSent']){?>
+<form method=post><input type=hidden name=action value="<?=$post['action']?>"><input type=hidden name=gid value="<?=$post['gid']?>"><input type=hidden name=bid value="<?=$post['bid']?>"><input type=hidden name=type value="<?=$post['type']?>"><input type=hidden name=StartPage value="<?=$post['StartPage']?>"><table class=frame width=480 border=0 cellspacing=1 cellpadding=2><tr><td class=capl colspan=2><?if($post['action']=='insert'){?>CREATE NEW BANK FOR MEMBER<?}else{?>MODIFY MEMBER BANK INFORMATION<?}?></td></tr><?if($data['Error']){?><tr><td colspan=2 class=error><?=$data['Error']?></td></tr><?}?><tr><td class=field nowrap>Bank Name:</td><td class=input nowrap><input type=text name=bname size=40 value="<?=$post['bname']?>"></td></tr><tr><td class=field nowrap>Bank Address:</td><td class=input nowrap><input type=text name=baddress size=40 value="<?=$post['baddress']?>"></td></tr><tr><td class=field nowrap>Bank City:</td><td class=input nowrap><input type=text name=bcity size=40 value="<?=$post['bcity']?>"></td></tr><tr><td class=field nowrap>Bank ZIP Code:</td><td class=input nowrap><input type=text name=bzip size=20 value="<?=$post['bzip']?>"></td></tr><tr><td class=field nowrap>Bank Country:</td><td class=input nowrap><select name=bcountry><?=showselect($data['Countries'], $post['bcountry'])?></select></td></tr><tr><td class=field nowrap>Bank State:</td><td class=input nowrap><input type=text name=bstate size=20 value="<?=$post['bstate']?>"></td></tr><tr><td class=field nowrap>Bank Phone:</td><td class=input nowrap><input type=text name=bphone size=30 value="<?=$post['bphone']?>"></td></tr><tr><td class=field nowrap>Account Holder's Name:</td><td class=input nowrap><input type=text name=bnameacc size=40 value="<?=$post['bnameacc']?>"></td></tr><tr><td class=field nowrap>Account Number:</td><td class=input nowrap><input type=text name=baccount size=40 value="<?=$post['baccount']?>"></td></tr><tr><td class=field nowrap>Account Type:</td><td class=input nowrap><select name=btype><?=showselect($data['BankAccountType'], $post['btype'])?></select></td></tr><tr><td class=field nowrap>9 Digits Routing Number:</td><td class=input nowrap><input type=text name=brtgnum size=20 value="<?=$post['brtgnum']?>"></td></tr><tr><td class=field nowrap>S.W.I.F.T. Code:</td><td class=input nowrap><input type=text name=bswift size=20 value="<?=$post['bswift']?>"</td></tr><tr><td class=capc colspan=2><input class=submit type=submit name=cancel value="BACK">&nbsp;<input class=submit type=submit name=send value="SAVE CHANGES"></td></tr></table></form>
+<?}else{?>
+All changes was stored in the database.<br><br><hr><br><a href="members.htm?id=<?=$post['gid']?>&bid=<?=$post['bid']?>&action=update_bank&type=<?=$post['type']?>&page=<?=$post['StartPage']?>">BACK</a> | <a href="members.htm?id=<?=$post['gid']?>&action=detail&type=<?=$post['type']?>&page=<?=$post['StartPage']?>">DETAIL</a>
+<?}?>
+<?}?>
+</center>
+<?}else{?>SECURITY ALERT: Access Denied<?}?>

@@ -1,0 +1,90 @@
+<?
+###############################################################################
+# PROGRAM     : EPAY ENTERPRISE                                               #
+# VERSION     : 4.13                                                          #
+# AUTHOR      : DMITRY PEREUDA                                                #
+
+# COMPANY     : ALSTRASOFT	                                              #
+# COPYRIGHTS  : (C)2009 ALSTRASOFT. ALL RIGHTS RESERVED                       #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+# LICENSE KEY : C3FA-76A1-83A4-C2B4-AE1F-1D5A-14ED-1DCA                       #
+###############################################################################
+#    THIS FILE IS PART OF EPAY SCRIPT - THE NEW UNIVERSAL PAYMENT GATEWAY     #
+#               	     DEVELOPED BY ALSTRASOFT                          #
+###############################################################################
+#    ALL SOURCE CODE, IMAGES, PROGRAMS, FILES INCLUDED IN THIS DISTRIBUTION   #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+#       ANY REDISTRIBUTION WITHOUT PERMISSION OF ALSTRASOFT AND IS            #
+#                            STRICTLY FORBIDDEN                               #
+###############################################################################
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+
+
+
+
+###############################################################################
+$data['PageName']='MERCHANT AREA (YOUR PRODUCTS)';
+$data['PageFile']='products';
+###############################################################################
+include('../config.htm');
+###############################################################################
+if(!$_SESSION['login']){
+	header("Location:{$data['Host']}/index.htm");
+	echo('ACCESS DENIED.');
+	exit;
+}
+if(is_info_empty($uid)){
+	header("Location:{$data['Host']}/members/profile.htm");
+	echo('ACCESS DENIED.');
+	exit;
+}
+###############################################################################
+$post=select_info($uid, $post);
+if(!$post['step'])$post['step']=1;
+$post['Buttons']=get_files_list($data['SinBtnsPath']);
+###############################################################################
+if($post['send']){
+	if($post['step']==1){
+		$post['step']++;
+	}elseif($post['step']==2){
+		if(!$post['name']){
+			$data['Error']='Please enter name of product or service.';
+		}elseif(!$post['price']){
+			$data['Error']='Please enter valid price for a product or service.';
+		}elseif($post['price']<$data['PaymentMinSum']){
+			$data['Error']="Price for product or service can not be less than".
+				" {$data['Currency']}{$data['PaymentMinSum']}";
+		}elseif(get_member_status($uid)<2&&$post['price']>$data['PaymentMaxSum']){
+			$data['Error']="Price for product should be less than".
+				" {$data['Currency']}{$data['PaymentMaxSum']} per".
+				" transaction because you are UNVERIFIED member.";
+		}elseif(!$post['ureturn']){
+			$data['Error']='Please enter valid URL for return after transaction.';
+		}elseif(!$post['button']){
+			$data['Error']='Please choose the image for payment button.';
+		}else{
+			if(!$post['gid'])insert_product($uid, 0, $post);
+			else update_product($post['gid'], $post);
+			$post['step']--;
+		}
+	}
+}elseif($post['cancel'])$post['step']--;
+if($post['action']=='update'){
+	$product=select_products($uid, 0, $post['gid'], true);
+	foreach($product[0] as $key=>$value)if(!$post[$key])$post[$key]=$value;
+	$post['actn']='update';
+	$post['step']++;
+}elseif($post['action']=='delete'){
+	delete_product($post['gid']);
+}
+if($post['step']==1)$data['Products']=select_products($uid, 0);
+###############################################################################
+display('members');
+###############################################################################
+?>

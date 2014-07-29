@@ -1,0 +1,44 @@
+<center>
+<form method=post>
+<input type=hidden name=step value="<?=$post['step']?>">
+<?if($post['step']==1){?>
+<table class=frame width=340 border=0 cellspacing=1 cellpadding=4>
+<tr><td class=capl colspan=2><?if($post['action']!='donation'){?>PURCHASE ITEM<?}else{?>MAKE DONATION<?}?></td></tr>
+<tr><td class=field width=1% nowrap><?if($post['action']!='donation'){?>Pay<?}else{?>Donate<?}?> To:</td><td class=input><?=prntext($post['member'])?></td></tr>
+<tr><td class=field nowrap>Status:</td><td class=input><font color=#FF0000><b><?if($post['status']==0){?>UNVERIFIED<?}elseif($post['status']==1){?>VERIFIED<?}else{?>CERTIFIED<?}?></b></font></td></tr>
+<tr><td class=field nowrap><?if($post['action']!='donation'){?>Product/Service<?}else{?>Donate Towards<?}?>:</td><td class=input><?=prntext($post['product'])?></td></tr>
+<tr><td class=field><?if($post['action']!='donation'){?>Price:<?}else{?>Amount, <?=prntext($data['Currency'])?><?}?></td><td class=input><?if($post['action']!='donation'){?><?=prntext($data['Currency'])?><?=prnsumm($post['price'])?><?}else{?><input type=text name=price size=10 maxlength=8 value="<?=prnsumm($post['price'])?>"><?}?></td></tr>
+<?if($post['action']!='donation'){?>
+<?if($post['quantity']>0){?><tr><td class=field>Quantity:</td><td class=input><?=prnintg($post['quantity'])?></td></tr><?}?>
+<?if($post['setup']>0){?><tr><td class=field>Setup Fee:</td><td class=input><?=prntext($data['Currency'])?><?=prnsumm($post['setup'])?></td></tr><?}?>
+<?if($post['tax']>0){?><tr><td class=field>Tax:</td><td class=input><?=prntext($data['Currency'])?><?=prnsumm($post['tax'])?></td></tr><?}?>
+<?if($post['shipping']>0){?><tr><td class=field>Shipping/Handling:</td><td class=input><?=prntext($data['Currency'])?><?=prnsumm($post['shipping'])?></td></tr><?}?>
+<?if($post['period']>0){?><tr><td class=field>Duration:</td><td class=input><?=prnintg($post['period'])?> day(s)</td></tr><?}?>
+<?if($post['trial']>0){?><tr><td class=field>Trial Period:</td><td class=input><?=prnintg($post['trial'])?> day(s)</td></tr><?}?>
+<?if($post['comments']){?><tr><td class=field>Description:</td><td class=input><?=prntext($post['comments'])?></td></tr><?}?>
+<?}?>
+<tr><td class=capr>Total:</td><td class=capl><?=prntext($data['Currency'])?><?=prnsumm($post['total'])?></td></tr>
+</table>
+<br>
+<table class=frame width=340 border=0 cellspacing=1 cellpadding=4>
+<tr><td class=capl colspan=2>LOGIN INFORMATION<br>(IF YOU DON'T HAVE ACCOUNT, <a href="<?=$data['Members']?>/signup.htm?rid=<?=$post['member']?>" target=new>CLICK HERE</a>)</td></tr>
+<?if($data['Error']){?><tr><td colspan=2 class=error><?=prntext($data['Error'])?></td></tr><?}?>
+<tr><td class=field>Username:</td><td class=input><input type=text name=username size=30 maxlength=128 value="<?=$post['username']?>"></td></tr>
+<tr><td class=field>Password:</td><td class=input><input type=password name=password size=30 maxlength=128 value="<?=$post['password']?>"></td></tr>
+<?if($data['UseTuringNumber']){?><tr><td class=field align=right valign=top nowrap>Turing Number (*):</td><td class=justify bgcolor=#EEEEEE valign=top><img class=turing src="<?=$data['Host']?>/turing.htm" width=78 height=15 border=1 align=absmiddle>&nbsp;<input type=text name=turing size=16 maxlength=32><br><font class=remark>In our continued efforts to provide the most secure service possible we have added a security test to prevent automated registrations. Enter the numbers as they are shown in the image below.</font></td></tr><?}?>
+<tr><td class=capc colspan=2><?if($post['step']==1){?><input class=submit type=button value="BACK" onclick="document.location.href='<?=$post['ucancel']?>'">&nbsp;<?}?><input class=submit type=submit name=send value="CONTINUE"></td></tr>
+</table>
+<?}elseif($post['step']==2){?>
+<table class=frame width=320 border=0 cellspacing=1 cellpadding=4>
+<tr><td class=capl colspan=2>CONFIRMATION</td></tr>
+<tr><td class=field>Pay To:</td><td class=input><?=prntext($post['member'])?></td></tr>
+<tr><td class=field>Product/Service:</td><td class=input><?=prntext($post['product'])?></td></tr>
+<tr><td class=capr>Total:</td><td class=capl><?=prntext($data['Currency'])?><?=prnsumm($post['total'])?></td></tr>
+<tr><td class=field>Notes:<br><small>(Optional)</small></td><td class=input><textarea name=notes cols=30 rows=5><?=prntext($post['notes'])?></textarea></td></tr>
+<tr><td class=capc colspan=2><input class=submit type=submit name=back value="BACK">&nbsp;<input class=submit type=submit name=send value="CHECKOUT"></td></tr>
+</table>
+<?}elseif($post['step']==3){?>
+You order was sent to buyer. Thank you very much for using our payment system.
+<?}?>
+</form>
+</center>

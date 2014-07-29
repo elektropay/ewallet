@@ -1,0 +1,125 @@
+<?if(isset($data['ScriptLoaded'])){?><center><?if($post['MemberInfo']){?><b>TRANSACTIONS FOR ACCOUNT:</b> <a href="members.htm?id=<?=$post['MemberInfo']['id']?>&action=detail"><?=$post['MemberInfo']['username']?></a><br><br><?}?><?if($post['ViewMode']=='select'){?><table class=frame width=100% border=0 cellspacing=1 cellpadding=4><tr><td class=capc width=1% valign=top nowrap><?if($post['status']<0){?>ALL TRANSACTIONS<?}else{?><a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>type=<?=$post['type']?><?if($post['StartPage']){?>&page=<?=$post['StartPage']?><?}?>&action=select">
+ALL TRANSACTIONS</a><?}?>|<?if($post['status']==0){?>PENDING<?}else{?><a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>type=<?=$post['type']?>&status=0&action=select">PENDING</a><?}?>|<?if($post['status']==1){?>COMPLETED<?}else{?><a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>type=<?=$post['type']?>&status=1&action=select">COMPLETED</a><?}?>|<?if($post['status']==2){?>CANCELLED<?}else{?><a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>type=<?=$post['type']?>&status=2&action=select">CANCELLED</a><?}?>|<?if($post['status']==3){?>REFUNDED<?}else{?><a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>type=<?=$post['type']?>&status=3&action=select">REFUNDED</a><?}?></td></tr><?if($data['Pages']){?><tr><td class=capc><?$count=count($data['Pages']);for($i=0; $i<$count; $i++){?><?if($data['Pages'][$i]==$post['StartPage']){?><?=$i+1?><?}else{?><a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>page=<?=$data['Pages'][$i]?>&type=<?=$post['type']?>&status=<?=$post['status']?>&action=select"><?=$i+1?></a><?}?><?if($i<$count-1)echo("|");}?></td></tr><?}?></table><br><table class=frame width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capl colspan=9><?=strtoupper($data['TransactionType'][$post['type']])?> TRANSACTIONS LIST (<?if($post['status']<0){?>ALL TRANSACTIONS<?}else{?><?=strtoupper($data['TransactionStatus'][$post['status']])?><?}?>)</td></tr><tr><td class=capc>DATE</td><?if($post['type']<0){?><td class=capc>TYPE</td><?}?><?if($post['status']<0){?><td class=capc>STATUS</td><?}?><td class=capc>SENDER</td><td class=capc>RECEIVER</td><td class=capc>AMOUNT</td><td class=capc>FEE</td><td class=capc>PAID</td><td class=capc width=1%>ACTION</td></tr><?if($data['TransactionsList']){?><?foreach($data['TransactionsList'] as $key=>$value){$bgcolor=$key%2?'#EEEEEE':'#E7E7E7'?><tr <?if($value['sender']==$value['receiver']){?>bgcolor=#CCFFFF<?}else{?>bgcolor=<?=$bgcolor?> onmouseover="setPointer(this,<?=$key?>,'over','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmouseout="setPointer(this,<?=$key?>,'out','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmousedown="setPointer(this,<?=$key?>,'click','<?=$bgcolor?>','#CCFFCC','#FFCC99')"<?}?>><td align=center nowrap><?=prndate($value['tdate'])?></td><?if($post['type']<0){?><td align=center nowrap><?=$value['type']?></td><?}?><?if($post['status']<0){?><td align=center nowrap><?=$value['status']?></td><?}?><td align=right nowrap><?if($value['sender']<0){?><?=$value['senduser']?><?}else{?><a href="members.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>id=<?=$value['sender']?>&action=detail"><?=$value['senduser']?></a><?}?></td><td align=right nowrap><?if($value['receiver']<0){?><?=$value['recvuser']?><?}else{?><a href="members.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>id=<?=$value['receiver']?>&action=detail"><?=$value['recvuser']?></a><?}?></td><td align=right nowrap><?=$value['amount']?></td><td align=right nowrap><?=$value['fees']?><td align=right nowrap><?=$value['nets']?><td align=right nowrap><a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>id=<?=$value['id']?><?if($post['StartPage']){?>&page=<?=$post['StartPage']?><?}?>&type=<?=$post['type']?>&status=<?=$post['status']?>&action=details">VIEW</a><?if($value['ostatus']==0){?>|<a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>id=<?=$value['id']?><?if($post['StartPage']){?>&page=<?=$post['StartPage']?><?}?>&action=confirm" onclick="return cfmform()">CONFIRM</a><?}?><?if($value['ostatus']==0||$value['ostatus']==1){?>|<a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>id=<?=$value['id']?><?if($post['StartPage']){?>&page=<?=$post['StartPage']?><?}?>&action=cancel" onclick="return cfmform()">CANCEL</a><?}?></td></tr><?}}?></table><br><table class=frame width=100% border=0 cellspacing=1 cellpadding=4><?if($data['Pages']){?><tr><td class=capc><?$count=count($data['Pages']);for($i=0; $i<$count; $i++){?><?if($data['Pages'][$i]==$post['StartPage']){?><?=$i+1?><?}else{?><a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>page=<?=$data['Pages'][$i]?>&type=<?=$post['type']?>&status=<?=$post['status']?>&action=select"><?=$i+1?></a><?}?><?if($i<$count-1)echo("|");}?></td></tr><?}?><tr><td class=capc width=1% valign=top nowrap><?if($post['status']<0){?>ALL TRANSACTIONS<?}else{?><a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>type=<?=$post['type']?><?if($post['StartPage']){?>&page=<?=$post['StartPage']?><?}?>&action=select">ALL TRANSACTIONS</a><?}?>|<?if($post['status']==0){?>PENDING<?}else{?><a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>type=<?=$post['type']?>&status=0&action=select">PENDING</a><?}?>|<?if($post['status']==1){?>COMPLETED<?}else{?><a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>type=<?=$post['type']?>&status=1&action=select">COMPLETED</a><?}?>|<?if($post['status']==2){?>CANCELLED<?}else{?><a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>type=<?=$post['type']?>&status=2&action=select">CANCELLED</a><?}?>|<?if($post['status']==3){?>REFUNDED<?}else{?><a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>type=<?=$post['type']?>&status=3&action=select">REFUNDED</a><?}?></td></tr></table><?}elseif($post['ViewMode']=='details'){?><table class=frame width=400 border=0 cellspacing=1 cellpadding=2><tr><td class=capl colspan=2><?=strtoupper($data['TransactionType'][$post['type']])?> TRANSACTION DETAIL</td></tr><tr><td class=field>Date:</td><td class=input><?=$post['TransactionDetails']['tdate']?></td></tr><tr><td class=field>Type:</td><td class=input><?=$post['TransactionDetails']['type']?></td></tr><tr><td class=field>Status:</td><td class=input><?=$post['TransactionDetails']['status']?></td></tr><tr><td class=field>Username:</td><td class=input><?if($post['TransactionDetails']['userid']<0){?><?=$post['TransactionDetails']['username']?><?}else{?><a href="members.htm?id=<?=$post['TransactionDetails']['userid']?>&action=select"><?=$post['TransactionDetails']['username']?></a><?}?></td></tr><tr><td class=field>Amount:</td><td class=input><?=$post['TransactionDetails']['amount']?></td></tr><tr><td class=field>Fee:</td><td class=input><?=prnpays($post['TransactionDetails']['fees'])?></td></tr><tr><td class=field>Paid:</td><td class=input><?=$post['TransactionDetails']['nets']?></td></tr><tr><td class=field>Comments:</td><td class=input><?=$post['TransactionDetails']['comments']?></td></tr><tr><td class=field>Details:</td><td class=input><pre class=comms><?=$post['TransactionDetails']['ecomments']?></pre></td></tr><?if($post['wtype']){?>
+<?if($post['wtype']=='paypal'){?>
+<form method=post action="https://www.paypal.com/cgi-bin/webscr" target=new>
+<input type=hidden name=cmd value="_xclick">
+<input type=hidden name=business value="<?=$post['payee']?>">
+<input type=hidden name=item_name value="Withdraw from my <?=$data['SiteName']?> account">
+<input type=hidden name=no_shipping value="1">
+<input type=hidden name=no_note value="1">
+<input type=hidden name=amount value="<?=prnsumm($post['total'])?>">
+<?}elseif($post['wtype']=='stormpay'){?>
+<form method=post action="https://www.stormpay.com/stormpay/handle_gen.php" target=new>
+<input type=hidden name=generic value="1">
+<input type=hidden name=payee_email value="<?=$post['payee']?>">
+<input type=hidden name=product_name value="Withdraw from my <?=$data['SiteName']?> account">
+<input type=hidden name=amount value="<?=prnsumm($post['total'])?>">
+<input type=hidden name=quantity value="1">
+<input type=hidden name=require_IPN value="1">
+<?}elseif($post['wtype']=='netpay'){?>
+<form method=post action="https://www.netpay.tv/cgi-bin/merchant/mpay.cgi" target=new>
+<input type=hidden name=PAYEE_ACCOUNT value="<?=$post['payee']?>">
+<input type=hidden name=PAYEE_NAME value="<?=$data['SiteName']?>">
+<input type=hidden name=PAYMENT_AMOUNT value="<?=prnsumm($post['total'])?>">
+<input type=hidden name=MEMO value="Withdraw from my <?=$data['SiteName']?> account">
+<input type=hidden name=PRODUCT_NAME value="Withdraw Funds">
+<?}elseif($post['wtype']=='egold'){?>
+<form method=post action="https://www.e-gold.com/sci_asp/payments.asp" target=new>
+<input type=hidden name=PAYEE_ACCOUNT value="<?=$post['payee']?>">
+<input type=hidden name=PAYEE_NAME value="<?=$data['SiteName']?>">
+<input type=hidden name=PAYMENT_UNITS value="1">
+<input type=hidden name=PAYMENT_METAL_ID value="1">
+<input type=hidden name=PAYMENT_AMOUNT value="<?=prnsumm($post['total'])?>">
+<input type=hidden name=MEMO value="Withdraw from my <?=$data['SiteName']?> account">
+<input type=hidden name=HASH value="<?=md5("abdo".time().$data['sid'])?>">
+<input type=hidden name=CHECKSUM value="<?=time()?>">
+<input type=hidden name=BAGGAGE_FIELDS value="">
+<input type=hidden name=PAYMENT_URL value="<?=$data['Host']?>">
+<input type=hidden name=NOPAYMENT_URL value="<?=$data['Host']?>">
+<?}elseif($post['wtype']=='moneybookers'){?>
+<form method=post action="https://www.moneybookers.com/app/payment.pl" target=new>
+<input type=hidden name=pay_to_email value="<?=$post['payee']?>">
+<input type=hidden name=return_url value="<?=$data['Host']?>">
+<input type=hidden name=language value="EN">
+<input type=hidden name=amount value="<?=prnsumm($post['total'])?>">
+<input type=hidden name=currency value="USD">
+<input type=hidden name=detail1_description value="Transaction Description:">
+<input type=hidden name=detail1_text value="Withdraw from my <?=$data['SiteName']?> account">
+<?}elseif($post['wtype']=='intgold'){?>
+<form method=post action="https://intgold.com/cgi-bin/webshoppingcart.cgi" target=new>
+<input type=hidden name=cmd value="_xclick">
+<input type=hidden name=SELLERACCOUNTID value="<?=$post['payee']?>">
+<input type=hidden name=METHOD value=POST>
+<input type=hidden name=RETURNPAGE value=CGI>
+<input type=hidden name=RETURNURL value="<?=$data['Host']?>">
+<input type=hidden name=CANCEL_RETURN value="<?=$data['Host']?>">
+<input type=hidden name=AMOUNT value="<?=prnsumm($post['total'])?>">
+<input type=hidden name=ITEM_NUMBER value="1">
+<input type=hidden name=ITEM_NAME value="<?=$data['SiteName']?>">
+<input type=hidden name=HASH value="<?=md5("abdo".time().$data['sid'])?>">
+<?}elseif($post['wtype']=='ebullion'){?>
+<form method=post name=atip action="https://www2.e-bullion.com/atip/process.php" target=new>
+<input type="hidden" name="ATIP_PAYEE_ACCOUNT" value="<?=$post['payee']?>">
+<input type="hidden" name="ATIP_PAYMENT_UNIT" value="1">
+<input type="hidden" name="ATIP_PAYMENT_METAL" value="0">
+<input type="hidden" name="ATIP_PAYMENT_FIXED" value="0">
+<input type="hidden" name="ATIP_PAYMENT_AMOUNT" value="<?=prnsumm($post['total'])?>">
+<input type="hidden" name="ATIP_PAYER_FEE_AMOUNT" value="">
+<input type="hidden" name="ATIP_FORCED_PAYER_ACCOUNT" value="">
+<input type="hidden" name="ATIP_PAYEE_NAME" value="<?=$data['SiteName']?>">
+<input type="hidden" name="ATIP_SUGGESTED_MEMO" value="Withdraw from my <?=$data['SiteName']?> account">
+<input type="hidden" name="ATIP_BAGGAGE_FIELDS" value="">
+<?}elseif($post['wtype']=='pecunix'){?>
+<form method=post action="https://pri.pecunix.com/money.refined" target=new>
+<input type=hidden name=PAYEE_ACCOUNT value="<?=$post['payee']?>">
+<input type=hidden name=PAYMENT_AMOUNT value="<?=prnsumm($post['total'])?>">
+<input type=hidden name=PAYMENT_UNITS value="USD">
+<input type=hidden name=SUGGESTED_MEMO value="Withdraw from my <?=$data['SiteName']?> account">
+<?}elseif($post['wtype']=='epaydirect'){?>
+<form method=post action="https://www.epaydirect.net/handle.php" target=new>
+<input type=hidden name=receiver value="<?=$post['payee']?>">
+<input type=hidden name=amount value="<?=prnsumm($post['total'])?>">
+<input type=hidden name=item_name value="Withdraw from my <?=$data['SiteName']?> account">
+<?}elseif($post['wtype']=='evocash'){?>
+<form method=post action="https://www.evocash.com/evoswift/index.cfm" target=new>
+<input type=hidden name=receivingaccountid value="<?=$post['payee']?>">
+<input type=hidden name=pay_yes_url value="<?=$data['Host']?>">
+<input type=hidden name=pay_no_url value="<?=$data['Host']?>">
+<input type=hidden name=merchant_check_url value="<?=$data['Host']?>">
+<input type=hidden name=reference value="<?=$data['SiteName']?>">
+<input type=hidden name=memo value="Withdraw from my <?=$data['SiteName']?> account">
+<input type=hidden name=amount value="<?=prnsumm($post['total'])?>">
+<?}elseif($post['wtype']=='goldmoney'){?>
+<form method=post action="https://www.goldmoney.com/omi/omipmt.asp" target=new>
+<input type=hidden name=OMI_MERCHANT_HLD_NO value="<?=$post['payee']?>">
+<input type=hidden name=OMI_MERCHANT_REF_NO value="<?=md5("abdo".time().$data['sid'])?>">
+<input type=hidden name=OMI_CURRENCY_CODE value="840">
+<input type=hidden name=OMI_CURRENCY_AMT value="<?=prnsumm($post['total'])?>">
+<input type=hidden name=OMI_SIM_MODE value="0">
+<input type=hidden name=OMI_MERCHANT_MEMO value="Withdraw from my <?=$data['SiteName']?> account">
+<input type=hidden name=OMI_SUCCESS_URL value="<?=$data['Host']?>">
+<input type=hidden name=OMI_SUCCESS_URL_METHOD value="LINK">
+<input type=hidden name=OMI_FAIL_URL value="<?=$data['Host']?>">
+<input type=hidden name=OMI_FAIL_URL_METHOD value="LINK">
+<?}elseif($post['wtype']=='virtualgold'){?>
+<form method=post action="https://virtualgold.net/sci_interface.php" target=new>
+<input type=hidden name=ACCOUNT_NO value="<?=$post['payee']?>">
+<input type=hidden name=PAYMENT_TYPE value="ONETIME">
+<input type=hidden name=PRODUCT_NAME value="Withdraw from my <?=$data['SiteName']?> account">
+<input type=hidden name=PAYMENT_AMOUNT value="<?=prnsumm($post['total'])?>">
+<input type=hidden name=RETURN_URL value="<?=$data['Host']?>">
+<input type=hidden name=CANCEL_URL value="<?=$data['Host']?>">
+<?}elseif($post['wtype']=='payemo'){?>
+<form method=post action="https://www.emocorp.com/s/action/PaymentAction" target=new>
+<input type=hidden name=merchant_email value="<?=$post['payee']?>">
+<input type=hidden name=merchant_name value="Withdraw from my <?=$data['SiteName']?> account">
+<input type=hidden name=amount value="<?=prnsumm($post['total'])?>">
+<input type=hidden name=return_url value="<?=$data['Host']?>">
+<input type=hidden name=cancel_url value="<?=$data['Host']?>">
+<input type=hidden name=reference value="Withdraw from my <?=$data['SiteName']?> account">
+<?}elseif($post['wtype']=='western'){?>
+<form method=post action="https://wumt.westernunion.com/asp/qcReceiver.asp" target=new>
+<?}elseif($post['wtype']=='moneygram'){?>
+<form method=post action="https://www.emoneygram.com/" target=new>
+<?}?>
+<tr><td class=field>&nbsp;</td><td class=input align=center><input type=submit class=submit value="PAY NOW"></td></tr></form><?}?><tr><td class=capc colspan=2><a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?><?if($post['StartPage']){?>page=<?=$post['StartPage']?><?}?>&type=<?=$post['type']?>&status=<?=$post['status']?>&action=select">BACK</a><?if($post['TransactionDetails']['ostatus']==0){?> | <a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>id=<?=$post['TransactionDetails']['id']?><?if($post['StartPage']){?>&page=<?=$post['StartPage']?><?}?>&action=confirm" onclick="return cfmform()">CONFIRM</a><?}?><?if($post['TransactionDetails']['ostatus']==0||$post['TransactionDetails']['ostatus']==1){?> | <a href="transactions.htm?<?if($post['bid']){?>bid=<?=$post['bid']?>&<?}?>id=<?=$post['TransactionDetails']['id']?><?if($post['StartPage']){?>&page=<?=$post['StartPage']?><?}?>&action=cancel" onclick="return cfmform()">CANCEL</a><?}?></td></tr></table><?}elseif($post['ViewMode']=='summary'){?><form method=post><input type=hidden name=action value="summary"><?if($post['day']>0&&$post['month']>0){?><table class=frame width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capl colspan=14>TRANSACTION SUMMARY FOR <?=$post['day']?> <?=$data['StatMonth'][$post['month']]?> <?=$post['year']?></td></tr><tr><?foreach($data['TransactionType'] as $value){?><td class=capc colspan=2><?=strtoupper($value)?></td><?}?></tr><tr><?foreach($data['TransactionType'] as $value){?><td class=capr width=7%>SUMM</td><td class=capr width=7%>FEE</td><?}?></tr><tr><?foreach($post['Daily'] as $value){?><td class=input align=right nowrap><?=$value['Summ']?></td><td class=input align=right nowrap><?=$value['Fees']?></td><?}?></tr></table><br><br><?}?><?if($post['month']>0){?><table class=frame width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capl colspan=14>TRANSACTION SUMMARY FOR <?=$data['StatMonth'][$post['month']]?> <?=$post['year']?></td></tr><tr><?foreach($data['TransactionType'] as $value){?><td class=capc colspan=2><?=strtoupper($value)?></td><?}?></tr><tr><?foreach($data['TransactionType'] as $value){?><td class=capr width=7%>SUMM</td><td class=capr width=7%>FEE</td><?}?></tr><tr><?foreach($post['Monthly'] as $value){?><td class=input align=right nowrap><?=$value['Summ']?></td><td class=input align=right nowrap><?=$value['Fees']?></td><?}?></tr></table><br><br><?}?><table class=frame width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capl colspan=14>TRANSACTION SUMMARY FOR <?=$post['year']?> YEAR</td></tr><tr><?foreach($data['TransactionType'] as $value){?><td class=capc colspan=2><?=strtoupper($value)?></td><?}?></tr><tr><?foreach($data['TransactionType'] as $value){?><td class=capr width=7%>SUMM</td><td class=capr width=7%>FEE</td><?}?></tr><tr><?foreach($post['Yearly'] as $value){?><td class=input align=right><?=$value['Summ']?></td><td class=input align=right><?=$value['Fees']?></td><?}?></tr></table><br><br><table class=frame width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capc><select name=day onchange="submit()"><?=showselect($data['StatDays'], $post['day'])?></select>/<select name=month onchange="submit()"><?=showselect($data['StatMonth'], $post['month'])?></select>/<select name=year onchange="submit()"><?=showselect($data['StatYear'], $post['year'])?></select></td></tr></table></form><?}?></center><?}else{?>SECURITY ALERT: Access Denied<?}?>

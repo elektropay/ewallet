@@ -1,0 +1,244 @@
+AlstraSoft EPay Enterprise
+###################################################################################################
+Common executable files. Remember you should include only config.htm in your new pages, another
+files will be included automatically.
+
+Files
+-----
+config.htm	- database and site configuartion
+consts.htm	- main redefined variables and constants
+common.htm	- general functions and procedures
+turing.htm	- turing number generator for login forms
+
+
+###################################################################################################
+Public site. If you need to execute some queries or something else please place it there.
+PHP parses this file and show page by template from folder templates/
+
+For example you can place a new table for FAQ page into the database and makes SQL queries from
+executable file faq.htm and show it with the template.faq.htm.
+
+PHP automatically parses HTML templates which is assigned with page.
+
+Pages
+-----
+Index Page
+	- executable : index.htm
+	- template   : templates/template.index.htm
+
+Abous Us Page (#2 in top/bottom menu, #2 in left menu)
+	- executable : about.htm
+	- template   : templates/template.about.htm
+
+Service Fees Page (#3 in top/bottom menu, #3 in left menu)
+	- executable : fees.htm
+	- template   : templates/template.fees.htm
+
+Privacy Policy Page (#4 in top/bottom menu, #4 in left menu)
+	- executable : policy.htm
+	- template   : templates/template.policy.htm
+
+Members Agreements Page (#5 in top/bottom menu, #5 in left menu)
+	- executable : agreement.htm
+	- template   : templates/template.agreement.htm
+
+Frequently Asked Questions Page (# in top/bottom menu, # in left menu)
+	- executable : faq.htm
+	- template   : templates/template.faq.htm
+
+Contact Us Page (# in top/bottom menu, # in left menu)
+	- executable : contact.htm
+	- template   : templates/template.contact.htm
+
+Terms and Conditions Popup Page
+	- executable : terms.htm
+	- template   : templates/template.terms.htm
+
+Payments Processing Page
+	- executable : process.htm
+	- template   : templates/template.process.htm
+
+Internal Mini Shop Page
+	- executable : shop.htm
+	- template   : templates/template.shop.htm
+
+
+Also folder templates contains two template:
+1. template.header.htm
+2. template.footer.htm
+
+This templates representing page HEADER and FOOTER accordingly.
+### Remember, both of them are used in members area too.
+
+
+
+###################################################################################################
+Members Area. Area where members can change their profile, bank information, credit cards
+information, generates buttons to make payments, deposit money into account, withdraw money
+from account and etc.
+
+Pages:
+------
+
+Signup Page
+	- executable : members/signup.htm
+	- template   : templates/members/template.signup.htm
+
+Confirm New Member Registration Page
+	- executable : members/confirm.htm
+	- template   : templates/members/template.confirm.htm
+
+Login Page
+	- executable : members/login.htm
+	- template   : templates/members/template.login.htm
+
+Logout Page
+	- executable : members/logout.htm
+	- template   : templates/members/template.logout.htm
+
+Recovery Password Page
+	- executable : members/forgot.htm
+	- template   : templates/members/template.forgot.htm
+
+Buttons Code Generator
+	- executable : members/generate.htm
+	- template   : templates/members/template.generate.htm
+
+Transactions Notifier
+	- executable : members/notify.htm
+	- template   : templates/members/template.notify.htm
+
+View Member Information
+	- executable : members/userinfo.htm
+	- template   : templates/members/template.userinfo.htm
+
+Member Status Page
+	- executable : members/verify.htm
+	- template   : templates/members/template.verify.htm
+
+View Transactions History
+	- executable : members/transactions.htm
+	- template   : templates/members/transactions.htm
+
+Account Menu:
+	- Overview Page
+		- executable : members/index.htm
+		- template   : templates/members/template.index.htm
+
+	- Edit Profile Page
+		- executable : members/profile.htm
+		- template   : templates/members/template.profile.htm
+
+	- Edit Password Page
+		- executable : members/password.htm
+		- template   : templates/members/template.password.htm
+
+	- Edit Credit Cards Page
+		- executable : members/card.htm
+		- template   : templates/members/template.card.htm
+
+	- Edit Bank Accounts Page
+		- executable : members/bank.htm
+		- template   : templates/members/template.bank.htm
+
+	- Close Account Page
+		- executable : members/close.htm
+		- template   : templates/members/template.close.htm
+
+Merchant Menu:
+	- Products Page
+		- executable : members/products.htm
+		- template   : templates/members/template.products.htm
+
+	- Donations Page
+		- executable : members/donations.htm
+		- template   : templates/members/template.donations.htm
+
+	- Subscriptions Page
+		- executable : members/subscriptions.htm
+		- template   : templates/members/template.subscriptions.htm
+
+	- Shopping Cart Page
+		- executable : members/shopcart.htm
+		- template   : templates/members/template.shopcart.htm
+
+	- Simple Payment Page
+		- executable : members/payment.htm
+		- template   : templates/members/template.payment.htm
+
+Payments Menu
+	- Deposit Money Page
+		- executable : members/deposit.htm
+		- template   : templates/members/template.deposit.htm
+
+	- Withdraw Money Page
+		- executable : members/withdraw.htm
+		- template   : templates/members/template.withdraw.htm
+
+	- Send Payments Page
+		- executable : members/send.htm
+		- template   : templates/members/template.send.htm
+
+	- Request Payments Page
+		- executable : members/request.htm
+		- template   : templates/members/template.request.htm
+
+	- Send Mass Payments Page
+		- executable : members/mass.htm
+		- template   : templates/members/template.mass.htm
+
+	- Escrow Payments Page
+		- executable : members/escrow.htm
+		- template   : templates/members/template.escrow.htm
+
+Affiliates Menu (optional):
+	- Program Details Page
+		- executable : members/affdetails.htm
+		- template   : templates/members/template.affdetails.htm
+
+	- Your Downline Page
+		- executable : members/affdownline.htm
+		- template   : templates/members/template.affdownline.htm
+
+	- Our Banners Page
+		- executable : members/affbanners.htm
+		- template   : templates/members/template.affbanners.htm
+
+
+
+###################################################################################################
+Administrators Area. Area where service administrator can configure system settings, view
+transactions, manage members, manage deposits, withdrawals, escrows and etc...
+
+Administrators Area:
+--------------------
+
+Login Page
+	- executable : admins/login.htm
+	- template   : templates/admins/template.login.htm
+
+Logout Page
+	- executable : admins/logout.htm
+	- template   : templates/admins/template.logout.htm
+
+Overview Page
+
+Settings Pages
+	- General Settings
+	- Additional Settings
+	- Currency Settings
+	- Signup Settings
+	- Payment Methods Settings
+	- Deposit Methods Settings
+	- Withdraw Methods Settings
+	- Affiliate Program Settings
+	
+	- executable :
+	- templates  :
+
+HTML Templates Editor
+
+E-Mail Templates Editor
+
+Members Management Page
+

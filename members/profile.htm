@@ -1,0 +1,93 @@
+<?
+###############################################################################
+# PROGRAM     : EPAY ENTERPRISE                                               #
+# VERSION     : 4.13                                                          #
+# AUTHOR      : DMITRY PEREUDA                                                #
+
+# COMPANY     : ALSTRASOFT	                                              #
+# COPYRIGHTS  : (C)2009 ALSTRASOFT. ALL RIGHTS RESERVED                       #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+# LICENSE KEY : C3FA-76A1-83A4-C2B4-AE1F-1D5A-14ED-1DCA                       #
+###############################################################################
+#    THIS FILE IS PART OF EPAY SCRIPT - THE NEW UNIVERSAL PAYMENT GATEWAY     #
+#               	     DEVELOPED BY ALSTRASOFT                          #
+###############################################################################
+#    ALL SOURCE CODE, IMAGES, PROGRAMS, FILES INCLUDED IN THIS DISTRIBUTION   #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+#       ANY REDISTRIBUTION WITHOUT PERMISSION OF ALSTRASOFT AND IS            #
+#                            STRICTLY FORBIDDEN                               #
+###############################################################################
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+
+
+
+
+###############################################################################
+$data['PageName']='EDIT YOUR INFORMATION';
+$data['PageFile']='profile';
+###############################################################################
+include('../config.htm');
+###############################################################################
+if(!$_SESSION['login']){
+	header("Location:{$data['Host']}/index.htm");
+	echo('ACCESS DENIED.');
+	exit;
+}
+###############################################################################
+if($post['action']=='delemail'){
+        delete_email_info($post['gid']);
+}elseif($post['action']=='setdefault'){
+        set_default_email($post['gid']);
+}elseif($post['action']=='sendemail'){
+        send_email_request($post['gid']);
+        $data['PostSent']=false;
+        $data['EmailSent']=true;
+}
+###############################################################################
+if($post['change']){
+	if(!$post['fname']){
+		$data['Error']='Please enter your first name.';
+	}elseif(!$post['lname']){
+		$data['Error']='Please enter your last name.';
+	}elseif(!$post['address']){
+		$data['Error']='Please enter address where you live.';
+	}elseif(!$post['city']){
+		$data['Error']='Please enter city where you live.';
+	}elseif(!$post['country']){
+		$data['Error']='Please enter country where you live.';
+	}elseif(!$post['zip']){
+		$data['Error']='Please enter your postal code.';
+	}elseif(!$post['phone']){
+		$data['Error']='Please enter your telephone number.';
+	}else{
+		update_profile_info($post, $uid);
+		$data['InfoIsEmpty']=false;
+		$data['PostSent']=true;
+	}
+}elseif($post['addemail']){
+        if(!$post['newemail']){
+                $data['Error']='Please enter email.';
+        }elseif(!is_mail_available($post['newemail'])){
+                $data['Error']='Sorry but this e-mail address already taken.';
+        }elseif(verify_email($post['newemail'])){
+                $data['Error']='Please enter valid member e-mail address.';
+        }else{
+                insert_email_info($post['newemail'],$uid);
+                $data['PostSent']=false;
+                $data['EmailSent']=true;
+        }
+}
+###############################################################################
+$post=select_info($uid, $post);
+$post['emails']=prnmemberemails($uid);
+$data['InfoIsEmpty']=is_info_empty($uid);
+###############################################################################
+display('members');
+###############################################################################
+?>

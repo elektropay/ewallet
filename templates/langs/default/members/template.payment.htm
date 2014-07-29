@@ -1,0 +1,36 @@
+<?if(isset($data['ScriptLoaded'])){?><table class=frame width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capl>COPY THIS CODE AND PASTE INTO YOUR PAGE:</td></tr><tr><td class=input>CODE #1 - Using POST method:<br><textarea rows=20 style="width:580;font-family:Courier New" readonly><?=$post['HtmlCode']?></textarea><br><br><a id="ipn"><font color=#000000>Description for all fields which you can use:</font></a><table class=frame width=100% border=0 cellspacing=1 cellpadding=4><tr><td bgcolor=#FFFFFF><br><pre class=comms>
+For successful payment process you should use next parameters:
+
+   · username - your username
+   · product  - product ID or name
+   · action   - use "product" if this product is pre-defined
+                use "donation" if this is donation payment
+                use "subscription" if this product is subscription
+                use "payment" if this is simple payment transaction
+   · price    - price of product, $
+   · quantity - quantity
+   · period   - subscription rebilling period, days
+   · trial    - trial period, days
+   · setup    - setup fee, $
+   · tax      - tax fee, $
+   · shipping - shipping fee, $
+   · ureturn  - return URL
+   · unotify  - notify URL
+   · ucancel  - cancel URL
+   · comments - product description
+</pre></td></tr></table>Additional information:<table class=frame width=100% border=0 cellspacing=1 cellpadding=4><tr><td bgcolor=#FFFFFF><br><pre class=coms>
+After successful payment process system will forward buyer to your site
+and some parameters will back to your script by the POST method:
+
+   · action   - type of transaction (product/donation/subscription/payment)
+   · pid      - internal product ID
+   · pname    - product name
+   · buyer    - buyer username
+   · total    - total amount
+   · quantity - quantity
+   · comments - buyer notes
+   · referer  - system referer URL (<?=$data['Host']?>)
+
+You can get this parameters by the global POST variable,
+e.g. $_POST[--VARIABLE-NAME--]...
+</pre></td></tr></table></td></tr></table><?}else{?>SECURITY ALERT: Access Denied<?}?>

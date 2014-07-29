@@ -1,0 +1,69 @@
+<center>
+<?if($post['action']=='view'){?>
+<?if(count($data['Pages'])>1){?><table border=0 cellspacing=1 cellpadding=4 width=100%><tr><td align=right width=100%>SELECT PAGE:</td><td><?$count=count($data['Pages']);for($i=0; $i<$count; $i++){?><?if($data['Pages'][$i]==$post['StartPage']){?><?=$i+1?><?}else{?><a href="shop.htm?action=<?=$post['action']?>&cid=<?=$post['cid']?>&page=<?=$data['Pages'][$i]?>"><?=$i+1?></a><?}?><?if($i<$count-1)echo(" | ");}?></td></tr></table><br><?}?>
+<table class=frame width=100% border=0 cellspacing=1 cellpadding=2>
+<tr><td class=capl><?=get_categories_tree($post["cid"])?></td></tr>
+<?foreach($data['CategoriesList'] as $key=>$value){$bgcolor=$key%2?'#F2F2F2':'#F7F7F7'?><tr bgcolor=<?=$bgcolor?> onmouseover="setPointer(this,<?=$key?>,'over','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmouseout="setPointer(this,<?=$key?>,'out','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmousedown="setPointer(this,<?=$key?>,'click','<?=$bgcolor?>','#CCFFCC','#FFCC99')"><td><a href="shop.htm?cid=<?=$value['id']?>&action=view"><?=prntext($value['name'])?></a>&nbsp;(<?=($value['items']+$value['subcategories'])?>)<?if(!empty($value['description'])){?>&nbsp;-&nbsp;<?=prntext($value['description'])?><?}?></td></tr><?}?>
+<?if($post['cid']!=0){?><?if($data['CategoriesList']){?><tr><td><hr></td></tr><?}?>
+<?foreach($data['ItemsList'] as $key=>$value){$bgcolor=$key%2?'#F7F7F7':'#F2F2F2'?><tr bgcolor=<?=$bgcolor?> onmouseover="setPointer(this,<?=$key?>,'over','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmouseout="setPointer(this,<?=$key?>,'out','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmousedown="setPointer(this,<?=$key?>,'click','<?=$bgcolor?>','#CCFFCC','#FFCC99')"><td><a href='<?=$value['url']?>' target='_blank'><?=prntext($value['name'])?></a><?if(!empty($value['description'])){?><blockquote><?=prntext($value['description'])?></blockquote><?}?></td></tr><?}?>
+</table>
+<?if(count($data['Pages'])>1){?><table border=0 cellspacing=1 cellpadding=4 width="100%"><tr><td align="right" width="100%">SELECT PAGE:</td><td><?$count=count($data['Pages']);for($i=0; $i<$count; $i++){?><?if($data['Pages'][$i]==$post['StartPage']){?><?=$i+1?><?}else{?><a href="shop.htm?action=<?=$post['action']?>&cid=<?=$post['cid']?>&page=<?=$data['Pages'][$i]?>"><?=$i+1?></a><?}?><?if($i<$count-1)echo(" | ");}?></td></tr></table><br><?}?>
+<?}else{?></table><?}?>
+<?if($_SESSION['login']&&$post['cid']!=0){?>
+<br>
+<form method=post>
+<input type=hidden name=action value="add">
+<input type=hidden name=cid value="<?=$post['cid']?>">
+<input type=hidden name=page value="<?=$post['StartPage']?>">
+<input type=submit class=submit name=add value="POST NEW SHOP">
+</form>
+<?}?>
+<form method=post>
+<input type=hidden name=action value="search">
+<table class=frame border=0 width=100% cellspacing=1 cellpadding=2>
+<tr><td class=capl colspan=3>SEARCH</td></tr>
+<tr><td width=1% nowrap>Keyword:</td><td nowrap><input type=text style="width:100%" name=keyword value=""></td><td width=1% align=center><input type=submit class=submit name=srchbtn value="SEARCH"></td></tr>
+</table>
+</form>
+<?}?>
+<?if($post['action']=='add'){?>
+<br><form method=post name=addshop>
+<input type=hidden name=action value="add">
+<input type=hidden name=cid value="<?=$post['cid']?>">
+<input type=hidden name=page value="<?=$post['StartPage']?>">
+<table border="0" cellspacing="1" cellpadding="2" width="480" class=frame>
+<tr>
+  <td class=capl colspan="2">POST NEW SHOP</td>
+</tr>
+<tr>
+  <td class=field nowrap>Shop name (required):</td>
+  <td class=field nowrap style="text-align:left"><input type="text" name="shopname" value="" style="width:250px" /></td>
+</tr>
+<tr>
+  <td class=field nowrap>URL (required):</td>
+  <td class=field nowrap style="text-align:left"><input type="text" name="shopurl" value="" style="width:250px" /></td>
+</tr>
+<tr>
+  <td class=field nowrap>Description:</td>
+  <td class=field nowrap style="text-align:left"><textarea rows="4" name="shopdescription" style="width:250px"></textarea></td>
+</tr>
+<tr><td align=center colspan=2 class=capl><input type=submit class=submit name=srchbtn value="SAVE NOW!">&nbsp;&nbsp;&nbsp;<input type=button class=submit name=bckbtn value="BACK" onclick="document.forms.addshop.elements.action.value='view';document.forms.addshop.submit();return false;"></td></tr>
+</table></form>
+<?}?>
+<?if($post['action']=='search'){?>
+<table class=frame width=100% border=0 cellspacing=1 cellpadding=2>
+<tr><td class=capl>CATEGORIES FOUND:</td></tr>
+<?foreach($data['CategoriesList'] as $key=>$value){ $bgcolor="#FFFFFF"; ?><tr onmouseover="setPointer(this,<?=$key?>,'over','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmouseout="setPointer(this,<?=$key?>,'out','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmousedown="setPointer(this,<?=$key?>,'click','<?=$bgcolor?>','#CCFFCC','#FFCC99')"><td><a href="shop.htm?cid=<?=$value['id']?>&action=view"><?=prntext($value['name'])?></a>&nbsp;(<?=($value['items']+$value['subcategories'])?>)<?if(!empty($value['description'])) {?>&nbsp;-&nbsp;<?=prntext($value['description'])?><?}?></td></tr><?}?></table>
+<table class=frame width=100% border=0 cellspacing=1 cellpadding=2>
+<tr><td class=capl>SHOPS FOUND:</td></tr>
+<?foreach($data['ItemsList'] as $key=>$value){$bgcolor='#FFFFFF'; ?><tr bgcolor=<?=$bgcolor?> onmouseover="setPointer(this,<?=$key?>,'over','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmouseout="setPointer(this,<?=$key?>,'out','<?=$bgcolor?>','#CCFFCC','#FFCC99')" onmousedown="setPointer(this,<?=$key?>,'click','<?=$bgcolor?>','#CCFFCC','#FFCC99')"><td><a href='<?=$value['url']?>' target='_blank'><?=prntext($value['name'])?></a><?if(!empty($value['description'])) {?>&nbsp;-&nbsp;<?=prntext($value['description'])?><?}?></td></tr><?}?></table>
+<br>
+<form method=post>
+<input type=hidden name=action value="search">
+<table class=frame border=0 width=100% cellspacing=1 cellpadding=2>
+<tr><td class=capl colspan=3>SEARCH</td></tr>
+<tr><td width=1% nowrap>Keyword:</td><td nowrap><input type=text style="width:100%" name=keyword value=""></td><td width=1% align=center><input type=submit class=submit name=srchbtn value="SEARCH"></td></tr>
+</table>
+</form>
+<?}?>
+</center>

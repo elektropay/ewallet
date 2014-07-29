@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+  <html lang="en">
+	<head>
+	<meta charset="utf-8">
+	<title>Bootstrap, from Twitter</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Le styles -->
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="css/styler.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+	<!-- Redactor css -->
+	<link rel="stylesheet" href="js/lib/redactor/redactor.css" />
+
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Fav and touch icons -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
+  <body cz-shortcut-listen="true">
+
+	<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</a>
+	  
+		<div id="branding" class="span2">
+			<a href="#">
+				<!-- <i class="icon-tasks"></i>
+				<h1>BoardSkin</h1> -->
+				<img src="img/logo.png">
+			</a>
+		</div>
+		<div class="pull-right user">
+			<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+				<img src="img/styler/user-thumb.jpg"> 
+				<p><span>Izuddin Helmi</span></p> 
+				<b class="caret"></b>
+
+				<ul class="dropdown-menu" role="menu">
+	                <li><a tabindex="-1" href="#">View Profile</a></li>
+	                <li><a tabindex="-1" href="#">Manage Account</a></li>
+	                <li><a tabindex="-1" href="#">Inbox</a></li>
+	                <li><a tabindex="-1" href="#">Logout</a></li>
+	                <li class="divider"></li>
+	                <li><a tabindex="-1" href="#">Invite a Friend</a></li>
+	                <li><a tabindex="-1" href="#">Create a Team</a></li>
+	            </ul>
+			</a>
+		</div>
+		<form class="searchform pull-right">
+            <div class="input-icon-append">
+            	<input class="input-large" maxlength="23" placeholder="Search" type="text">
+                <button type="submit" rel="tooltip-bottom" class="icon" data-original-title="search">
+                	<i class="icon-search"></i>
+                </button>
+            </div>
+        </form>
+		
+  </div>
+</div>
+	<div class="content clearfix">
+	  	<div class="section menu">
+	<ul class="navigation nav-collapse">
+		<li >
+		  <a href="index.html">
+			<i class="icon-dashboard"></i>
+			<span>Dashboard</span>
+		  </a>
+		</li>
+		<li  class="current" >
+		  <a href="forms.html">
+			<i class="icon-edit"></i>
+			<span>Forms</span>
+		  </a>
+		</li>
+		<li >
+		  <a href="calendar.html">
+			<i class="icon-calendar"></i>
+			<span>Calendar</span>
+		  </a>
+		</li>
+		<li >
+		  <a href="icons.html">
+			<i class="icon-heart"></i>
+			<span>Icons</span>
+		  </a>
+		</li>
+		<li >
+		  <a href="tables.html">
+			<i class="icon-table"></i>
+			<span>Tables</span>
+		  </a>
+		</li>
+		<li >
+			<a href="charts.html">
+				<i class="icon-bar-chart"></i>
+				<span>Charts</span>
+			</a>
+		</li>
+		<li >
+			<a href="typography.html">
+				<i class="icon-font"></i>
+				<span>Typography</span>
+			</a>
+		</li>
+	</ul>
+</div>		<div class="section main">
+			<div class="section-header">
+				<h1>Forms</h1>
+			</div>
+			<div class="section-content">
+				<div class="header aligncenter">
+					<h2>Forms</h2>
+					<p>Tonx mlkshk placeat, forage actually twee cillum banjo duis consequat elit wes anderson ex. Swag nisi pop-up before they sold out selfies, 8-bit letterpress cillum bespoke authentic butcher retro.</p>
+				</div>
+				<div class="container-fluid">
+					<div class="row-fluid">
+						<div class="span12">
+					<form class="form-skin shadow">
+						<fieldset>
+							<legend>Legend</legend>
+							<label>Label name</label>
+						    <input type="text" placeholder="Type something…">
+						    <span class="help-block">Example block-level help text here.</span>
+						    <label>Textarea</label>
+						    <textarea rows="3"></textarea>
+						    <label class="checkbox">
+						      	<input type="checkbox"> Check me out
+						    </label>
+							 
+							<label class="radio">
+							  	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+							  	Option one is this and that—be sure to include why it's great
+							</label>
+							<label class="radio">
+							  	<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+							  	Option two can be something else and selecting it will deselect option one
+							</label>
+							<div>
+								<label class="checkbox inline">
+								  <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+								</label>
+								<label class="checkbox inline">
+								  <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+								</label>
+								<label class="checkbox inline">
+								  <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+								</label>
+							</div>
+						    <button type="submit" class="btn btn-flat btn-blue no-radius">Submit</button>
+						</fieldset>
+					</form>
+					<form class="form-search form-skin shadow">
+						<legend>Search Form</legend>
+						<input type="text" class="input-medium search-query">
+						<button type="submit" class="btn btn-flat btn-blue no-radius">Search</button>
+					</form>
+					<form class="form-inline form-skin shadow">
+						<legend>Inline Form</legend>
+						<input type="text" class="input-small" placeholder="Email">
+						<input type="password" class="input-small" placeholder="Password">
+						<label class="checkbox">
+						    <input type="checkbox"> Remember me
+						</label>
+						<button type="submit" class="btn btn-flat btn-blue no-radius">Sign in</button>
+					</form>
+					<form class="form-horizontal form-skin">
+						<legend>Horizontal Form</legend>
+						<div class="control-group">
+						    <label class="control-label" for="inputEmail">Email</label>
+						    <div class="controls">
+						      <input type="text" id="inputEmail" placeholder="Email">
+						    </div>
+						</div>
+						<div class="control-group">
+						    <label class="control-label" for="inputPassword">Password</label>
+						    <div class="controls">
+						      <input type="password" id="inputPassword" placeholder="Password">
+						    </div>
+						  </div>
+						<div class="control-group">
+						    <div class="controls">
+						      <label class="checkbox">
+						        <input type="checkbox"> Remember me
+						      </label>
+						      <button type="submit" class="btn btn-flat btn-blue no-radius">Sign in</button>
+						    </div>
+						</div>
+					</form>
+					<form class="form-skin">
+						<legend>Select</legend>
+						<select>
+						  <option>1</option>
+						  <option>2</option>
+						  <option>3</option>
+						  <option>4</option>
+						  <option>5</option>
+						</select>
+						<br>
+						<select multiple="multiple">
+						  <option>1</option>
+						  <option>2</option>
+						  <option>3</option>
+						  <option>4</option>
+						  <option>5</option>
+						</select>
+					</form>
+					<form class="form-skin">
+						<legend>Prepended and appended inputs</legend>
+						<label>Input Prepend</label>
+						<div class="input-prepend">
+						  <span class="add-on">@</span>
+						  <input id="prependedInput" type="text" placeholder="Username">
+						</div>
+						<br>
+						<label>Input Append</label>
+						<div class="input-append">
+						  <input id="appendedInput" type="text">
+						  <span class="add-on">.00</span>
+						</div>
+						<br>
+						<label>Input Prepend and Append</label>
+						<div class="input-prepend input-append">
+						  <span class="add-on">$</span>
+						  <input id="appendedPrependedInput" type="text">
+						  <span class="add-on">.00</span>
+						</div>
+						<br>
+						<label>Button instead of text</label>
+						<div class="input-append">
+						  <input id="appendedInputButton" type="text">
+						  <button class="btn" type="button">Go!</button>
+						</div>
+						<br>
+						<div class="input-append">
+						  <input id="appendedInputButtons" type="text">
+						  <button class="btn" type="button">Search</button>
+						  <button class="btn" type="button">Options</button>
+						</div>
+						<br>
+						<div class="input-append">
+			              <input id="appendedDropdownButton" type="text">
+			              <div class="btn-group">
+			                <button class="btn dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+			                <ul class="dropdown-menu">
+			                  <li><a href="#">Action</a></li>
+			                  <li><a href="#">Another action</a></li>
+			                  <li><a href="#">Something else here</a></li>
+			                  <li class="divider"></li>
+			                  <li><a href="#">Separated link</a></li>
+			                </ul>
+			              </div><!-- /btn-group -->
+			            </div>
+			            <br>
+			            <div class="input-prepend">
+			              <div class="btn-group">
+			                <button class="btn dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+			                <ul class="dropdown-menu">
+			                  <li><a href="#">Action</a></li>
+			                  <li><a href="#">Another action</a></li>
+			                  <li><a href="#">Something else here</a></li>
+			                  <li class="divider"></li>
+			                  <li><a href="#">Separated link</a></li>
+			                </ul>
+			              </div><!-- /btn-group -->
+			              <input id="prependedDropdownButton" type="text">
+			            </div>
+			            <br>
+			            <div class="input-prepend input-append">
+			              <div class="btn-group">
+			                <button class="btn dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+			                <ul class="dropdown-menu">
+			                  <li><a href="#">Action</a></li>
+			                  <li><a href="#">Another action</a></li>
+			                  <li><a href="#">Something else here</a></li>
+			                  <li class="divider"></li>
+			                  <li><a href="#">Separated link</a></li>
+			                </ul>
+			              </div><!-- /btn-group -->
+			              <input id="appendedPrependedDropdownButton" type="text">
+			              <div class="btn-group">
+			                <button class="btn dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+			                <ul class="dropdown-menu">
+			                  <li><a href="#">Action</a></li>
+			                  <li><a href="#">Another action</a></li>
+			                  <li><a href="#">Something else here</a></li>
+			                  <li class="divider"></li>
+			                  <li><a href="#">Separated link</a></li>
+			                </ul>
+			              </div><!-- /btn-group -->
+			            </div>
+			            <br>
+			            <label>Segmented dropdown groups</label>
+			            <div class="input-prepend">
+			              <div class="btn-group">
+			                <button class="btn" tabindex="-1">Action</button>
+			                <button class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+			                  <span class="caret"></span>
+			                </button>
+			                <ul class="dropdown-menu">
+			                  <li><a href="#">Action</a></li>
+			                  <li><a href="#">Another action</a></li>
+			                  <li><a href="#">Something else here</a></li>
+			                  <li class="divider"></li>
+			                  <li><a href="#">Separated link</a></li>
+			                </ul>
+			              </div>
+			              <input type="text">
+			            </div>
+			            <br>			            
+					</form>
+					<form class="form-skin shadow">
+						<legend>Input sizing</legend>
+						<input class="input-block-level" type="text" placeholder=".input-block-level">
+			            <br>
+			            <input class="input-mini" type="text" placeholder=".input-mini">
+			            <br>
+						<input class="input-small" type="text" placeholder=".input-small">
+						<br>
+						<input class="input-medium" type="text" placeholder=".input-medium">
+						<br>
+						<input class="input-large" type="text" placeholder=".input-large">
+						<br>
+						<input class="input-xlarge" type="text" placeholder=".input-xlarge">
+						<br>
+						<input class="input-xxlarge" type="text" placeholder=".input-xxlarge">
+						<br>
+					</form>
+
+					<form>
+					<legend>Custom editor</legend>
+					<div class="section-content">
+						<textarea id="redactor" name="content">
+							<h2>Hello and Welcome</h2>
+							<p>Lorem ipsum <a href="http://test.com" title="dolor">dolor</a> sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing <b>elit, sed do eiusmod tempor incididunt</b> ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						</textarea>
+					</div>
+					</form>
+
+					</div>
+					</div>
+				</div>
+			</div>
+
+			
+		</div>
+		<div class="section sidebar">
+	<div class="widget">
+		<header class="widget-header">
+			<h3 class="light">online users</h3>
+		</header>
+		<article class="widget-content">
+			<ul class="unstyled user-list clearfix">
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+				<li><img src="img/styler/user-small.png"></li>
+			</ul>
+		</article>
+	</div>
+	<div class="widget bg-color blue">
+		<header class="widget-header">
+			<h3>events</h3>
+		</header>
+		<article class="widget-content">
+			Ad artisan accusamus mixtape aliquip, bushwick try-hard deep v scenester biodiesel jean shorts keffiyeh. Bespoke qui master cleanse anim tousled minim. Art party occupy post-ironic messenger bag ut, quinoa mlkshk twee anim banksy lo-fi tonx voluptate.
+		</article>
+	</div>
+	<div class="widget bg-color dark-grey">
+		<header class="widget-header">
+			<h3>projects</h3>
+		</header>
+		<article class="widget-content">
+			<ul class="unstyled list">
+				<li>
+					<i class="icon-folder-close"></i> 
+					<span class="font-bold">Metroboard</span>
+					<span class="pull-right label label-success">completed</span>
+				</li>
+				<li>
+					<i class="icon-folder-close"></i> 
+					<span class="font-bold">Boardskin</span>
+					<span class="pull-right label label-important">7 tasks</span>
+				</li>
+				<li>
+					<i class="icon-folder-close"></i> 
+					<span class="font-bold">Landingskin</span>
+					<span class="pull-right label label-important">1 task</span>
+				</li>
+				<li>
+					<i class="icon-folder-close"></i> 
+					<span class="font-bold">Plain</span>
+					<span class="pull-right label label-important">3 tasks</span>
+				</li>
+				<li>
+					<i class="icon-folder-close"></i> 
+					<span class="font-bold">Website</span>
+					<span class="pull-right label label-warning">Pending</span>
+				</li>
+				<li>
+					<i class="icon-folder-close"></i> 
+					<span class="font-bold">Snippets</span>
+					<span class="pull-right label label-warning">4 tasks</span>
+				</li>
+				<li>
+					<i class="icon-folder-close"></i> 
+					<span class="font-bold">Styler</span>
+					<span class="pull-right label label-default">unknown</span>
+				</li>
+			</ul>
+		</article>
+	</div>
+</div>
+	</div>
+
+	<!-- Le javascript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src='js/calendar/_loader.js'></script>
+
+	<!-- Redactor Editor -->
+	<script src="js/lib/redactor/redactor.min.js"></script>
+
+	<!-- JS:charts-->
+	<script src="js/charts/jquery.flot.js"></script>
+	<script src="js/charts/jquery.flot.resize.js"></script>
+	<script src="js/charts/jquery.flot.stack.js"></script>
+	<script src="js/charts/jquery.flot.pie.min.js"></script>
+	<script src="js/charts/jquery.sparkline.min.js"></script>
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="excanvas.min.js"></script><![endif]-->
+
+	<script src="js/jquery.dataTables.min.js"></script>
+	
+	<script type='text/javascript'>
+		$(document).ready(function() {
+		
+			var date = new Date();
+			var d = date.getDate();
+			var m = date.getMonth();
+			var y = date.getFullYear();
+			$('.calendar-default').fullCalendar({
+				editable: true,
+				events: [
+					{
+						title: 'All Day Event',
+						start: new Date(y, m, 1)
+					},
+					{
+						title: 'Long Event',
+						start: new Date(y, m, d-5),
+						end: new Date(y, m, d-2)
+					},
+					{
+						id: 999,
+						title: 'Repeating Event',
+						start: new Date(y, m, d-3, 16, 0),
+						allDay: false
+					},
+					{
+						id: 999,
+						title: 'Repeating Event',
+						start: new Date(y, m, d+4, 16, 0),
+						allDay: false
+					},
+					{
+						title: 'Meeting',
+						start: new Date(y, m, d, 10, 30),
+						allDay: false
+					},
+					{
+						title: 'Lunch',
+						start: new Date(y, m, d, 12, 0),
+						end: new Date(y, m, d, 14, 0),
+						allDay: false
+					},
+					{
+						title: 'Birthday Party',
+						start: new Date(y, m, d+1, 19, 0),
+						end: new Date(y, m, d+1, 22, 30),
+						allDay: false
+					},
+					{
+						title: 'Click for Google',
+						start: new Date(y, m, 28),
+						end: new Date(y, m, 29),
+						url: 'http://google.com/'
+					}
+				]
+			});
+			$('.calendar-agenda').fullCalendar({
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+				editable: true,
+				events: [
+					{
+						title: 'All Day Event',
+						start: new Date(y, m, 1)
+					},
+					{
+						title: 'Long Event',
+						start: new Date(y, m, d-5),
+						end: new Date(y, m, d-2)
+					},
+					{
+						id: 999,
+						title: 'Repeating Event',
+						start: new Date(y, m, d-3, 16, 0),
+						allDay: false
+					},
+					{
+						id: 999,
+						title: 'Repeating Event',
+						start: new Date(y, m, d+4, 16, 0),
+						allDay: false
+					},
+					{
+						title: 'Meeting',
+						start: new Date(y, m, d, 10, 30),
+						allDay: false
+					},
+					{
+						title: 'Lunch',
+						start: new Date(y, m, d, 12, 0),
+						end: new Date(y, m, d, 14, 0),
+						allDay: false
+					},
+					{
+						title: 'Birthday Party',
+						start: new Date(y, m, d+1, 19, 0),
+						end: new Date(y, m, d+1, 22, 30),
+						allDay: false
+					},
+					{
+						title: 'Click for Google',
+						start: new Date(y, m, 28),
+						end: new Date(y, m, 29),
+						url: 'http://google.com/'
+					}
+				]
+			});
+
+
+			// Activate redactor editor
+			$('#redactor').redactor({
+				focus: true
+			});
+			
+		});
+	</script>
+	<script src="js/bootstrap.js"></script>
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="excanvas.min.js"></script><![endif]-->
+	<script src="js/custom.js"></script>
+	
+
+  </body>
+</html>

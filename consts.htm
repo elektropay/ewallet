@@ -1,0 +1,1332 @@
+<?
+###############################################################################
+
+# PROGRAM     : EPAY ENTERPRISE                                               #
+
+# VERSION     : 4.13                                                          #
+
+# AUTHOR      : DMITRY PEREUDA                                                #
+
+
+
+# COMPANY     : ALSTRASOFT	                                              #
+
+# COPYRIGHTS  : (C)2009 ALSTRASOFT. ALL RIGHTS RESERVED                       #
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+# LICENSE KEY : C3FA-76A1-83A4-C2B4-AE1F-1D5A-14ED-1DCA                       #
+
+###############################################################################
+
+#    THIS FILE IS PART OF EPAY SCRIPT - THE NEW UNIVERSAL PAYMENT GATEWAY     #
+
+#               	     DEVELOPED BY ALSTRASOFT                          #
+
+###############################################################################
+
+#    ALL SOURCE CODE, IMAGES, PROGRAMS, FILES INCLUDED IN THIS DISTRIBUTION   #
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+###############################################################################
+
+#       ANY REDISTRIBUTION WITHOUT PERMISSION OF ALSTRASOFT AND IS            #
+
+#                            STRICTLY FORBIDDEN                               #
+
+###############################################################################
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+###############################################################################
+
+
+
+
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+
+
+
+
+
+
+
+
+
+
+###############################################################################
+
+$data['Hostname']=$db_hostname;
+
+$data['Username']=$db_username;
+
+$data['Password']=$db_password;
+
+$data['Database']=$db_database;
+
+$data['DbPrefix']=$db_tbprefix;
+
+###############################################################################
+
+$data['Folder']=$folder;
+
+###############################################################################
+
+$data['SiteName']=stripslashes($site_name);
+
+$data['SiteTitle']=stripslashes($site_title);
+
+$data['SiteCharset']=stripslashes($site_charset);
+
+$data['SiteCopyrights']=stripslashes($site_copyrights);
+
+$data['SiteKeywords']=stripslashes($site_keywords);
+
+$data['SiteDescription']=stripslashes($site_description);
+
+$data['AdminEmail']=$admin_email;
+
+$data['AdminUsername']=$admin_username;
+
+$data['AdminPassword']=$admin_password;
+
+$data['AdminCheckIp']=$admin_check_ip;
+
+$data['AdminIpAddress']=$admin_ip_address;
+
+$data['ProtectHtml']=$protect_html;
+
+###############################################################################
+
+###           PLEASE DO NOT CHANGE INFORMATION BELOW THIS COMMENT           ###
+
+###############################################################################
+
+$data['MaxRowsByPage']=20;
+
+
+
+$data['UseTuringNumber']=$use_turing;
+
+$data['TuringNumbers']=$use_numbers;
+
+$data['TuringSize']=$turing_size;
+
+$data['TuringQuality']=$turing_quality;
+
+$data['TuringBackground']=$turing_bgfile;
+
+$data['UseExtRegForm']=$use_extreg;
+
+
+$data['DefaultLanguage']=$default_language;
+
+$data['PassLen']=$passlen;
+
+$data['PassAtt']=$passatt;
+
+$data['Currency']=$currency;
+
+$data['CurrSize']=$currsize;
+
+$data['DateFormat']=$dateformat;
+
+
+
+$data['SignupPays']=$signup_use;
+
+$data['SignupBonus']=$signup_bonus;
+
+
+
+$data['ReferralPays']=$affiliate_program;
+
+$data['ReferralLevels']=$affiliate_levels;
+
+$data['ReferralPercent']=$affiliate_percent;
+
+
+
+$data['PaymentFees']=$transfer_fee;
+
+$data['PaymentPercent']=$transfer_percent;
+
+$data['PaymentMinSum']=$minimal_transfer;
+
+$data['PaymentMaxSum']=$maximal_transfer;
+
+$data['maxtranserfee']=$maxtranser_fee;
+
+$data['RefundPeriod']=$refund_period;
+
+
+
+$data['PostMailAddress']=$mail_address;
+
+$data['maxemails']=$maxemails;
+
+###############################################################################
+
+$data['DepositMinSum']=$dep_minimal;
+
+$data['DepositMaxSum']=$dep_maximal;
+
+$data['DepositMethod']=array(
+    
+     
+	
+    'creditcard'=>array(
+
+		'actv'=>$dep_creditcard_use,
+
+		'name'=>'CreditCard',
+
+		'fees'=>$dep_creditcard_fee,
+
+		'prcn'=>$dep_creditcard_percent,
+
+		'pswd'=>$dep_creditcard_password
+
+	),
+    'currencycloud'=>array(
+
+		'actv'=>$dep_curencycloud_use,
+
+		'name'=>'Currency Cloud',
+
+		'fees'=>$dep_curencycloud_fee,
+
+		'prcn'=>$dep_curencycloud_percent,
+        
+        'cc_login_id'=>$dep_curencycloud_login_id,
+        
+        'cc_api_key'=>$dep_curencycloud_api_key
+
+	),
+   
+    'paypal'=>array(
+
+		'actv'=>$dep_pp_use,
+
+		'name'=>'PayPal',
+
+		'fees'=>$dep_pp_fee,
+
+		'prcn'=>$dep_pp_percent,
+
+		'user'=>$dep_pp_username,
+
+		'pswd'=>$dep_pp_password
+
+	),
+   
+
+	'stormpay'=>array(
+
+		'actv'=>$dep_sp_use,
+
+		'name'=>'StormPay',
+
+		'fees'=>$dep_sp_fee,
+
+		'prcn'=>$dep_sp_percent,
+
+		'user'=>$dep_sp_username,
+
+		'pswd'=>$dep_sp_password
+
+	),
+
+	'netpay'=>array(
+
+		'actv'=>$dep_np_use,
+
+		'name'=>'NetPay',
+
+		'fees'=>$dep_np_fee,
+
+		'prcn'=>$dep_np_percent,
+
+		'user'=>$dep_np_username,
+
+		'pswd'=>$dep_np_password
+
+	),
+
+	'egold'=>array(
+
+		'actv'=>$dep_eg_use,
+
+		'name'=>'E-Gold',
+
+		'fees'=>$dep_eg_fee,
+
+		'prcn'=>$dep_eg_percent,
+
+		'user'=>$dep_eg_username,
+
+		'pswd'=>$dep_eg_password
+
+	),
+
+	'moneybookers'=>array(
+
+		'actv'=>$dep_mb_use,
+
+		'name'=>'MoneyBookers',
+
+		'fees'=>$dep_mb_fee,
+
+		'prcn'=>$dep_mb_percent,
+
+		'user'=>$dep_mb_username,
+
+		'pswd'=>$dep_mb_password
+
+	),
+
+	'intgold'=>array(
+
+		'actv'=>$dep_ig_use,
+
+		'name'=>'IntGold',
+
+		'fees'=>$dep_ig_fee,
+
+		'prcn'=>$dep_ig_percent,
+
+		'user'=>$dep_ig_username,
+
+		'pswd'=>$dep_ig_password
+
+	),
+
+	'ebullion'=>array(
+
+		'actv'=>$dep_eb_use,
+
+		'name'=>'e-Bullion',
+
+		'fees'=>$dep_eb_fee,
+
+		'prcn'=>$dep_eb_percent,
+
+		'user'=>$dep_eb_username,
+
+		'pswd'=>$dep_eb_password
+
+	),
+
+	'pecunix'=>array(
+
+		'actv'=>$dep_px_use,
+
+		'name'=>'Pecunix',
+
+		'fees'=>$dep_px_fee,
+
+		'prcn'=>$dep_px_percent,
+
+		'user'=>$dep_px_username,
+
+		'pswd'=>$dep_px_password
+
+	),
+
+	'epaydirect'=>array(
+
+		'actv'=>$dep_pd_use,
+
+		'name'=>'ePayDirect',
+
+		'fees'=>$dep_pd_fee,
+
+		'prcn'=>$dep_pd_percent,
+
+		'user'=>$dep_pd_username,
+
+		'pswd'=>$dep_pd_password
+
+	),
+
+	'evocash'=>array(
+
+		'actv'=>$dep_ev_use,
+
+		'name'=>'EvoCash',
+
+		'fees'=>$dep_ev_fee,
+
+		'prcn'=>$dep_ev_percent,
+
+		'user'=>$dep_ev_username,
+
+		'pswd'=>$dep_ev_password
+
+	),
+
+	'qchex'=>array(
+
+		'actv'=>$dep_qc_use,
+
+		'name'=>'Qchex',
+
+		'fees'=>$dep_qc_fee,
+
+		'prcn'=>$dep_qc_percent,
+
+		'user'=>$dep_qc_username,
+
+		'pswd'=>$dep_qc_password
+
+	),
+
+	'goldmoney'=>array(
+
+		'actv'=>$dep_gm_use,
+
+		'name'=>'GoldMoney',
+
+		'fees'=>$dep_gm_fee,
+
+		'prcn'=>$dep_gm_percent,
+
+		'user'=>$dep_gm_username,
+
+		'pswd'=>$dep_gm_password
+
+	),
+
+	'virtualgold'=>array(
+
+		'actv'=>$dep_vg_use,
+
+		'name'=>'VirtualGold',
+
+		'fees'=>$dep_vg_fee,
+
+		'prcn'=>$dep_vg_percent,
+
+		'user'=>$dep_vg_username,
+
+		'pswd'=>$dep_vg_password
+
+	),
+
+	'payemo'=>array(
+
+		'actv'=>$dep_pe_use,
+
+		'name'=>'EMOCorp',
+
+		'fees'=>$dep_pe_fee,
+
+		'prcn'=>$dep_pe_percent,
+
+		'user'=>$dep_pe_username,
+
+		'pswd'=>$dep_pe_password
+
+	),
+
+	'autorize'=>array(
+
+		'actv'=>$dep_an_use,
+
+		'name'=>'Authorize.Net Credit Card',
+
+		'fees'=>$dep_an_fee,
+
+		'prcn'=>$dep_an_percent,
+
+		'user'=>$dep_an_username,
+
+		'pswd'=>$dep_an_password
+
+	),
+
+	'checkout'=>array(
+
+		'actv'=>$dep_cc_use,
+
+		'name'=>'2Checkout Credit Card',
+
+		'fees'=>$dep_cc_fee,
+
+		'prcn'=>$dep_cc_percent,
+
+		'user'=>$dep_cc_username,
+
+		'pswd'=>$dep_cc_password
+
+	),
+
+	'echeck'=>array(
+
+		'actv'=>$dep_ec_use,
+
+		'name'=>'eCheck (through Paymitco)',
+
+		'fees'=>$dep_ec_fee,
+
+		'prcn'=>$dep_ec_percent,
+
+		'user'=>$dep_ec_username,
+
+		'pswd'=>$dep_ec_password
+
+	),
+
+	'mail'=>array(
+
+		'actv'=>$dep_mc_use,
+
+		'name'=>'Regular Mail',
+
+		'fees'=>$dep_mc_fee,
+
+		'prcn'=>$dep_mc_percent,
+
+		'user'=>$dep_mc_username,
+
+		'pswd'=>$dep_mc_password
+
+	)
+
+);
+
+###############################################################################
+
+$data['WithdrawMinSum']=$wdr_minimal;
+
+$data['WithdrawMaxSum']=$wdr_maximal;
+
+$data['WithdrawMethod']=array(
+
+	'paypal'=>array(
+
+		'actv'=>$wdr_pp_use,
+
+		'name'=>'PayPal',
+
+		'fees'=>$wdr_pp_fee
+
+	),
+
+	'stormpay'=>array(
+
+		'actv'=>$wdr_sp_use,
+
+		'name'=>'StormPay',
+
+		'fees'=>$wdr_sp_fee
+
+	),
+
+	'netpay'=>array(
+
+		'actv'=>$wdr_np_use,
+
+		'name'=>'NetPay',
+
+		'fees'=>$wdr_np_fee
+
+	),
+
+	'egold'=>array(
+
+		'actv'=>$wdr_eg_use,
+
+		'name'=>'E-Gold',
+
+		'fees'=>$wdr_eg_fee
+
+	),
+
+	'moneybookers'=>array(
+
+		'actv'=>$wdr_mb_use,
+
+		'name'=>'MoneyBookers',
+
+		'fees'=>$wdr_mb_fee
+
+	),
+
+	'intgold'=>array(
+
+		'actv'=>$wdr_ig_use,
+
+		'name'=>'IntGold',
+
+		'fees'=>$wdr_ig_fee
+
+	),
+
+	'ebullion'=>array(
+
+		'actv'=>$wdr_eb_use,
+
+		'name'=>'e-Bullion',
+
+		'fees'=>$wdr_eb_fee
+
+	),
+
+	'pecunix'=>array(
+
+		'actv'=>$wdr_px_use,
+
+		'name'=>'Pecunix',
+
+		'fees'=>$wdr_px_fee
+
+	),
+
+	'epaydirect'=>array(
+
+		'actv'=>$wdr_pd_use,
+
+		'name'=>'ePayDirect',
+
+		'fees'=>$wdr_pd_fee
+
+	),
+
+	'evocash'=>array(
+
+		'actv'=>$wdr_ev_use,
+
+		'name'=>'EvoCash',
+
+		'fees'=>$wdr_ev_fee
+
+	),
+
+	'goldmoney'=>array(
+
+		'actv'=>$wdr_gm_use,
+
+		'name'=>'GoldMoney',
+
+		'fees'=>$wdr_gm_fee
+
+	),
+
+	'virtualgold'=>array(
+
+		'actv'=>$wdr_vg_use,
+
+		'name'=>'VirtualGold',
+
+		'fees'=>$wdr_vg_fee
+
+	),
+
+	'payemo'=>array(
+
+		'actv'=>$wdr_pe_use,
+
+		'name'=>'PayEMO',
+
+		'fees'=>$wdr_pe_fee
+
+	),
+
+	'bwire'=>array(
+
+		'actv'=>$wdr_bw_use,
+
+		'name'=>'Wire Transfer',
+
+		'fees'=>$wdr_bw_fee
+
+	),
+
+	'check'=>array(
+
+		'actv'=>$wdr_mc_use,
+
+		'name'=>'Regular Mail',
+
+		'fees'=>$wdr_mc_fee
+
+	),
+
+	'western'=>array(
+
+		'actv'=>$wdr_wu_use,
+
+		'name'=>'Western Union',
+
+		'fees'=>$wdr_wu_fee,
+
+		'cmnt'=>'Variable Western Union Fees'
+
+	),
+
+	'moneygram'=>array(
+
+		'actv'=>$wdr_mg_use,
+
+		'name'=>'MoneyGram',
+
+		'fees'=>$wdr_mg_fee,
+
+		'cmnt'=>'Variable MoneyGram Fees'
+
+	),
+    'currencyCloud'=>array(
+
+		'actv'=>$wdr_CC_use,
+
+		'name'=>'Currency Cloud',
+
+		'fees'=>$wdr_CC_fee,
+
+		'cmnt'=>'Variable Currency Cloud Fees'
+
+	)
+
+);
+
+###############################################################################
+
+$data['MemberStatus']=array(
+
+	0=>array(
+
+		'action'=>'verify',
+
+		'status'=>'UNVERIFIED',
+
+		'button'=>'VERIFY NOW'
+
+	),
+
+	1=>array(
+
+		'action'=>'certify',
+
+		'status'=>'VERIFIED',
+
+		'button'=>'CERTIFY NOW'
+
+	),
+
+	2=>array(
+
+		'action'=>'',
+
+		'status'=>'CERTIFIED',
+
+		'button'=>''
+
+	)
+
+);
+
+$data['TransactionType']=array(
+
+	0=>'Payment',
+
+	1=>'Deposit',
+
+	2=>'Withdraw',
+
+	3=>'Escrow',
+
+	4=>'Signup',
+
+	5=>'Commission',
+
+	6=>'Refund'
+
+);
+
+$data['TransactionStatus']=array(
+
+	0=>'Pending',
+
+	1=>'Completed',
+
+	2=>'Cancelled',
+
+	3=>'Refunded'
+
+);
+
+$data['PaymentType']=array(
+
+	0=>'product',
+
+	1=>'subscription',
+
+	2=>'donation',
+
+	3=>'payment'
+
+);
+
+$data['FormParams']=array(
+
+	 0=>'owner',
+
+	 1=>'action',
+
+	 2=>'product',
+
+	 3=>'price',
+
+	 4=>'quantity',
+
+	 5=>'period',
+
+	 6=>'trial',
+
+	 7=>'setup',
+
+	 8=>'tax',
+
+	 9=>'shipping',
+
+	10=>'ureturn',
+
+	11=>'unotify',
+
+	12=>'ucancel',
+
+	13=>'comments'
+
+);
+
+###############################################################################
+
+$data['Countries']=array(
+
+	'0' =>'--',
+
+	'AF'=>'Afghanistan',
+
+	'AL'=>'Albania',
+
+	'DZ'=>'Algeria',
+
+	'AS'=>'American Samoa',
+
+	'AD'=>'Andorra',
+
+	'AO'=>'Angola',
+
+	'AI'=>'Anguilla',
+
+	'AQ'=>'Antarctica',
+
+	'AG'=>'Antigua &amp; Barbuda',
+
+	'AR'=>'Argentina',
+
+	'AM'=>'Armenia',
+
+	'AW'=>'Aruba',
+
+	'AU'=>'Australia',
+
+	'AT'=>'Austria',
+
+	'AZ'=>'Azerbaijan',
+
+	'BS'=>'Bahamas',
+
+	'BH'=>'Bahrain',
+
+	'BD'=>'Bangladesh',
+
+	'BB'=>'Barbados',
+
+	'BY'=>'Belarus',
+
+	'BE'=>'Belgium',
+
+	'BZ'=>'Belize',
+
+	'BJ'=>'Benin',
+
+	'BM'=>'Bermuda',
+
+	'BT'=>'Bhutan',
+
+	'BO'=>'Bolivia',
+
+	'BA'=>'Bosnia &amp; Herzegovina',
+
+	'BW'=>'Botswana',
+
+	'BV'=>'Bouvet Island',
+
+	'BR'=>'Brazil',
+
+	'IO'=>'British Indian Ocean Territory',
+
+	'BN'=>'Brunei',
+
+	'BG'=>'Bulgaria',
+
+	'BF'=>'Burkina Faso',
+
+	'BI'=>'Burundi',
+
+	'KH'=>'Cambodia',
+
+	'CM'=>'Cameroon',
+
+	'CA'=>'Canada',
+
+	'CV'=>'Cape Verde',
+
+	'KY'=>'Cayman Islands',
+
+	'CF'=>'Central African Republic',
+
+	'TD'=>'Chad',
+
+	'CL'=>'Chile',
+
+	'CN'=>'China',
+
+	'CX'=>'Christmas Island',
+
+	'CC'=>'Cocos (Keeling) Islands',
+
+	'CO'=>'Colombia',
+
+	'KM'=>'Comoros',
+
+	'CG'=>'Congo',
+
+	'CK'=>'Cook Islands',
+
+	'CR'=>'Costa Rica',
+
+	'CI'=>'C�te d\'Ivoire',
+
+	'HR'=>'Croatia (Hrvatska)',
+
+	'CU'=>'Cuba',
+
+	'CY'=>'Cyprus',
+
+	'CZ'=>'Czech Republic',
+
+	'CD'=>'Congo (DRC)',
+
+	'DK'=>'Denmark',
+
+	'DJ'=>'Djibouti',
+
+	'DM'=>'Dominica',
+
+	'DO'=>'Dominican Republic',
+
+	'TP'=>'East Timor',
+
+	'EC'=>'Ecuador',
+
+	'EG'=>'Egypt',
+
+	'SV'=>'El Salvador',
+
+	'GQ'=>'Equatorial Guinea',
+
+	'ER'=>'Eritrea',
+
+	'EE'=>'Estonia',
+
+	'ET'=>'Ethiopia',
+
+	'FK'=>'Falkland Islands (Islas Malvinas)',
+
+	'FO'=>'Faroe Islands',
+
+	'FJ'=>'Fiji Islands',
+
+	'FI'=>'Finland',
+
+	'FR'=>'France',
+
+	'GF'=>'French Guiana',
+
+	'PF'=>'French Polynesia',
+
+	'TF'=>'French Southern &amp; Antarctic Lands',
+
+	'GA'=>'Gabon',
+
+	'GM'=>'Gambia',
+
+	'GE'=>'Georgia',
+
+	'DE'=>'Germany',
+
+	'GH'=>'Ghana',
+
+	'GI'=>'Gibraltar',
+
+	'GR'=>'Greece',
+
+	'GL'=>'Greenland',
+
+	'GD'=>'Grenada',
+
+	'GP'=>'Guadeloupe',
+
+	'GU'=>'Guam',
+
+	'GT'=>'Guatemala',
+
+	'GN'=>'Guinea',
+
+	'GW'=>'Guinea-Bissau',
+
+	'GY'=>'Guyana',
+
+	'HT'=>'Haiti',
+
+	'HM'=>'Heard Island &amp; McDonald Islands',
+
+	'HN'=>'Honduras',
+
+	'HK'=>'Hong Kong SAR',
+
+	'HU'=>'Hungary',
+
+	'IS'=>'Iceland',
+
+	'IN'=>'India',
+
+	'ID'=>'Indonesia',
+
+	'IR'=>'Iran',
+
+	'IQ'=>'Iraq',
+
+	'IE'=>'Ireland',
+
+	'IL'=>'Israel',
+
+	'IT'=>'Italy',
+
+	'JM'=>'Jamaica',
+
+	'JP'=>'Japan',
+
+	'JO'=>'Jordan',
+
+	'KZ'=>'Kazakhstan',
+
+	'KE'=>'Kenya',
+
+	'KI'=>'Kiribati',
+
+	'KR'=>'Korea',
+
+	'KW'=>'Kuwait',
+
+	'KG'=>'Kyrgyzstan',
+
+	'LA'=>'Laos',
+
+	'LV'=>'Latvia',
+
+	'LB'=>'Lebanon',
+
+	'LS'=>'Lesotho',
+
+	'LR'=>'Liberia',
+
+	'LY'=>'Libya',
+
+	'LI'=>'Liechtenstein',
+
+	'LT'=>'Lithuania',
+
+	'LU'=>'Luxembourg',
+
+	'MO'=>'Macao SAR',
+
+	'MK'=>'Macedonia, Former Yugoslav Republic',
+
+	'MG'=>'Madagascar',
+
+	'MW'=>'Malawi',
+
+	'MY'=>'Malaysia',
+
+	'MV'=>'Maldives',
+
+	'ML'=>'Mali',
+
+	'MT'=>'Malta',
+
+	'MH'=>'Marshall Islands',
+
+	'MQ'=>'Martinique',
+
+	'MR'=>'Mauritania',
+
+	'MU'=>'Mauritius',
+
+	'YT'=>'Mayotte',
+
+	'MX'=>'Mexico',
+
+	'FM'=>'Micronesia',
+
+	'MD'=>'Moldova',
+
+	'MC'=>'Monaco',
+
+	'MN'=>'Mongolia',
+
+	'MS'=>'Montserrat',
+
+	'MA'=>'Morocco',
+
+	'MZ'=>'Mozambique',
+
+	'MM'=>'Myanmar',
+
+	'NA'=>'Namibia',
+
+	'NR'=>'Nauru',
+
+	'NP'=>'Nepal',
+
+	'NL'=>'Netherlands',
+
+	'AN'=>'Netherlands Antilles',
+
+	'NC'=>'New Caledonia',
+
+	'NZ'=>'New Zealand',
+
+	'NI'=>'Nicaragua',
+
+	'NE'=>'Niger',
+
+	'NG'=>'Nigeria',
+
+	'NU'=>'Niue',
+
+	'NF'=>'Norfolk Island',
+
+	'KP'=>'North Korea',
+
+	'MP'=>'Northern Mariana Islands',
+
+	'NO'=>'Norway',
+
+	'OM'=>'Oman',
+
+	'PK'=>'Pakistan',
+
+	'PW'=>'Palau',
+
+	'PA'=>'Panama',
+
+	'PG'=>'Papua New Guinea',
+
+	'PY'=>'Paraguay',
+
+	'PE'=>'Peru',
+
+	'PH'=>'Philippines',
+
+	'PN'=>'Pitcairn Islands',
+
+	'PL'=>'Poland',
+
+	'PT'=>'Portugal',
+
+	'PR'=>'Puerto Rico',
+
+	'QA'=>'Qatar',
+
+	'RE'=>'Reunion',
+
+	'RO'=>'Romania',
+
+	'RU'=>'Russia',
+
+	'RW'=>'Rwanda',
+
+	'WS'=>'Samoa',
+
+	'SM'=>'San Marino',
+
+	'ST'=>'S�o Tom� &amp; Pr�ncipe',
+
+	'SA'=>'Saudi Arabia',
+
+	'SN'=>'Senegal',
+
+	'YU'=>'Serbia &amp; Montenegro',
+
+	'SC'=>'Seychelles',
+
+	'SL'=>'Sierra Leone',
+
+	'SG'=>'Singapore',
+
+	'SK'=>'Slovakia',
+
+	'SI'=>'Slovenia',
+
+	'SB'=>'Solomon Islands',
+
+	'SO'=>'Somalia',
+
+	'ZA'=>'South Africa',
+
+	'GS'=>'South Georgia &amp; South Sandwich Islands',
+
+	'ES'=>'Spain',
+
+	'LK'=>'Sri Lanka',
+
+	'SH'=>'St. Helena',
+
+	'KN'=>'St. Kitts &amp; Nevis',
+
+	'LC'=>'St. Lucia',
+
+	'PM'=>'St. Pierre &amp; Miquelon',
+
+	'VC'=>'St. Vincent &amp; the Grenadines',
+
+	'SD'=>'Sudan',
+
+	'SR'=>'Suriname',
+
+	'SJ'=>'Svalbard &amp; Jan Mayen',
+
+	'SZ'=>'Swaziland',
+
+	'SE'=>'Sweden',
+
+	'CH'=>'Switzerland',
+
+	'SY'=>'Syria',
+
+	'TW'=>'Taiwan',
+
+	'TJ'=>'Tajikistan',
+
+	'TZ'=>'Tanzania',
+
+	'TH'=>'Thailand',
+
+	'TG'=>'Togo',
+
+	'TK'=>'Tokelau',
+
+	'TO'=>'Tonga',
+
+	'TT'=>'Trinidad &amp; Tobago',
+
+	'TN'=>'Tunisia',
+
+	'TR'=>'Turkey',
+
+	'TM'=>'Turkmenistan',
+
+	'TC'=>'Turks &amp; Caicos Islands',
+
+	'TV'=>'Tuvalu',
+
+	'UG'=>'Uganda',
+
+	'UA'=>'Ukraine',
+
+	'AE'=>'United Arab Emirates',
+
+	'UK'=>'United Kingdom',
+
+	'US'=>'United States',
+
+	'UM'=>'United States Minor Outlying Islands',
+
+	'UY'=>'Uruguay',
+
+	'UZ'=>'Uzbekistan',
+
+	'VU'=>'Vanuatu',
+
+	'VA'=>'Vatican City',
+
+	'VE'=>'Venezuela',
+
+	'VN'=>'Viet Nam',
+
+	'VG'=>'Virgin Islands (British)',
+
+	'VI'=>'Virgin Islands',
+
+	'WF'=>'Wallis &amp; Futuna',
+
+	'YE'=>'Yemen',
+
+	'ZM'=>'Zambia',
+
+	'ZW'=>'Zimbabwe'
+
+);
+
+###############################################################################
+
+$data['CreditCardType']=array(
+
+	'0'        => '--',
+
+	'VISA'     => 'Visa',
+
+	'MC'       => 'MasterCard',
+
+	'AMEX'     => 'American Express',
+
+	'DISCOVER' => 'Discover'
+
+);
+
+###############################################################################
+
+$data['BankAccountType']=array(
+
+	'0' =>'--',
+
+	'PC'=>'Personal Checking',
+
+	'PS'=>'Personal Saving',
+
+	'BC'=>'Business Checking',
+
+	'BS'=>'Business Saving'
+
+);
+
+###############################################################################
+
+$data['Months']=array('--');
+
+for($i=1;$i<=12;$i++)$data['Months'][$i]=$i;
+
+$data['Years']=array('--');
+
+for($i=(int)date('Y');$i<=(int)date('Y')+10;$i++)$data['Years'][$i]=$i;
+
+###############################################################################
+
+?>

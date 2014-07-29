@@ -1,0 +1,37 @@
+<?if(isset($data['ScriptLoaded'])){?>
+<center><form method=post name=data><input type=hidden name=step value="<?=$post['step']?>">
+<?if($post['step']==1){?>
+<table class=frame width=100% border=0 cellspacing=1 cellpadding=2>
+<tr><td class=capl colspan=6>YOUR CREDIT CARDS</td></tr><tr><td class=capc>TYPE</td><td class=capc>NAME</td><td class=capc>NUMBER</td><td class=capc>CVV</td><td class=capc>EXPIRE DATE</td><td class=capc width=1%>ACTION</td></tr>
+<?$idx=0;foreach($data['Cards'] as $value){$bgcolor=$idx%2?'#EEEEEE':'#E7E7E7'?><tr bgcolor=<?=$bgcolor?> onmouseover="setPointer(this, <?=$idx?>, 'over', '<?=$bgcolor?>', '#CCFFCC', '#FFCC99')" onmouseout="setPointer(this, <?=$idx?>, 'out', '<?=$bgcolor?>', '#CCFFCC', '#FFCC99')" onmousedown="setPointer(this, <?=$idx?>, 'click', '<?=$bgcolor?>', '#CCFFCC', '#FFCC99')">
+
+<td align=center nowrap><?=prntext($data['CreditCardType'][$value['ctype']])?></td><td 
+nowrap><?=prntext($value['cname'])?></td><td align=center nowrap><?=prntext($value['cnumber'])?></td><td align=center 
+nowrap><?=prntext($value['ccvv'])?></td><td align=center 
+nowrap><?=prntext($value['cmonth'])?>/<?=prntext($value['cyear'])?></td>
+<td align=center nowrap><a href="card.htm?id=<?=$value['id']?>&action=update">EDIT</a>|<a href="card.htm?id=<?=$value['id']?>&action=delete" onclick="return cfmform()">DELETE</a></td></tr><?$idx++;}?>
+<tr><td class=capc colspan=6><input class=submit type=submit name=send value="ADD NEW CREDIT CARD!"></td></tr>
+</table>
+<?}elseif($post['step']==2){?>
+<?if($post['gid']){?>
+<input type=hidden name=gid value="<?=$post['gid']?>">
+<?}?>
+<table class=frame width=460 border=0 cellspacing=1 cellpadding=4>
+<tr>
+<td colspan=2 bgcolor=#CCCCCC><b>CREDIT CARD INFORMATION</b></td>
+</tr>
+<?if($data['Error']){?>
+<tr>
+<td colspan=2 class=error><?=prntext($data['Error'])?></td>
+</tr>
+<?}?>
+<tr><td class=field nowrap>Card Type (*):</td><td class=input><select name=ctype><?=showselect($data['CreditCardType'], $post['ctype'])?></select></td></tr>
+<tr><td class=field nowrap>Name Of Card (*):</td><td class=input><input type=text name=cname size=41 maxlength=64 value="<?=prntext($post['cname'])?>"></td></tr>
+<tr><td class=field nowrap>Card Number (*):</td><td class=input><input type=text name=cnumber size=41 maxlength=32 value="<?=prntext($post['cnumber'])?>"></td></tr>
+<tr><td class=field nowrap>AVS or CVV Code (*):</td><td class=input><input type=text name=ccvv size=20 maxlength=16 value="<?=prntext($post['ccvv'])?>"></td></tr>
+<tr><td class=field nowrap>Expire Date MM/YYYY (*):</td><td class=input><select name=cmonth><?=showselect($data['Months'], $post['cmonth'])?></select> / <select name=cyear><?=showselect($data['Years'], $post['cyear'])?></select></td></tr>
+<tr><td colspan=2 align=center bgcolor=#CCCCCC><input class=submit type=submit name=cancel value="BACK">&nbsp;<input type=submit class=submit name=send value="CONTINUE"></td></tr>
+</table>
+<?}?>
+</form></center>
+<?}else{?>SECURITY ALERT: Access Denied<?}?>

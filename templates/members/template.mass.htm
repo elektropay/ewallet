@@ -1,0 +1,58 @@
+<?if(isset($data['ScriptLoaded'])){?>
+<?if(!$data['PostSent']&&!$data['PostFile']){?><form method=post><center><table class=frame width=475 border=0 cellspacing=1 cellpadding=4><tr><td class=capl colspan=2>SEND MONEY (YOUR CURRENT BALANCE IS: <?=prntext($data['Currency'])?><?=prnsumm($post['Balance'])?>)</td></tr><?if($data['Error']){?><tr><td colspan=2 class=error><?=prntext($data['Error'])?></td></tr><?}?><tr><td class=field width=200 nowrap>Send money To:<br><small>(Please enter member usernames or e-mail address one per line without comma or other punctuations)</small></td><td class=input width=275><textarea name=receivers cols=39 rows=8><?=prntext($post['receivers'])?></textarea><br><font class=remark>Please use ONLY VALID username or e-mail. Otherwise payment will send only for correct members account.</font></td></tr><tr><td class=field width=200 nowrap>Amount to transfer, <?=prntext($data['Currency'])?>:</td><td class=input width=275><input type=text name=amount size=10 maxlength=16 value="<?=prnsumm($post['amount'])?>"><br><font class=remark>Minimum amount you can transfer is <?=prnsumm($data['PaymentMinSum'])?>.</font></td></tr><tr><td class=field nowrap>Description (optional):</td><td class=input><textarea name=comments cols=39 rows=10><?=prntext($post['comments'])?></textarea></td></tr><tr><td class=capc colspan=2><input type=submit class=submit name=send value="SEND NOW!"></td></tr></table></center></form>
+
+<form method=post action=masscsv.htm enctype="multipart/form-data">
+  <center>
+  <table class=frame width=475 border=0 cellspacing=1 cellpadding=4>
+    <tr>
+      <td class=capl colspan=2>MASS PAYMENTS WITH .TXT - .CSV OR .SDV FILE UPLOAD</td>
+    </tr>
+    <tr>
+      <td class=input><p>Mass Payment allows anyone to send multiple payments instantly - Saving time and the hassle of having to individually send funds to every recipient. Upload a .txt - .csv or .sdv DOS format file to perform your mass payments.<br>
+        </p>        </td>
+    </tr>
+    <tr>
+      <td class="input">Upload .csv file:
+        <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+        <input type="file" name="filename[]">
+        </td>
+    </tr>
+    <tr>
+      <td class=capc><p align="center">
+        <input type="submit" class=submit name=send value="UPLOAD NOW!">
+      </p>      </td>
+    </tr>
+    <tr>
+      <td class=capl>INSTRUCTIONS - MASS PAYMENTS WITH .TXT - .CSV OR .SDV FILE</td>
+    </tr>
+    <tr>
+      <td class=input><p><b>The file format should be .TXT - .CSV or .SDV (MS-DOS). This file(s) can be easily generated from most spreadsheet applications such as Excel.</b><br><br>
+
+There is a limit of 1,000 payments per file. If you wish to send more than 1,000 payments please split your main file in smaller ones as many as necessary so each has a maximum of 1,000 payments. Total amount per file limit is $200,000.00.<br><br>
+
+The file should contain dollar amount in the first column, username or email in the second and information to the recipient's in the third column. All amounts should be greater than $1.00.<br><br>
+
+<b>.CSV - .SDV (MS-DOS) File Sample:</b>
+<br><center><p>
+<img border="0" src="<?=$data['Images']?>/csv.png" width="313" height="261"></p></center>
+<br>
+
+<b>.TXT (ANSI) File Sample:</b>
+<br><center><p>
+<img border="0" src="<?=$data['Images']?>/txt.png" width="313" height="138"></p></center>
+<br>
+
+<b>Examples of amounts allowed:</b><br>
+12.50 | 100 | 1000 | 487.65 | 230.5 | 14000 | 67.83 | 19.33 | 1.00 
+<br><br>
+<b>Examples of amounts not allowed:</b><br>
+12,50 | -100 | 1,000 | 1,487.65 | 33. | 14,000 | 221.333 | $50 | 0.5 
+
+        </p>        </td>
+    </tr>
+
+  </table>
+</center>
+</form>
+<?}else{?>
+	<table class=frame width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=input><font color="green"><b>$<?=prnsumm($post['amount'])?></b></font> Was sent to <b><?=$post['user_count']?></b> members.<br> Members:  <?=$post['receivers']?> <br> <br>You should get a notification e-mail about this transaction.</td></tr></table><br><?}?><table class=frame width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capc><a href="<?=$data['Host']?>/members/mass.htm">SEND MONEY TO ANOTHER MEMBER</a>&nbsp;|&nbsp;<a href="<?=$data['Host']?>/members/index.htm">ACCOUNT OVERVIEW</a></td></tr></table><?}else{?>SECURITY ALERT: Access Denied<?}?>

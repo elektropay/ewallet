@@ -1,0 +1,184 @@
+<?if(isset($data['ScriptLoaded'])){?><?if(!$post['PostSent']){?><form method=post><input type=hidden name=step value="<?=$post['step']?>"><center><table class=frame width=475 border=0 cellspacing=1 cellpadding=4><tr><td class=capl colspan=2>DEPOSIT OPTIONS</td></tr><?if($data['Error']){?><tr><td colspan=2 class=error><?=prntext($data['Error'])?></td></tr><?}?><tr><td class=field nowrap width=160>Amount to Deposit, <?=prntext($data['Currency'])?>:</td><td class=input width=315><input type=text name=amount size=10 maxlength=16 value="<?=prntext($post['amount'])?>"><br><font class=remark>Minimum amount you can transfer is <?=prntext($data['Currency'])?><?=prnsumm($data['DepositMinSum'])?>.</font></td></tr><tr><td class=field nowrap>Method of Payment:</td><td class=input nowrap><?foreach($data['DepositMethod'] as $key=>$value){if($value['actv']){?><label for=dtype_<?=$key?>><input type=radio class=checkbox id=dtype_<?=$key?> name=dtype value="<?=$key?>"<?if($key==$post['dtype']){?> checked<?}?>><?=prntext($value['name'])?> <font class=remark>[Cost: <?=prnsumm($value['prcn'])?>%+<?=prntext($data['Currency'])?><?=prnsumm($value['fees'])?>]</font></label><br><?}}?></td></tr><tr><td class=capc colspan=2><input type=submit class=submit name=send value="DEPOSIT NOW!"></td></tr></table></center></form><?}else{?>
+<?if($post['dtype']=='pincode'){?>
+sss
+<?}elseif($post['dtype']=='paypal'){?>
+<form method=post action="https://www.paypal.com/cgi-bin/webscr">
+<input type=hidden name=cmd value="_xclick">
+<input type=hidden name=business value="<?=$data['DepositMethod'][$post['dtype']]['user']?>">
+<input type=hidden name=item_name value="Add funds to my <?=$data['SiteName']?> account">
+<input type=hidden name=no_shipping value="1">
+<input type=hidden name=return value="<?=$data['Members']?>/notify.htm">
+<input type=hidden name=no_note value="1">
+<input type=hidden name=amount value="<?=prnsum($post['total'])?>">
+<?}elseif($post['dtype']=='stormpay'){?>
+<form method=post action="https://www.stormpay.com/stormpay/handle_gen.php">
+<input type=hidden name=generic value="1">
+<input type=hidden name=payee_email value="<?=$data['DepositMethod'][$post['dtype']]['user']?>">
+<input type=hidden name=product_name value="Add funds to my <?=$data['SiteName']?> account">
+<input type=hidden name=amount value="<?=prnsum($post['total'])?>">
+<input type=hidden name=quantity value="1">
+<input type=hidden name=require_IPN value="1">
+<input type=hidden name=return_URL value="<?=$data['Members']?>/notify.htm">
+<input type=hidden name=cancel_URL value="<?=$data['Members']?>/deposit.htm">
+<?}elseif($post['dtype']=='netpay'){?>
+<form method=post action="https://www.netpay.tv/cgi-bin/merchant/mpay.cgi">
+<input type=hidden name=PAYEE_ACCOUNT value="<?=$data['DepositMethod'][$post['dtype']]['user']?>">
+<input type=hidden name=PAYEE_NAME value="<?=$data['SiteName']?>">
+<input type=hidden name=PAYMENT_AMOUNT value="<?=prnsum($post['total'])?>">
+<input type=hidden name=NOPAYMENT_URL value="<?=$data['Members']?>/deposit.htm">
+<input type=hidden name=MEMO value="Add funds to my <?=$data['SiteName']?> account">
+<input type=hidden name=NOPAYMENT_URL_METHOD value="LINK">
+<input type=hidden name=RETURN_URL value="<?=$data['Members']?>/notify.htm">
+<input type=hidden name=CANCEL_URL value="<?=$data['Members']?>/deposit.htm">
+<input type=hidden name=PRODUCT_NAME value="Add funds to my <?=$data['SiteName']?> account">
+<?}elseif($post['dtype']=='egold'){?>
+<form method=post action="https://www.e-gold.com/sci_asp/payments.asp">
+<input type=hidden name=PAYEE_ACCOUNT value="<?=$data['DepositMethod'][$post['dtype']]['user']?>">
+<input type=hidden name=PAYEE_NAME value="<?=$data['SiteName']?>">
+<input type=hidden name=PAYMENT_UNITS value="1">
+<input type=hidden name=PAYMENT_METAL_ID value="1">
+<input type=hidden name=PAYMENT_AMOUNT value="<?=prnsum($post['total'])?>">
+<input type=hidden name=NOPAYMENT_URL value="<?=$data['Members']?>/deposit.htm">
+<input type=hidden name=NOPAYMENT_URL_METHOD value="LINK">
+<input type=hidden name=PAYMENT_URL value="<?=$data['Members']?>/notify.htm">
+<input type=hidden name=PAYMENT_URL_METHOD value="POST">
+<input type=hidden name=MEMO value="Add funds to my <?=$data['SiteName']?> account">
+<input type=hidden name=HASH value="<?=md5("abdo".time().$data['sid'])?>">
+<input type=hidden name=CHECKSUM value="<?=time()?>">
+<input type=hidden name=BAGGAGE_FIELDS value="">
+<?}elseif($post['dtype']=='moneybookers'){?>
+<form method=post action="https://www.moneybookers.com/app/payment.pl">
+<input type=hidden name=pay_to_email value="<?=$data['DepositMethod'][$post['dtype']]['user']?>">
+<input type=hidden name=return_url value="<?=$data['Members']?>/deposit.htm">
+<input type=hidden name=cancel_url value="<?=$data['Members']?>/deposit.htm">
+<input type=hidden name=status_url value="<?=$data['Members']?>/notify.htm">
+<input type=hidden name=language value="EN">
+<input type=hidden name=amount value="<?=$post['total']?>">
+<input type=hidden name=currency value="USD">
+<input type=hidden name=detail1_description value="Transaction Description:">
+<input type=hidden name=detail1_text value="Add funds to my <?=$data['SiteName']?> account">
+<?}elseif($post['dtype']=='intgold'){?>
+<form method=post action="https://intgold.com/cgi-bin/webshoppingcart.cgi">
+<input type=hidden name=cmd value="_xclick">
+<input type=hidden name=SELLERACCOUNTID value="<?=$data['DepositMethod'][$post['dtype']]['user']?>">
+<input type=hidden name=METHOD value=POST>
+<input type=hidden name=RETURNPAGE value=CGI>
+<input type=hidden name=RETURNURL value="<?=$data['Members']?>/notify.htm">
+<input type=hidden name=CANCEL_RETURN value="<?=$data['Members']?>/deposit.htm">
+<input type=hidden name=AMOUNT value="<?=prnsum($post['total'])?>">
+<input type=hidden name=ITEM_NUMBER value="1">
+<input type=hidden name=ITEM_NAME value="<?=$data['SiteName']?>">
+<input type=hidden name=HASH value="<?=md5("abdo".time().$data['sid'])?>">
+<?}elseif($post['dtype']=='ebullion'){?>
+<form method=post name=atip action="https://www2.e-bullion.com/atip/process.php">
+<input type="hidden" name="ATIP_PAYEE_ACCOUNT" value="<?=$data['DepositMethod'][$post['dtype']]['user']?>">
+<input type="hidden" name="ATIP_PAYMENT_UNIT" value="1">
+<input type="hidden" name="ATIP_PAYMENT_METAL" value="0">
+<input type="hidden" name="ATIP_PAYMENT_FIXED" value="0">
+<input type="hidden" name="ATIP_PAYMENT_AMOUNT" value="<?=prnsum($post['total'])?>">
+<input type="hidden" name="ATIP_PAYER_FEE_AMOUNT" value="">
+<input type="hidden" name="ATIP_FORCED_PAYER_ACCOUNT" value="">
+<input type="hidden" name="ATIP_PAYEE_NAME" value="<?=$data['SiteName']?>">
+<input type="hidden" name="ATIP_PAYMENT_URL" value="<?=$data['Members']?>/notify.htm">
+<input type="hidden" name="ATIP_PAYMENT_URL_METHOD" value="POST">
+<input type="hidden" name="ATIP_NOPAYMENT_URL" value="<?=$data['Members']?>/deposit.htm">
+<input type="hidden" name="ATIP_NOPAYMENT_URL_METHOD" value="POST">
+<input type="hidden" name="ATIP_SUGGESTED_MEMO" value="Add funds to my <?=$data['SiteName']?> account">
+<input type="hidden" name="ATIP_BAGGAGE_FIELDS" value="">
+<?}elseif($post['dtype']=='pecunix'){?>
+<form method=post action="https://pri.pecunix.com/money.refined">
+<input type=hidden name=PAYEE_ACCOUNT value="<?=$data['DepositMethod'][$post['dtype']]['user']?>">
+<input type=hidden name=PAYMENT_AMOUNT value="<?=prnsum($post['total'])?>">
+<input type=hidden name=PAYMENT_URL_METHOD value="POST">
+<input type=hidden name=PAYMENT_URL value="<?=$data['Members']?>/notify.htm">
+<input type=hidden name=NOPAYMENT_URL_METHOD value="POST">
+<input type=hidden name=NOPAYMENT_URL value="<?=$data['Members']?>/deposit.htm">
+<input type=hidden name=PAYMENT_UNITS value="USD">
+<input type=hidden name=SUGGESTED_MEMO value="Add funds to my <?=$data['SiteName']?> account">
+<?}elseif($post['dtype']=='epaydirect'){?>
+<form method=post action="https://www.epaydirect.net/handle.php">
+<input type=hidden name=receiver value="<?=$data['DepositMethod'][$post['dtype']]['user']?>">
+<input type=hidden name=amount value="<?=prnsum($post['total'])?>">
+<input type=hidden name=item_name value="Add funds to my <?=$data['SiteName']?> account">
+<input type=hidden name=return_url value="<?=$data['Members']?>/deposit.htm">
+<input type=hidden name=notify_url value="<?=$data['Members']?>/notify.htm">
+<input type=hidden name=cancel_url value="<?=$data['Members']?>/deposit.htm">
+<?}elseif($post['dtype']=='evocash'){?>
+<form method=post action="https://www.evocash.com/evoswift/index.cfm">
+<input type=hidden name=receivingaccountid value="<?=$data['DepositMethod'][$post['dtype']]['user']?>">
+<input type=hidden name=pay_yes_url value="<?=$data['Members']?>/deposit.htm">
+<input type=hidden name=pay_no_url value="<?=$data['Members']?>/deposit.htm">
+<input type=hidden name=merchant_check_url value="<?=$data['Members']?>/notify.htm">
+<input type=hidden name=reference value="<?=$data['SiteName']?>">
+<input type=hidden name=memo value="Add funds to my <?=$data['SiteName']?> account">
+<input type=hidden name=amount value="<?=prnsum($post['total'])?>">
+<?}elseif($post['dtype']=='qchex'){?>
+<form method=post action="https://www.qchex.com/pay.asp">
+<input type=hidden name=ReturnTo value="<?=$data['Members']?>/deposit.htm">
+<input type=hidden name=MerchantID value="<?=$data['DepositMethod'][$post['dtype']]['user']?>">
+<input type=hidden name=PayorEmail value="<?=$post['email']?>">
+<input type=hidden name=PayorName value="<?=$post['fname']?> <?=$post['lname']?>">
+<input type=hidden name=PayorAddress value="<?=$post['address']?>">
+<input type=hidden name=PayorCity value="<?=$post['city']?>">
+<input type=hidden name=PayorState value="<?=$post['state']?>">
+<input type=hidden name=PayorZipcode value="<?=$post['zip']?>">
+<input type=hidden name=Amount value="<?=prnsum($post['total'])?>">
+<input type=hidden name=Memo value="Add funds to my <?=$data['SiteName']?> account">
+<?}elseif($post['dtype']=='goldmoney'){?>
+<form method=post action="https://www.goldmoney.com/omi/omipmt.asp">
+<input type=hidden name=OMI_MERCHANT_HLD_NO value="<?=$data['DepositMethod'][$post['dtype']]['user']?>">
+<input type=hidden name=OMI_MERCHANT_REF_NO value="<?=md5("abdo".time().$data['sid'])?>">
+<input type=hidden name=OMI_CURRENCY_CODE value="840">
+<input type=hidden name=OMI_CURRENCY_AMT value="<?=prnsum($post['total'])?>">
+<input type=hidden name=OMI_SIM_MODE value="0">
+<input type=hidden name=OMI_MERCHANT_MEMO value="Add funds to my <?=$data['SiteName']?> account">
+<input type=hidden name=OMI_RESULT_URL value="<?=$data['Members']?>/notify.htm">
+<input type=hidden name=OMI_SUCCESS_URL value="<?=$data['Members']?>/deposit.htm">
+<input type=hidden name=OMI_SUCCESS_URL_METHOD value="LINK">
+<input type=hidden name=OMI_FAIL_URL value="<?=$data['Members']?>/deposit.htm">
+<input type=hidden name=OMI_FAIL_URL_METHOD value="LINK">
+<?}elseif($post['dtype']=='virtualgold'){?>
+<form method=post action="https://virtualgold.net/sci_interface.php">
+<input type=hidden name=ACCOUNT_NO value="<?=$data['DepositMethod'][$post['dtype']]['user']?>">
+<input type=hidden name=PAYMENT_TYPE value="ONETIME">
+<input type=hidden name=PRODUCT_NAME value="Add funds to my <?=$data['SiteName']?> account">
+<input type=hidden name=PAYMENT_AMOUNT value="<?=prnsum($post['total'])?>">
+<input type=hidden name=VERIFY_URL value="<?=$data['Members']?>/notify.htm">
+<input type=hidden name=RETURN_URL value="<?=$data['Members']?>/deposit.htm">
+<input type=hidden name=CANCEL_URL value="<?=$data['Members']?>/deposit.htm">
+<?}elseif($post['dtype']=='payemo'){?>
+<form method=post action="https://www.emocorp.com/s/action/PaymentAction">
+<input type=hidden name=merchant_email value="<?=$data['DepositMethod'][$post['dtype']]['user']?>">
+<input type=hidden name=merchant_name value="Add funds to my <?=$data['SiteName']?> account">
+<input type=hidden name=amount value="<?=prnsum($post['total'])?>">
+<input type=hidden name=return_url value="<?=$data['Members']?>/deposit.htm">
+<input type=hidden name=cancel_url value="<?=$data['Members']?>/deposit.htm">
+<input type=hidden name=notification_url value="<?=$data['Members']?>/notify.htm">
+<input type=hidden name=reference value="Add funds to my <?=$data['SiteName']?> account">
+<?}elseif($post['dtype']=='checkout'){?>
+<form action="https://www.2checkout.com/checkout/purchase" method="post">
+<input type=hidden name=sid value="<?=$data['DepositMethod'][$post['dtype']]['user']?>">
+<input type=hidden name=cart_order_id value="<?=date('YmdHis')?>">
+<input type=hidden name=total value="<?=prnsum($post['total'])?>">
+<input type="hidden" name="id_type" value="1"/>
+<input type=hidden name=x_receipt_link_url value="<?=$data['Members']?>/notify.htm">
+<?}elseif($post['dtype']=='echeck'||$post['dtype']=='autorize'||$post['dtype']=='mail'){?>
+<?if(!$post['ShowCheckInfo']){?><form method=post><input type=hidden name=dtype value="<?=$post['dtype']?>"><input type=hidden name=fees value="<?=$post['fees']?>"><input type=hidden name=amount value="<?=$post['amount']?>"><input type=hidden name=manual value="true"><?}else{?><?if($post['dtype']=='autorize'){?><?}else{?><font color=#FF0000><b><u>PLEASE NOTE:</u></b><blockquote>Funds have been successfully added to your account and has status 'PENDING'. When we will get your check, your funds will be available.</blockquote></font><?}}}?><?if($post['dtype']=='mail'&&!$post['ShowCheckInfo']){?><font color=#FF0000><b><u>PLEASE NOTE:</u></b><blockquote>When we will get your check, your funds will be available.</blockquote></font><?}?><center><table class=frame width=100% border=0 cellspacing=1 cellpadding=4><tr><td class=capl>TRANSACTION DETAILS (Add funds with <?=strtoupper($data['DepositMethod'][$post['dtype']]['name'])?>)</td></tr><?if($post['dtype']!='autorize'){?><tr><td class=input><br><pre class=info>
+   · Amount         : <?=prnpays($post['amount'])."\n"?>
+   · Processing Fee : <?=prnpays(-$post['fees'])."\n"?>
+   · Total Deposit  : <?=prnpays($post['total'])."\n"?>
+<?if($post['dtype']=='mail'){?><?if(!$post['ShowCheckInfo']){?>
+
+   Please forward a current check or money order
+   in the amount of <?=prnsum($post['total'])?> to the following address:
+   <table class=frame width=50% cellspacing=1 cellpadding=2 align=center bgcolor=#FFFFFF>
+    <tr><td align=center><?=prntext($data['PostMailAddress'])?></td></tr>
+   </table>
+
+   Please Note: Include a note with your username (<?=prntext($post['username'])?>) and
+   the email address you registered with (<?=prntext($post['email'])?>), so we can
+   credit your account accordingly.
+
+   Thank you very much!<?}else{?><?=prntext($post['CheckInfo'])?><?}?>
+<?}?>
+</pre></td></tr><?}?><?if($post['dtype']=='echeck'){?><tr><td class=input><br><?if(!$post['ShowCheckInfo']){?><tr><td align=center valign=top><table class=frame width=100% border=0 cellspacing=1 cellpadding=2><tr><td class=capl colspan=2>BILLING INFORMATION FROM THE CHECK</td></tr><?if($data['Error']){?><tr><td colspan=2 class=error><?=prntext($data['Error'])?></td></tr><?}?><tr><td class=field nowrap>First Name (*):</td><td class=input><input type=text name=fname size=41 maxlength=32 value="<?=prntext($post['fname'])?>"></td></tr><tr><td class=field nowrap>Last Name (*):</td><td class=input><input type=text name=lname size=41 maxlength=32 value="<?=prntext($post['lname'])?>"></td></tr><tr><td class=field nowrap>Company Name:<br><small>(optional)</small></td><td class=input><input type=text name=company size=41 maxlength=128 value="<?=prntext($post['company'])?>"></td></tr><tr><td class=field nowrap>Address (*):</td><td class=input><input type=text name=address size=41 maxlength=128 value="<?=prntext($post['address'])?>"></td></tr><tr><td class=field nowrap>City (*):</td><td class=input><input type=text name=city size=41 maxlength=64 value="<?=prntext($post['city'])?>"></td></tr><tr><td class=field nowrap>Country (*):</td><td class=input><select name=country><?=showselect($data['Countries'], $post['country'])?></select></td></tr><tr><td class=field nowrap>State:<br><small>(optional)</small></td><td class=input><input type=text name=state size=20 maxlength=32 value="<?=prntext($post['state'])?>"></td></tr><tr><td class=field nowrap>Postal Code (*):</td><td class=input><input type=text name=zip size=20 maxlength=32 value="<?=prntext($post['zip'])?>"></td></tr><tr><td class=field nowrap>Phone (*):</td><td class=input><input type=text name=phone size=20 maxlength=32 value="<?=prntext($post['phone'])?>"></td></tr><tr><td class=field nowrap>Check Number (*):</td><td class=input><input type=text name=chknum size=30 maxlength=32 value="<?=prntext($post['chknum'])?>"></td></tr><tr><td class=field nowrap>Federal ID Number (*):</td><td class=input><input type=text name=fdrnum size=30 maxlength=32 value="<?=prntext($post['fdrnum'])?>"></td></tr><tr><td class=capl colspan=2>BANK CHECKING ACCOUNT INFORMATION</td></tr><?if($post['BanksInfo']){?><?foreach($post['BanksInfo'] as $key=>$val){?><tr><td colspan=2 class=capl><table border=0 cellspacing=0 cellpadding=0><tr><td><input type=radio name=bank value="<?=$val['id']?>"<?if($val['id']==$post['bank']){?><?$bankchecked=true;?> checked<?}?> id="<?=$val['id']?>bank" style="border:0">&nbsp;</td><td>&nbsp;<label for="<?=$val['id']?>bank"><b><?=prntext($val['bname'])?></b></label></td></tr></table></td></tr><tr><td class=field nowrap>Bank Name:</td><td class=input nowrap><?=prntext($val['bname'])?></td></tr><tr><td class=field nowrap>Bank Address:</td><td class=input nowrap><?=prntext($val['baddress'])?></td></tr><tr><td class=field nowrap>Bank City:</td><td class=input nowrap><?=prntext($val['bcity'])?></td></tr><tr><td class=field nowrap>Bank ZIP Code:</td><td class=input nowrap><?=prntext($val['bzip'])?></td></tr><tr><td class=field nowrap>Bank Country:</td><td class=input nowrap><?=prntext($data['Countries'][$val['bcountry']])?></td></tr><tr><td class=field nowrap>Bank State:</td><td class=input nowrap><?=prntext($val['bstate'])?></td></tr><tr><td class=field nowrap>Bank Phone:</td><td class=input nowrap><?=prntext($val['bphone'])?></td></tr><tr><td class=field nowrap>Account Holder's Name:</td><td class=input nowrap><?=prntext($val['bnameacc'])?></td></tr><tr><td class=field nowrap>Account Number:</td><td class=input nowrap><?=prntext($val['baccount'])?></td></tr><tr><td class=field nowrap>Account Type:</td><td class=input nowrap><?=prntext($data['BankAccountType'][$val['btype']])?></td></tr><tr><td class=field nowrap>9 Digits Routing Number:</td><td class=input nowrap><?=prntext($val['brtgnum'])?></td></tr><tr><td class=field nowrap>S.W.I.F.T. Code:</td><td class=input nowrap><?=prntext($val['bswift'])?></td></tr><?}?><?}?><tr><td colspan=2 class=capl><table border=0 cellspacing=0 cellpadding=0><tr><td><input type=radio name=bank value="-1"<?if(!$bankchecked){?> checked<?}?> id="cbank" style="border:0">&nbsp;</td><td>&nbsp;<label for="cbank"><b>CUSTOM BANK ACCOUNT</b></label></td></tr></table></td></tr><tr><td class=field nowrap>Bank Name (*):</td><td class=input><input type=text name=bname size=41 maxlength=128 value="<?=prntext($post['bname'])?>"></td></tr><tr><td class=field nowrap>Bank Address (*):</td><td class=input><input type=text name=baddress size=41 maxlength=128 value="<?=prntext($post['baddress'])?>"></td></tr><tr><td class=field nowrap>Bank City (*):</td><td class=input><input type=text name=bcity size=41 maxlength=64 value="<?=prntext($post['bcity'])?>"></td></tr><tr><td class=field nowrap>Bank ZIP Code (*):</td><td class=input><input type=text name=bzip size=20 maxlength=16 value="<?=prntext($post['bzip'])?>"></td></tr><tr><td class=field nowrap>Bank Country (*):</td><td class=input><select name=bcountry><?=showselect($data['Countries'], $post['bcountry'])?></select></td></tr><tr><td class=field nowrap>Bank State:<br><small>(optional)</small></td><td class=input><input type=text name=bstate size=20 maxlength=32 value="<?=prntext($post['bstate'])?>"></td></tr><tr><td class=field nowrap>Bank Phone (*):</td><td class=input><input type=text name=bphone size=20 maxlength=32 value="<?=prntext($post['bphone'])?>"></td></tr><tr><td class=field nowrap>Account Holder's Name (*):</td><td class=input><input type=text name=bnameacc size=41 maxlength=128 value="<?=prntext($post['bnameacc'])?>"></td></tr><tr><td class=field nowrap>Account Number (*):</td><td class=input><input type=text name=baccount size=41 maxlength=32 value="<?=prntext($post['baccount'])?>"></td></tr><tr><td class=field nowrap>Account Type:<br><small>(optional)</small></td><td class=input><select name=btype><?=showselect($data['BankAccountType'], $post['btype'])?></select></td></tr><tr><td class=field nowrap>9 Digits Routing Number:<br><small>(optional)</small></td><td class=input><input type=text name=brtgnum size=41 maxlength=9 value="<?=prntext($post['brtgnum'])?>"></td></tr><tr><td class=field nowrap>S.W.I.F.T. Code:<br><small>(International only)</small></td><td class=input><input type=text name=bswift size=41 maxlength=32 value="<?=prntext($post['bswift'])?>"></td></tr></table><?}else{?><pre class=info><?=$post['CheckInfo']?></pre><?}?></td></tr><?}?><?if($post['dtype']=='autorize'){?><?if(!$post['ShowCheckInfo']){?><tr><td align=center valign=top><table class=frame width=100% border=0 cellspacing=1 cellpadding=4><tr><td colspan=2 bgcolor=#CCCCCC><b>BILLING INFORMATION</b></td></tr><?if($data['Error']){?><tr><td colspan=2 class=error><?=prntext($data['Error'])?></td></tr><?}?><tr><td class=field nowrap>First Name (*):</td><td class=input><input type=text name=fname size=41 maxlength=32 value="<?=prntext($post['fname'])?>"></td></tr><tr><td class=field nowrap>Last Name (*):</td><td class=input><input type=text name=lname size=41 maxlength=32 value="<?=prntext($post['lname'])?>"></td></tr><tr><td class=field nowrap>Company Name<br><small>(optional)</small>:</td><td class=input><input type=text name=company size=41 maxlength=128 value="<?=prntext($post['company'])?>"></td></tr><tr><td class=field nowrap>Address (*):</td><td class=input><input type=text name=address size=41 maxlength=128 value="<?=prntext($post['address'])?>"></td></tr><tr><td class=field nowrap>City (*):</td><td class=input><input type=text name=city size=41 maxlength=64 value="<?=prntext($post['city'])?>"></td></tr><tr><td class=field nowrap>Country (*):</td><td class=input><select name=country><?=showselect($data['Countries'], $post['country'])?></select></td></tr><tr><td class=field nowrap>State (optional):</td><td class=input><input type=text name=state size=20 maxlength=32 value="<?=prntext($post['state'])?>"></td></tr><tr><td class=field nowrap>Postal Code (*):</td><td class=input><input type=text name=zip size=20 maxlength=32 value="<?=prntext($post['zip'])?>"></td></tr><tr><td class=field nowrap>Phone (*):</td><td class=input><input type=text name=phone size=20 maxlength=32 value="<?=prntext($post['phone'])?>"></td></tr></table><br><table class=frame width=100% border=0 cellspacing=1 cellpadding=4><tr><td colspan=2 bgcolor=#CCCCCC><b>CREDIT CARD INFORMATION</b></td></tr><?if($post['CardsInfo']){?><?foreach($post['CardsInfo'] as $key=>$val){?><tr><td colspan=2 class=capl style="background-color:#DDDDDD"><table border=0 cellspacing=0 cellpadding=0><tr><td><input type=radio name=card value="<?=$val['id']?>"<?if($val['id']==$post['card']){?><?$cardchecked=true;?> checked<?}?> id="<?=$val['id']?>card" style="border:0">&nbsp;</td><td>&nbsp;<label for="<?=$val['id']?>card"><b><?=prntext($val['cname'])?></b></label></td></tr></table></td></tr><tr><td class=field nowrap>Card Type:</td><td class=input nowrap><?=prntext($data['CreditCardType'][$val['ctype']])?></td></tr><tr><td class=field nowrap>Name Of Card:</td><td class=input nowrap><?=prntext($val['cname'])?></td></tr><tr><td class=field nowrap>Card Number:</td><td class=input nowrap><?=prnintg($val['cnumber'])?></td></tr><tr><td class=field nowrap>AVS or CVV Code:</td><td class=input nowrap><?=prnintg($val['ccvv'])?></td></tr><tr><td class=field nowrap>Expire Date MM/YYYY:</td><td class=input nowrap><?=prnintg($val['cmonth'])?>/<?=prnintg($val['cyear'])?></td></tr><?}?><?}?><tr><td colspan=2 class=capl style="background-color:#DDDDDD"><table border=0 cellspacing=0 cellpadding=0><tr><td><input type=radio name=card value="-1"<?if(!$cardchecked){?> checked<?}?> id="ccard" style="border:0">&nbsp;</td><td>&nbsp;<label for="ccard"><b>CUSTOM CREDIT CARD</b></label></td></tr></table></td></tr><tr><td class=field nowrap>Card Type (*):</td><td class=input><select name=ctype><?=showselect($data['CreditCardType'], $post['ctype'])?></select></td></tr><tr><td class=field nowrap>Name Of Card (*):</td><td class=input><input type=text name=cname size=41 maxlength=64 value="<?=prntext($post['cname'])?>"></td></tr><tr><td class=field nowrap>Card Number (*):</td><td class=input><input type=text name=cnumber size=41 maxlength=32 value="<?=prntext($post['cnumber'])?>"></td></tr><tr><td class=field nowrap>AVS or CVV Code (*):</td><td class=input><input type=text name=ccvv size=20 maxlength=16 value="<?=prntext($post['ccvv'])?>"></td></tr><tr><td class=field nowrap>Expire Date MM/YYYY (*):</td><td class=input><select name=cmonth><?=showselect($data['Months'], $post['cmonth'])?></select> / <select name=cyear><?=showselect($data['Years'], $post['cyear'])?></select></td></tr></table></td></tr><?}}?><?if(!$post['ShowCheckInfo']){?><tr><td class=capc><input class=submit type=submit name=send value="CONTINUE"></td></tr><?}?></table></center><?if(!$post['ShowCheckInfo']){?></form><?}?><center><form method=post><input type=hidden name=dtype value="<?=$post['dtype']?>"><input type=hidden name=fees value="<?=$post['fees']?>"><input type=hidden name=amount value="<?=$post['amount']?>"><table class=frame width=100% border=0 cellspacing=1 cellpadding=4><tr><td class=capc><input class=submit type=submit name=cancel value="<?if($post['dtype']=='mail'||$post['dtype']=='echeck'){?>BACK<?}else{?>CANCEL TRANSACTION<?}?>"></td></tr></table></form></center><?}?><?}else{?>SECURITY ALERT: Access Denied<?}?>

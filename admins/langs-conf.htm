@@ -1,0 +1,114 @@
+<?
+###############################################################################
+# PROGRAM     : EPAY ENTERPRISE                                               #
+# VERSION     : 4.13                                                          #
+# AUTHOR      : DMITRY PEREUDA                                                #
+
+# COMPANY     : ALSTRASOFT	                                              #
+# COPYRIGHTS  : (C)2009 ALSTRASOFT. ALL RIGHTS RESERVED                       #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+# LICENSE KEY : C3FA-76A1-83A4-C2B4-AE1F-1D5A-14ED-1DCA                       #
+###############################################################################
+#    THIS FILE IS PART OF EPAY SCRIPT - THE NEW UNIVERSAL PAYMENT GATEWAY     #
+#               	     DEVELOPED BY ALSTRASOFT                          #
+###############################################################################
+#    ALL SOURCE CODE, IMAGES, PROGRAMS, FILES INCLUDED IN THIS DISTRIBUTION   #
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+#       ANY REDISTRIBUTION WITHOUT PERMISSION OF ALSTRASOFT AND IS            #
+#                            STRICTLY FORBIDDEN                               #
+###############################################################################
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+###############################################################################
+
+
+#         COPYRIGHTS BY (C)2009 ALSTRASOFT. ALL RIGHTS RESERVDED  	      #
+
+
+
+
+
+###############################################################################
+$data['PageName']='TEMPLATES LANGS';
+$data['PageFile']='langs-conf';
+###############################################################################
+include('../config.htm');
+###############################################################################
+if(!$_SESSION['adm_login']){
+	header("Location:{$data['Admins']}/login.htm");
+	echo('ACCESS DENIED.');
+	exit;
+}
+###############################################################################
+$new_lang_folder = $data['Templates']."/langs/".$post["n_lang_name"];
+
+function show_langs(){
+  global $data;
+  $langs_dir_obj = dir($data['Templates']."/langs/");
+    while($entry = $langs_dir_obj->read()){
+     if ($entry != "." && $entry != ".." && $entry != "default") {
+     if ($data['DefaultLanguage']==$entry){
+     	$langs_options ='<td class="input">
+            DEFAULT
+          </td>';
+     }else{
+     	$langs_options='<input type="submit" value="RENAME" name="rename" class="submit" >
+          </td>
+          <td class="input">
+            <input type="submit" value="DELETE!!!" name="delete" class="submit" >
+          </td>';
+     }
+	  echo '<tr>
+          <td class="input">
+           <form method=post>
+            <input type="hidden" value="'.$entry.'" name="o_lang_name" size="20">
+            <input type="text" value="'.$entry.'" name="n_lang_name" size="20">
+            '.$langs_options.'
+          </form>
+        </tr>';
+     }
+    }
+}
+
+if($post['rename']){
+	$old_lang_folder = $data['Templates']."/langs/".$post["o_lang_name"];
+	rename($old_lang_folder,$new_lang_folder);
+}
+
+if($post['delete']){
+	$old_lang_folder = $data['Templates']."/langs/".$post["o_lang_name"];
+	$new_lang_folder = $data['Templates']."/langs_deleted/".$post["o_lang_name"];
+	rename($old_lang_folder,$new_lang_folder."-".time());
+}
+
+if($post['add']){
+  if(!is_dir($new_lang_folder)){
+  	mkdir($new_lang_folder);
+    $default_dir = $data['Templates']."/langs/default";
+    $default_dir_obj = dir($default_dir);
+    while($entry = $default_dir_obj->read()){
+      if ($entry != "." && $entry != ".." && !is_dir($default_dir."/".$entry)) {
+      	copy($default_dir."/".$entry, $new_lang_folder."/".$entry);
+      }else  if(is_dir($default_dir."/".$entry) && $entry != "." && $entry != ".."){  // copy members
+      	mkdir($new_lang_folder."/".$entry);
+      	$default_dir_obj_mem = dir($default_dir."/".$entry);
+      	while($entry_mem = $default_dir_obj_mem->read()){
+      	  if ($entry_mem != "." && $entry_mem != "..") {
+      	    copy($default_dir."/".$entry."/".$entry_mem, $new_lang_folder."/".$entry."/".$entry_mem);
+          }
+      	}
+      }
+    }
+  }else{
+		echo "Such Lang already exists!!!!!!!";
+  }
+}
+
+$post['content']=htmlspecialchars($post['content'], ENT_QUOTES);
+$post['Templates']=get_html_templates();
+###############################################################################
+$data['SystemBalance']=select_balance(-1);
+###############################################################################
+display('admins');
+###############################################################################
+?>

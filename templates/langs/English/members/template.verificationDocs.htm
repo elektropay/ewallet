@@ -1,0 +1,119 @@
+<script type="text/javascript">
+function addupload(){
+	//alert(1);
+	//document.getElementById('filearea').innerHTML+='<input name="userfile[]" type="file" /><br /><br />';
+	var theDiv = document.getElementById("filearea");
+    theDiv.innerHTML += '<input name="userfile[]" type="file" /><br /><br />'; 
+}
+</script>
+<?if(isset($data['ScriptLoaded'])){?>
+<?  if($data['PostSent']) { ?>
+
+
+<table class=frame width=650 border=0 cellspacing=1 cellpadding=4>
+
+<?if($data['Error']){?><tr><td colspan=2 class=error><?=prntext($data['Error'])?></td></tr><?}?>
+</table>
+
+<form action="" method="post" enctype="multipart/form-data">
+<br />
+ <span> If you wish to have verify your account, you will need to verify your identity by uploading the relevent documentations in PDF formate by going to the Upload document section below:</span> &nbsp;&nbsp;&nbsp;&nbsp;<!--<input type="button" class="submit" value="Add File" onclick="addupload();"/>--><br />
+   <table> <tr>
+ 
+  <tr>
+   <div id="filearea">
+<td   >  <input name="userfile[]" type="file" /><br /><br /></td>
+
+<td  ><select  style="margin-top: -19px; margin-left: 20px;"  name="doctype1">
+    <option value="" selected>Please select document type</option>
+    <option value="Driving Licence">Driving Licence</option>
+    <option value="PassPort">PassPort</option>
+    <option value="Country ID">Country ID</option>
+    <option value="Phone Bill">Phone Bill</option>
+    <option value="Utility Bill">Utility Bill</option>
+    <option value="Internet Bill">Internet Bill</option>
+    <option value="Bank Statment">Bank Statment</option>
+    <option value="Bank Agreement (US)">Bank Agreement (US)</option>
+    <option value="Bank Agreement (CAD)">Bank Agreement (CAD)</option>
+    <option value="Card Scan">Card Scan</option>
+    <option value="Head & shoulder Personal Photo (Required)">Head & shoulder Personal Photo (Required)</option>
+    <option value="Medical Bill">Medical Bill</option>
+</select>
+  </td></tr>
+  
+  
+  
+  <tr>
+   <div id="filearea">
+<td   >  <input name="userfile[]" type="file" /><br /><br /></td>
+
+<td  ><select  style="margin-top: -19px; margin-left: 20px;"  name="doctype2">
+    <option value="" selected>Please select document type</option>
+    <option value="Driving Licence">Driving Licence</option>
+    <option value="PassPort">PassPort</option>
+    <option value="Country ID">Country ID</option>
+    <option value="Phone Bill">Phone Bill</option>
+    <option value="Utility Bill">Utility Bill</option>
+    <option value="Internet Bill">Internet Bill</option>
+    <option value="Bank Statment">Bank Statment</option>
+    <option value="Bank Agreement (US)">Bank Agreement (US)</option>
+    <option value="Bank Agreement (CAD)">Bank Agreement (CAD)</option>
+    <option value="Card Scan">Card Scan</option>
+    <option value="Head & shoulder Personal Photo (Required)">Head & shoulder Personal Photo (Required)</option>
+    <option value="Medical Bill">Medical Bill</option>
+</select>
+  </td></tr>
+  <tr>
+   <div id="filearea">
+<td   >  <input name="userfile[]" type="file" /><br /><br /></td>
+
+<td>
+<select  style="margin-top: -19px; margin-left: 20px;"  name="doctype3">
+    <option value="" selected>Please select document type</option>
+    <option value="Driving Licence">Driving Licence</option>
+    <option value="PassPort">PassPort</option>
+    <option value="Country ID">Country ID</option>
+    <option value="Phone Bill">Phone Bill</option>
+    <option value="Utility Bill">Utility Bill</option>
+    <option value="Internet Bill">Internet Bill</option>
+    <option value="Bank Statment">Bank Statment</option>
+    <option value="Bank Agreement (US)">Bank Agreement (US)</option>
+    <option value="Bank Agreement (CAD)">Bank Agreement (CAD)</option>
+    <option value="Card Scan">Card Scan</option>
+    <option value="Head & shoulder Personal Photo (Required)">Head & shoulder Personal Photo (Required)</option>
+    <option value="Medical Bill">Medical Bill</option>
+</select>
+</td>
+</tr>
+  <tr>
+   <div id="filearea">
+<td>  <input name="userfile[]" type="file" /><br /><br /></td>
+
+<td>
+<select  style="margin-top: -19px; margin-left: 20px;"  name="doctype4">
+    <option value="" selected>Please select document type</option>
+    <option value="Driving Licence">Driving Licence</option>
+    <option value="PassPort">PassPort</option>
+    <option value="Country ID">Country ID</option>
+    <option value="Phone Bill">Phone Bill</option>
+    <option value="Utility Bill">Utility Bill</option>
+    <option value="Internet Bill">Internet Bill</option>
+    <option value="Bank Statment">Bank Statment</option>
+    <option value="Bank Agreement (US)">Bank Agreement (US)</option>
+    <option value="Bank Agreement (CAD)">Bank Agreement (CAD)</option>
+    <option value="Card Scan">Card Scan</option>
+    <option value="Head & shoulder Personal Photo (Required)">Head & shoulder Personal Photo (Required)</option>
+    <option value="Medical Bill">Medical Bill</option>
+</select>
+  </td></tr>
+ 
+  
+  </table>
+  <input type="submit" class="submit" value="Upload Document" name="sendfiles" />
+</form>
+<?} if($data['PostSentMessage']){?>
+<table class=frame width=650 border=0 cellspacing=1 cellpadding=4>
+<tr><td colspan=2 style="background-color:#090;" class=error>Your document's has been upload successfully and admin will verify your account.</td></tr>
+</table>
+<?}?>
+<? }else {?>SECURITY ALERT: Access Denied<?}?>
